@@ -31,29 +31,36 @@ upload_tab <- tabPanel(
 chdir_tab <- tabPanel(
     'Characteristic Direction Analysis',
     fluidRow(
-        column(12, p(''))
-    ),
-    column(12, wellPanel(
-        tags$dl(
-            tags$dt('#genes:'),
-            tags$dd(textOutput('ngenes')),
-            tags$dt('#probes:'),
-            tags$dd(textOutput('nprobes')),
-            tags$dt('Control samples:'),
-            tags$dd(textOutput('control_samples')),
-            tags$dt('Treatment samples:'),
-            tags$dd(textOutput('treatment_samples'))
-        ),
-        actionButton(inputId = 'run_chdir', label = 'Run', icon = NULL)
-    )),
-    column(12, ggvisOutput("ggvis"))
+        column(12, p('')),
+        column(12, wellPanel(
+            tags$dl(
+                tags$dt('#genes:'),
+                tags$dd(textOutput('ngenes')),
+                tags$dt('#probes:'),
+                tags$dd(textOutput('nprobes')),
+                tags$dt('Control samples:'),
+                tags$dd(textOutput('control_samples')),
+                tags$dt('Treatment samples:'),
+                tags$dd(textOutput('treatment_samples'))
+            ),
+            actionButton(inputId = 'run_chdir', label = 'Run Characteristic Direction Analysis', icon = NULL)
+        )),
+        column(12, ggvisOutput("ggvis"))
+    )
 )
 
 
 #' Principle Angle Enrichment Analysis ouput tab
 #'
 paea_tab <- tabPanel(
-    'Principle Angle Enrichment Analysis'
+    'Principle Angle Enrichment Analysis',
+    fluidRow(
+        column(12, p('')),
+        column(12, wellPanel(
+            actionButton(inputId = 'run_paea', label = 'Run Principle Angle Enrichment', icon = NULL)
+        )),
+        column(12)
+    )
 )
 
 
