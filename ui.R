@@ -45,7 +45,8 @@ chdir_tab <- tabPanel(
             tags$dd(textOutput('treatment_samples'))
         ),
         actionButton(inputId = 'run_chdir', label = 'Run', icon = NULL)
-    ))
+    )),
+    column(12, ggvisOutput("ggvis"))
 )
 
 
@@ -76,7 +77,6 @@ about_panel <- tabPanel(
 
 
 #' Complete UI
-#'
 #'
 shinyUI(
     navbarPage(

@@ -16,6 +16,7 @@ shinyServer(function(input, output, session) {
     values$chdir <- NULL
     values$control_samples <- NULL
     values$treatment_samples <- NULL
+    values$last_errot <- NULL
     
     
     #' Ugly hack to be able to clear upload widget
@@ -31,6 +32,32 @@ shinyServer(function(input, output, session) {
         )
     })
     
+    observe({
+        if(!is.null(values$chdir)) {
+            results <- head(values$chdir$results[[1]], 40)
+            results <- data.frame(
+                g = factor(
+                    names(results),
+                    names(results)[order(abs(results), decreasing=TRUE)]
+                ),
+                v = results
+            )
+            
+            ggvis(results, ~g, ~v) %>% 
+                ggvis::layer_bars(width = 0.75) %>% scale_numeric('y', domain = c(min(results$v), max(results$v))) %>%
+                add_axis('y', grid=FALSE, title = 'Coefficient') %>%
+                add_axis(
+                    'x', grid=FALSE, offset = 10, title = '',
+                    properties = axis_props(
+                        axis=list(stroke=NULL), 
+                        ticks = list(stroke = NULL),
+                        labels=list(angle=-90, fontSize = 10, align='right' )
+                    )
+               ) %>% bind_shiny("ggvis")
+        }
+    })
+    
+    
  
     #' Handle 
     #'
@@ -38,8 +65,12 @@ shinyServer(function(input, output, session) {
         if(input$run_chdir == 0) return()
         datain <- isolate(datain())
         sampleclass <- factor(ifelse(colnames(datain)[-1] %in% isolate(input$sampleclass), '1', '2'))
-        values$chdir <- try(
-            GeoDE::chdirAnalysis(datain, sampleclass = sampleclass)
+        values$chdir <- tryCatch(
+            GeoDE::chdirAnalysis(datain, sampleclass = sampleclass),
+            error = function(e) {
+                values$last_error <- e
+                NULL
+            }
         )
     })
     
