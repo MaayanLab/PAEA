@@ -34,29 +34,10 @@ shinyServer(function(input, output, session) {
     
     observe({
         if(!is.null(values$chdir)) {
-            results <- head(values$chdir$results[[1]], 40)
-            results <- data.frame(
-                g = factor(
-                    names(results),
-                    names(results)[order(abs(results), decreasing=TRUE)]
-                ),
-                v = results
-            )
-            
-            ggvis(results, ~g, ~v) %>% 
-                ggvis::layer_bars(width = 0.75) %>% scale_numeric('y', domain = c(min(results$v), max(results$v))) %>%
-                add_axis('y', grid=FALSE, title = 'Coefficient') %>%
-                add_axis(
-                    'x', grid=FALSE, offset = 10, title = '',
-                    properties = axis_props(
-                        axis=list(stroke=NULL), 
-                        ticks = list(stroke = NULL),
-                        labels=list(angle=-90, fontSize = 10, align='right' )
-                    )
-               ) %>% bind_shiny("ggvis")
+            results <- prepare_results(values$chdir$results[[1]])
+            plot_top_genes(results) %>% bind_shiny("ggvis")
         }
     })
-    
     
  
     #' Handle 
@@ -65,8 +46,12 @@ shinyServer(function(input, output, session) {
         if(input$run_chdir == 0) return()
         datain <- isolate(datain())
         sampleclass <- factor(ifelse(colnames(datain)[-1] %in% isolate(input$sampleclass), '1', '2'))
-        values$chdir <- tryCatch(
-            GeoDE::chdirAnalysis(datain, sampleclass = sampleclass),
+        values$chdir <- tryCatch({
+                png('/dev/null')
+                chdir <- GeoDE::chdirAnalysis(datain, sampleclass = sampleclass)
+                dev.off()
+                chdir
+            },
             error = function(e) {
                 values$last_error <- e
                 NULL
@@ -75,11 +60,34 @@ shinyServer(function(input, output, session) {
     })
     
     
+    #' Handle 
+    #'
+    observe({
+        if(input$run_paea == 0) return()
+        chdir <- isolate(values$chdir)
+        if(!(is.null(chdir))) {
+            values$paea <- tryCatch({
+                    png('/dev/null')
+                    paea <- GeoDE::PAEAAnalysis(chdir$chdirprops, prepare_gene_sets(data$genes))
+                    dev.off()
+                    paea
+                },
+                error = function(e) {
+                    print(e)
+                    values$last_error <- e
+                    NULL
+                }
+            )
+        }
+    })
+    
+    
     output$nprobes <- renderText({
         if(!is.null(datain())) {
             nrow(datain())
         }
     })
+    
     
     output$ngenes <- renderText({
         if(!is.null(datain())) {
@@ -99,17 +107,28 @@ shinyServer(function(input, output, session) {
         }
     })
 
+    
     output$control_samples <- renderText({
         paste(values$control_samples, collapse = ', ')
     })
+    
     
     output$treatment_samples <- renderText({
         paste(values$treatment_samples, collapse = ', ')
     })
     
+    
     output$contents <- renderDataTable({
         datain()
     })
+    
+    
+    output$pae_results <- renderDataTable({
+        if(!is.null(values$paea)) {
+            prepare_paea_results(values$paea$p_values, data$description)
+        }
+    })
+    
     
     output$sampleclass_container <- renderUI({
         if (!is.null(datain()) && ncol(datain()) != 1 ) {
@@ -120,6 +139,7 @@ shinyServer(function(input, output, session) {
             )
         } 
     })
+    
     
     datain <- reactive({
         inFile <- input$datain
