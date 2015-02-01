@@ -49,7 +49,8 @@ chdir_tab <- tabPanel(
             ),
             actionButton(inputId = 'run_chdir', label = 'Run Characteristic Direction Analysis', icon = NULL)
         )),
-        column(12, ggvisOutput("ggvis"))
+        column(6, ggvisOutput("ggvis")),
+        column(6, wellPanel())
     )
 )
 
@@ -63,7 +64,8 @@ paea_tab <- tabPanel(
         column(12, wellPanel(
             actionButton(inputId = 'run_paea', label = 'Run Principle Angle Enrichment', icon = NULL)
         )),
-        column(12, dataTableOutput('pae_results'))
+        column(6, dataTableOutput('pae_results')),
+        column(6)
     )
 )
 
