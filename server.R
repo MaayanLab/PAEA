@@ -51,7 +51,9 @@ shinyServer(function(input, output, session) {
                 chdir <- GeoDE::chdirAnalysis(
                     # TODO move logic to helpers
                     datain %>% group_by_(as.symbol(colnames(datain)[1])) %>% summarise_each(funs(mean)),
-                    sampleclass = sampleclass
+                    sampleclass = sampleclass,
+                    CalculateSig=TRUE,
+                    nnull=10
                 )
                 dev.off()
                 chdir
@@ -144,6 +146,27 @@ shinyServer(function(input, output, session) {
         } 
     })
     
+    
+    output$n_sig_genes <- renderText({
+        if(!is.null(values$chdir)) {
+            values$chdir$chdirprops$number_sig_genes[[1]]
+        }
+    })
+    
+    
+    output$download_chdir <- downloadHandler(
+            filename = 'data.tsv',
+            content = function(file) {
+                write.table(
+                    data.frame(values$chdir$chdirprops$chdir),
+                    file=file,
+                    quote = FALSE,
+                    col.names=FALSE
+                )
+            }
+    )
+    
+     
     
     datain <- reactive({
         inFile <- input$datain

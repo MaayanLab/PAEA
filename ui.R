@@ -50,7 +50,15 @@ chdir_tab <- tabPanel(
             actionButton(inputId = 'run_chdir', label = 'Run Characteristic Direction Analysis', icon = NULL)
         )),
         column(6, ggvisOutput("ggvis")),
-        column(6, wellPanel())
+        column(6, wellPanel(
+            tags$dl(
+                tags$dt('#{significant genes}:'),
+                tags$dd(textOutput('n_sig_genes'))
+            ),
+            downloadButton('download_chdir', 'Download chdir'),
+            downloadButton('download_up_genes', 'Download up genes'),
+            downloadButton('download_down_genes', 'Download down genes')
+        ))
     )
 )
 
