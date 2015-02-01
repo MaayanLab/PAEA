@@ -84,21 +84,15 @@ about_panel <- tabPanel(
 )
 
 
-#' HTML head
-#'
-header <- tags$head(
-    tags$link(rel='stylesheet', type='text/css', href='css/bootstrap-tour.min.css'),
-    tags$script(src='js/bootstrap-tour.min.js')
-)
-
-
 #' Complete UI
 #'
 shinyUI(
     navbarPage(
         title='NASB Microtask Viewer',
-        header=header,
         analyze_panel,
-        about_panel
+        about_panel,
+        tags$link(rel='stylesheet', type='text/css', href='css/tourist.css'),
+        includeScript('www/js/backbone-min.js'),
+        includeScript('www/js/tourist.js')
     )
 )
