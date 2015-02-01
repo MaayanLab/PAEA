@@ -48,7 +48,11 @@ shinyServer(function(input, output, session) {
         sampleclass <- factor(ifelse(colnames(datain)[-1] %in% isolate(input$sampleclass), '1', '2'))
         values$chdir <- tryCatch({
                 png('/dev/null')
-                chdir <- GeoDE::chdirAnalysis(datain, sampleclass = sampleclass)
+                chdir <- GeoDE::chdirAnalysis(
+                    # TODO move logic to helpers
+                    datain %>% group_by_(as.symbol(colnames(datain)[1])) %>% summarise_each(funs(mean)),
+                    sampleclass = sampleclass
+                )
                 dev.off()
                 chdir
             },
