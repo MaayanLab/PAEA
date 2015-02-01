@@ -100,7 +100,7 @@ shinyUI(
         includeCSS('www/css/tourist.css'),
         tags$script(src='js/underscore-min.js'),
         tags$script(src='js/backbone-min.js'),
-        includeScript('www/js/tourist.js'),
+        includeScript('www/js/tourist.min.js'),
         includeScript('www/js/tour.js')
     )
 )
