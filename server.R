@@ -16,7 +16,7 @@ shinyServer(function(input, output, session) {
     values$chdir <- NULL
     values$control_samples <- NULL
     values$treatment_samples <- NULL
-    values$last_errot <- NULL
+    values$last_error <- NULL
     
     
     #' Ugly hack to be able to clear upload widget
