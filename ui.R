@@ -84,11 +84,20 @@ about_panel <- tabPanel(
 )
 
 
+#' HTML head
+#'
+header <- tags$head(
+    tags$link(rel='stylesheet', type='text/css', href='css/bootstrap-tour.min.css'),
+    tags$script(src='js/bootstrap-tour.min.js')
+)
+
+
 #' Complete UI
 #'
 shinyUI(
     navbarPage(
-        'NASB Microtask Viewer',
+        title='NASB Microtask Viewer',
+        header=header,
         analyze_panel,
         about_panel
     )
