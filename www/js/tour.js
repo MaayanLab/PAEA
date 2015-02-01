@@ -4,14 +4,14 @@ function initTour() {
         content: '',
         highlightTarget: true,
         nextButton: true,
-        target: $('#'),
+        target: $('#datain'),
         my: 'bottom center',
         at: 'top center'
     }, {
         content: '',
         highlightTarget: true,
         nextButton: true,
-        target: $('#'),
+        target: $('#sep'),
         my: 'bottom center',
     at: 'top center'
     }]
@@ -23,3 +23,7 @@ function initTour() {
     });
     tour.start();
 }
+
+$(document).ready(function() {
+    window.setTimeout(initTour, 1000);
+})

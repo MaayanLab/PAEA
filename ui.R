@@ -92,7 +92,9 @@ shinyUI(
         analyze_panel,
         about_panel,
         tags$link(rel='stylesheet', type='text/css', href='css/tourist.css'),
-        includeScript('www/js/backbone-min.js'),
-        includeScript('www/js/tourist.js')
+        tags$script(src='js/underscore-min.js'),
+        tags$script(src='js/backbone-min.js'),
+        includeScript('www/js/tourist.js'),
+        includeScript('www/js/tour.js')
     )
 )
