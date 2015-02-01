@@ -20,10 +20,13 @@ upload_tab <- tabPanel(
             seperator_input        
         )),
         column(6, wellPanel(
-            h3('Control samples'),
+            h3('Control samples', id='control_samples'),
             uiOutput('sampleclass_container')
         )),
-        column(12, dataTableOutput('contents'))
+        column(12, 
+            h3('Input preview', id='datain_preview'),
+            dataTableOutput('contents')
+        )
     )
 )
 
@@ -68,8 +71,9 @@ paea_tab <- tabPanel(
 #' Data analysis tab
 #'
 analyze_panel <- tabPanel(
-    title = 'Analyze',
+    title='Analyze',
     tabsetPanel(
+        id='workflow_panel',
         upload_tab,
         chdir_tab,
         paea_tab
@@ -91,7 +95,7 @@ shinyUI(
         title='NASB Microtask Viewer',
         analyze_panel,
         about_panel,
-        tags$link(rel='stylesheet', type='text/css', href='css/tourist.css'),
+        includeCSS('www/css/tourist.css'),
         tags$script(src='js/underscore-min.js'),
         tags$script(src='js/backbone-min.js'),
         includeScript('www/js/tourist.js'),
