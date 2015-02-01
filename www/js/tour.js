@@ -52,6 +52,57 @@ function initTour() {
         target: $('#workflow_panel'),
         my: 'bottom center',
         at: 'bottom center'
+    }, {
+        content: [
+            '<p>Check parameters and chdir</p>'
+        ].join(''),
+        highlightTarget: true,
+        nextButton: true,
+        closeButton: true,
+        target: $('#run_chdir'),
+        my: 'bottom center',
+        at: 'bottom center'
+    }, {
+        content: [
+            '<p>When chdir analysis is finished',
+            'you can download the results...</p>'
+        ].join(''),
+        highlightTarget: true,
+        nextButton: true,
+        closeButton: true,
+        target: $('#chdir_results'),
+        my: 'bottom center',
+        at: 'bottom center'
+    }, {
+        content: [
+            '<p>... and start PAE analysis</p>'
+        ].join(''),
+        highlightTarget: true,
+        nextButton: true,
+        closeButton: true,
+        target: $('#workflow_panel'),
+        my: 'bottom center',
+        at: 'bottom center'
+    }, {
+        content: [
+            '<p>To run PAEA click Run Principle Angle Enrichment</p>'
+        ].join(''),
+        highlightTarget: true,
+        nextButton: true,
+        closeButton: true,
+        target: $('#run_paea'),
+        my: 'bottom center',
+        at: 'bottom center'
+    }, {
+        content: [
+            '<p>When PAEA is ready results will be shown below</p>'
+        ].join(''),
+        highlightTarget: true,
+        nextButton: true,
+        closeButton: true,
+        target: $('#pae_results'),
+        my: 'bottom center',
+        at: 'bottom center'
     }];
 
     var tour = new Tourist.Tour({

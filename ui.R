@@ -36,7 +36,7 @@ chdir_tab <- tabPanel(
     'Characteristic Direction Analysis',
     fluidRow(
         column(12, p('')),
-        column(12, wellPanel(
+        column(6, wellPanel(
             tags$dl(
                 tags$dt('#genes:'),
                 tags$dd(textOutput('ngenes')),
@@ -49,16 +49,17 @@ chdir_tab <- tabPanel(
             ),
             actionButton(inputId = 'run_chdir', label = 'Run Characteristic Direction Analysis', icon = NULL)
         )),
-        column(6, ggvisOutput("ggvis")),
         column(6, wellPanel(
+            h4('chdir results', id='chdir_results'),
             tags$dl(
                 tags$dt('#{significant genes}:'),
                 tags$dd(textOutput('n_sig_genes'))
             ),
             downloadButton('download_chdir', 'Download chdir'),
-            downloadButton('download_up_genes', 'Download up genes'),
-            downloadButton('download_down_genes', 'Download down genes')
-        ))
+            downloadButton('download_chdir_up', 'Download up genes'),
+            downloadButton('download_chdir_down', 'Download down genes')
+        )),
+        column(12, ggvisOutput("ggvis"))
     )
 )
 
@@ -72,8 +73,8 @@ paea_tab <- tabPanel(
         column(12, wellPanel(
             actionButton(inputId = 'run_paea', label = 'Run Principle Angle Enrichment', icon = NULL)
         )),
-        column(6, dataTableOutput('pae_results')),
-        column(6)
+        column(12, h4('PAEA results')),
+        column(12, dataTableOutput('pae_results'))
     )
 )
 
