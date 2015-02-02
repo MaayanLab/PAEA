@@ -35,8 +35,7 @@ upload_tab <- tabPanel(
 chdir_tab <- tabPanel(
     'Characteristic Direction Analysis',
     fluidRow(
-        column(12, p('')),
-             column(12, 
+        column(12, p('')), 
         column(4, wellPanel(
             tags$dl(
                 tags$dt('#genes:'),
@@ -61,11 +60,8 @@ chdir_tab <- tabPanel(
                 tags$dt('#{significant genes}:'),
                 tags$dd(textOutput('n_sig_genes'))
             ),
-            downloadButton('download_chdir', 'Download chdir'),
-            downloadButton('download_chdir_up', 'Download up genes'),
-            downloadButton('download_chdir_down', 'Download down genes')
-        ))
-        ),
+            uiOutput('chdir_downloads_container')
+        )),
         column(12, ggvisOutput("ggvis"))
     )
 )

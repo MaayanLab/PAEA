@@ -101,6 +101,10 @@ shinyServer(function(input, output, session) {
         button
     })
     
+    #' Not the best solution, but we want to render buttons even if we switch tabs using tourist
+    #'
+    outputOptions(output, 'run_chdir_container', suspendWhenHidden = FALSE)
+    
     
     #' chdir panel - number of probes
     #'
@@ -161,6 +165,25 @@ shinyServer(function(input, output, session) {
             plot_top_genes(results) %>% bind_shiny("ggvis")
         }
     })
+    
+    #' chdir panel - download block
+    #'
+    output$chdir_downloads_container <- renderUI({
+        buttons <- list(
+            downloadButton('download_chdir', 'Download chdir'),
+            downloadButton('download_chdir_up', 'Download up genes'),
+            downloadButton('download_chdir_down', 'Download down genes')
+        ) 
+        if (is.null(values$chdir)) {
+            lapply(buttons, function(x) { x$attribs$disabled <- 'true'; x })
+        } else {
+            buttons
+        }
+    })
+    
+    #' See coment for run_chdir_container
+    #'
+    outputOptions(output, 'chdir_downloads_container', suspendWhenHidden = FALSE)
     
 
     #' chdir panel - number of significant genes
