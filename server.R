@@ -92,6 +92,16 @@ shinyServer(function(input, output, session) {
     })
     
     
+    output$run_chdir_container <- renderUI({
+        button <- actionButton(inputId = 'run_chdir', label = 'Run Characteristic Direction Analysis', icon = NULL)
+        if(is.null(datain()) | length(values$control_samples) < 2 | length(values$treatment_samples) < 2) {
+             button$attribs$disabled <- 'true'
+            
+        }
+        button
+    })
+    
+    
     #' chdir panel - number of probes
     #'
     output$nprobes <- renderText({
@@ -127,7 +137,7 @@ shinyServer(function(input, output, session) {
     #' Run Characteristic Direction Analysis
     #'
     observe({
-        if(input$run_chdir == 0) return()
+        if(is.null(input$run_chdir)) return()
         datain <- isolate(datain())
         nnull <- min(as.integer(isolate(input$chdir_nnull)), 1000)
         gamma <- isolate(input$chdir_gamma)
@@ -160,7 +170,7 @@ shinyServer(function(input, output, session) {
             values$chdir$chdirprops$number_sig_genes[[1]]
         }
     })
-    
+
     
     #' chdir panel - chdir download
     #'

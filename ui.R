@@ -53,7 +53,7 @@ chdir_tab <- tabPanel(
         column(4, wellPanel(
             numericInput('chdir_gamma', 'Gamma', 1.0, min = NA, max = NA, step = 1),
             numericInput('chdir_nnull', 'Nnull', 10, min = 1, max = 1000, step = 1),
-            actionButton(inputId = 'run_chdir', label = 'Run Characteristic Direction Analysis', icon = NULL)
+            uiOutput('run_chdir_container')
         )),
         column(4, wellPanel(
             h4('chdir results', id='chdir_results'),
