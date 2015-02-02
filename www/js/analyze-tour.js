@@ -1,4 +1,5 @@
 // See: https://gist.github.com/xiaodaigh/6445698
+// TODO Change to more selective solution
 var swichTab = function(i) {
     tabs = $('.tabbable .nav.nav-tabs li');
     tabs.each(function() {
