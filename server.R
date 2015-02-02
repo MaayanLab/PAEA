@@ -2,10 +2,11 @@ library(shiny)
 library(ggvis)
 library(data.table)
 library(dplyr)
+library(nasbMicrotaskViewerHelpers)
+
+source('downloads_handlers.R', local=TRUE)
 
 options(shiny.maxRequestSize=120*1024^2) 
-
-library(nasbMicrotaskViewerHelpers)
 
 data <- nasbMicrotaskViewerHelpers::preprocess('http://localhost/microtask.1.24.2015.csv')
 
@@ -32,19 +33,95 @@ shinyServer(function(input, output, session) {
         )
     })
     
+    
+    #' Read input data
+    #'
+    datain <- reactive({
+        inFile <- input$datain
+        values$chdir <- NULL
+        
+        if (is.null(inFile)) return(NULL)
+        # Not optimal but read.csv is easier to handle
+        as.data.table(read.csv(
+            inFile$datapath, sep = input$sep
+        ))
+    })
+    
+    
+    #' Input data preview
+    #'
+    output$contents <- renderDataTable({
+        datain()
+    })
+    
+    
+    #' control/treatment samples checboxes
+    #'
+    output$sampleclass_container <- renderUI({
+        if (!is.null(datain()) && ncol(datain()) != 1 ) {
+            checkboxGroupInput(
+                'sampleclass',
+                'Choose control samples',
+                colnames(datain())[-1]
+            )
+        } 
+    })
+    
+    
+    #' Update lists of control/treatment samples
+    #'
     observe({
-        if(!is.null(values$chdir)) {
-            results <- prepare_results(values$chdir$results[[1]])
-            plot_top_genes(results) %>% bind_shiny("ggvis")
+        datain <- datain()
+        if(!is.null(datain)) {
+            samples_mask <- colnames(datain)[-1] %in%  input$sampleclass
+            values$control_samples <- colnames(datain)[-1][samples_mask]
+            values$treatment_samples <- colnames(datain)[-1][!samples_mask]
+        } else {
+            values$control_samples <- NULL
+            values$treatment_samples <- NULL
         }
     })
     
+    
+    #' chdir panel - number of probes
+    #'
+    output$nprobes <- renderText({
+        if(!is.null(datain())) {
+            nrow(datain())
+        }
+    })
+    
+    #' chdir panel - number of genes
+    #' 
+    output$ngenes <- renderText({
+        if(!is.null(datain())) {
+            nlevels(datain()[[1]])
+        }
+    })
+
+    
+    #' chdir panel - control samples
+    #'
+    output$control_samples <- renderText({
+        paste(values$control_samples, collapse = ', ')
+    })
+    
+    
+    #' chdir panel - treatment samples
+    #'
+    output$treatment_samples <- renderText({
+        paste(values$treatment_samples, collapse = ', ')
+    })
+    
  
-    #' Handle 
+    #' Run Characteristic Direction Analysis
     #'
     observe({
         if(input$run_chdir == 0) return()
         datain <- isolate(datain())
+        nnull <- max(as.integer(isolate(input$chdir_nnull)), 1000)
+        gamma <- isolate(input$chdir_gamma)
+        
         sampleclass <- factor(ifelse(colnames(datain)[-1] %in% isolate(input$sampleclass), '1', '2'))
         values$chdir <- tryCatch({
                 png('/dev/null')
@@ -53,7 +130,8 @@ shinyServer(function(input, output, session) {
                     datain %>% group_by_(as.symbol(colnames(datain)[1])) %>% summarise_each(funs(mean)),
                     sampleclass = sampleclass,
                     CalculateSig=TRUE,
-                    nnull=10
+                    gamma=gamma,
+                    nnull=nnull
                 )
                 dev.off()
                 chdir
@@ -66,7 +144,34 @@ shinyServer(function(input, output, session) {
     })
     
     
-    #' Handle 
+    #' Plot top genes from Characteristic Direction Analysis
+    #'
+    observe({
+        if(!is.null(values$chdir)) {
+            results <- prepare_results(values$chdir$results[[1]])
+            plot_top_genes(results) %>% bind_shiny("ggvis")
+        }
+    })
+    
+
+    #' chdir panel - number of significant genes
+    #'
+    output$n_sig_genes <- renderText({
+        if(!is.null(values$chdir)) {
+            values$chdir$chdirprops$number_sig_genes[[1]]
+        }
+    })
+    
+    
+    #' chdir panel - chdir download
+    #'
+    output$download_chdir <- downloadHandler(
+            filename = 'data.tsv',
+            content = chdir_download_handler
+    )
+
+        
+    #' Run Principle Angle Enrichment Analysis
     #'
     observe({
         if(input$run_paea == 0) return()
@@ -88,94 +193,12 @@ shinyServer(function(input, output, session) {
     })
     
     
-    output$nprobes <- renderText({
-        if(!is.null(datain())) {
-            nrow(datain())
-        }
-    })
-    
-    
-    output$ngenes <- renderText({
-        if(!is.null(datain())) {
-            nlevels(datain()[[1]])
-        }
-    })
-    
-    observe({
-        datain <- datain()
-        if(!is.null(datain)) {
-            samples_mask <- colnames(datain)[-1] %in%  input$sampleclass
-            values$control_samples <- colnames(datain)[-1][samples_mask]
-            values$treatment_samples <- colnames(datain)[-1][!samples_mask]
-        } else {
-            values$control_samples <- NULL
-            values$treatment_samples <- NULL
-        }
-    })
-
-    
-    output$control_samples <- renderText({
-        paste(values$control_samples, collapse = ', ')
-    })
-    
-    
-    output$treatment_samples <- renderText({
-        paste(values$treatment_samples, collapse = ', ')
-    })
-    
-    
-    output$contents <- renderDataTable({
-        datain()
-    })
-    
-    
+    #' PAEA output
+    #'
     output$pae_results <- renderDataTable({
         if(!is.null(values$paea)) {
             prepare_paea_results(values$paea$p_values, data$description)
         }
     })
     
-    
-    output$sampleclass_container <- renderUI({
-        if (!is.null(datain()) && ncol(datain()) != 1 ) {
-            checkboxGroupInput(
-                'sampleclass',
-                'Choose control samples',
-                colnames(datain())[-1]
-            )
-        } 
-    })
-    
-    
-    output$n_sig_genes <- renderText({
-        if(!is.null(values$chdir)) {
-            values$chdir$chdirprops$number_sig_genes[[1]]
-        }
-    })
-    
-    
-    output$download_chdir <- downloadHandler(
-            filename = 'data.tsv',
-            content = function(file) {
-                write.table(
-                    data.frame(values$chdir$chdirprops$chdir),
-                    file=file,
-                    quote = FALSE,
-                    col.names=FALSE
-                )
-            }
-    )
-    
-     
-    
-    datain <- reactive({
-        inFile <- input$datain
-        values$chdir <- NULL
-        
-        if (is.null(inFile)) return(NULL)
-        # Not optimal but read.csv is easier to handle
-        as.data.table(read.csv(
-            inFile$datapath, sep = input$sep
-        ))
-    })
 })
