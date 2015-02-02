@@ -1,3 +1,17 @@
+// See: https://gist.github.com/xiaodaigh/6445698
+var swichTab = function(i) {
+    tabs = $('.tabbable .nav.nav-tabs li');
+    tabs.each(function() {
+        $(this).removeClass('active')
+    });
+    $(tabs[i]).addClass('active');
+    tabsContents = $('.tabbable .tab-content .tab-pane')
+    tabsContents.each(function() {
+        $(this).removeClass('active')
+    });
+    $(tabsContents[i]).addClass('active');
+}
+
 function initTour() {
     
     var steps = [{
@@ -11,7 +25,7 @@ function initTour() {
         closeButton: true,
         target: $('#datain'),
         my: 'bottom center',
-        at: 'top center'
+        at: 'top center',
     }, {
         content: [
             '<p>Select input file separator</p>'
@@ -51,7 +65,10 @@ function initTour() {
         closeButton: true,
         target: $('#workflow_panel'),
         my: 'bottom center',
-        at: 'bottom center'
+        at: 'bottom center',
+        teardown: function(tour, options) {
+            swichTab(1);
+        }
     }, {
         content: [
             '<p>Check parameters and chdir</p>'
@@ -82,7 +99,10 @@ function initTour() {
         closeButton: true,
         target: $('#workflow_panel'),
         my: 'bottom center',
-        at: 'bottom center'
+        at: 'bottom center',
+        teardown: function(tour, options) {
+            swichTab(2);
+        }
     }, {
         content: [
             '<p>To run PAEA click Run Principle Angle Enrichment</p>'
