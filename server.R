@@ -119,7 +119,7 @@ shinyServer(function(input, output, session) {
     observe({
         if(input$run_chdir == 0) return()
         datain <- isolate(datain())
-        nnull <- max(as.integer(isolate(input$chdir_nnull)), 1000)
+        nnull <- min(as.integer(isolate(input$chdir_nnull)), 1000)
         gamma <- isolate(input$chdir_gamma)
         
         sampleclass <- factor(ifelse(colnames(datain)[-1] %in% isolate(input$sampleclass), '1', '2'))
