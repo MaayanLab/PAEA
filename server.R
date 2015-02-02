@@ -92,6 +92,20 @@ shinyServer(function(input, output, session) {
     })
     
     
+    output$run_chdir_container <- renderUI({
+        button <- actionButton(inputId = 'run_chdir', label = 'Run Characteristic Direction Analysis', icon = NULL)
+        if(is.null(datain()) | length(values$control_samples) < 2 | length(values$treatment_samples) < 2) {
+             button$attribs$disabled <- 'true'
+            
+        }
+        button
+    })
+    
+    #' Not the best solution, but we want to render buttons even if we switch tabs using tourist
+    #'
+    outputOptions(output, 'run_chdir_container', suspendWhenHidden = FALSE)
+    
+    
     #' chdir panel - number of probes
     #'
     output$nprobes <- renderText({
@@ -127,7 +141,7 @@ shinyServer(function(input, output, session) {
     #' Run Characteristic Direction Analysis
     #'
     observe({
-        if(input$run_chdir == 0) return()
+        if(is.null(input$run_chdir)) { return() } else if(input$run_chdir == 0) { return() }
         datain <- isolate(datain())
         nnull <- min(as.integer(isolate(input$chdir_nnull)), 1000)
         gamma <- isolate(input$chdir_gamma)
@@ -152,6 +166,25 @@ shinyServer(function(input, output, session) {
         }
     })
     
+    #' chdir panel - download block
+    #'
+    output$chdir_downloads_container <- renderUI({
+        buttons <- list(
+            downloadButton('download_chdir', 'Download chdir'),
+            downloadButton('download_chdir_up', 'Download up genes'),
+            downloadButton('download_chdir_down', 'Download down genes')
+        ) 
+        if (is.null(values$chdir)) {
+            lapply(buttons, function(x) { x$attribs$disabled <- 'true'; x })
+        } else {
+            buttons
+        }
+    })
+    
+    #' See coment for run_chdir_container
+    #'
+    outputOptions(output, 'chdir_downloads_container', suspendWhenHidden = FALSE)
+    
 
     #' chdir panel - number of significant genes
     #'
@@ -160,7 +193,7 @@ shinyServer(function(input, output, session) {
             values$chdir$chdirprops$number_sig_genes[[1]]
         }
     })
-    
+
     
     #' chdir panel - chdir download
     #'
@@ -184,12 +217,26 @@ shinyServer(function(input, output, session) {
         filename = 'chdir_up_genes.tsv',
         content = chdir_download_handler(prepare_down_genes(values$chdir$results[[1]]))
     )
+    
+    #' paea panel - run button
+    #'
+    output$run_paea_container <- renderUI({
+        button <- actionButton(inputId = 'run_paea', label = 'Run Principle Angle Enrichment', icon = NULL)
+        if(is.null(values$chdir)) {
+            button$attribs$disabled <- 'true'
+        }
+        list(button)
+    })
+    
+    #' See coment for run_chdir_container
+    #'
+    outputOptions(output, 'run_paea_container', suspendWhenHidden = FALSE)
 
         
     #' Run Principle Angle Enrichment Analysis
     #'
     observe({
-        if(input$run_paea == 0) return()
+        if(is.null(input$run_paea)) { return() } else if(input$run_paea == 0) { return() }
         chdir <- isolate(values$chdir)
         if(!(is.null(chdir))) {
             values$paea <- tryCatch(
