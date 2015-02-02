@@ -8,6 +8,7 @@ chdir_download_handler <- function(chdir) {
             data.frame(chdir),
             file=file,
             quote = FALSE,
+            row.names=FALSE,
             col.names=FALSE
         )
     }

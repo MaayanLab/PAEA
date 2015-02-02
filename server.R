@@ -100,6 +100,7 @@ shinyServer(function(input, output, session) {
         }
     })
     
+    
     #' chdir panel - number of genes
     #' 
     output$ngenes <- renderText({
@@ -164,8 +165,24 @@ shinyServer(function(input, output, session) {
     #' chdir panel - chdir download
     #'
     output$download_chdir <- downloadHandler(
-            filename = 'data.tsv',
-            content = chdir_download_handler(values$chdir$chdirprops$chdir)
+        filename = 'chdir.tsv',
+        content = chdir_download_handler(prepare_results(values$chdir$chdirprops$chdir[[1]][, 1]))
+    )
+    
+    
+    #' chdir panel - chdir download
+    #'
+    output$download_chdir_up <- downloadHandler(
+        filename = 'chdir_up_genes.tsv',
+        content = chdir_download_handler(prepare_up_genes(values$chdir$results[[1]]))
+
+    )
+    
+    #' chdir panel - chdir download
+    #'
+    output$download_chdir_down <- downloadHandler(
+        filename = 'chdir_up_genes.tsv',
+        content = chdir_download_handler(prepare_down_genes(values$chdir$results[[1]]))
     )
 
         
@@ -175,12 +192,8 @@ shinyServer(function(input, output, session) {
         if(input$run_paea == 0) return()
         chdir <- isolate(values$chdir)
         if(!(is.null(chdir))) {
-            values$paea <- tryCatch({
-                    png('/dev/null')
-                    paea <- GeoDE::PAEAAnalysis(chdir$chdirprops, prepare_gene_sets(data$genes))
-                    dev.off()
-                    paea
-                },
+            values$paea <- tryCatch(
+                paea_analysis_wrapper(chdir$chdirprops, prepare_gene_sets(data$genes)),
                 error = function(e) {
                     print(e)
                     values$last_error <- e
