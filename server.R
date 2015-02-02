@@ -141,7 +141,7 @@ shinyServer(function(input, output, session) {
     #' Run Characteristic Direction Analysis
     #'
     observe({
-        if(is.null(input$run_chdir)) return()
+        if(is.null(input$run_chdir)) { return() } else if(input$run_chdir == 0) { return() }
         datain <- isolate(datain())
         nnull <- min(as.integer(isolate(input$chdir_nnull)), 1000)
         gamma <- isolate(input$chdir_gamma)
@@ -217,12 +217,22 @@ shinyServer(function(input, output, session) {
         filename = 'chdir_up_genes.tsv',
         content = chdir_download_handler(prepare_down_genes(values$chdir$results[[1]]))
     )
+    
+    #'
+    #'
+    output$run_paea_container <- renderUI({
+        button <- actionButton(inputId = 'run_paea', label = 'Run Principle Angle Enrichment', icon = NULL)
+        if(is.null(values$chdir)) {
+            button$attribs$disabled <- 'true'
+        }
+        list(button)
+    })
 
         
     #' Run Principle Angle Enrichment Analysis
     #'
     observe({
-        if(input$run_paea == 0) return()
+        if(is.null(input$run_paea)) { return() } else if(input$run_paea == 0) { return() }
         chdir <- isolate(values$chdir)
         if(!(is.null(chdir))) {
             values$paea <- tryCatch(

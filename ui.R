@@ -74,7 +74,7 @@ paea_tab <- tabPanel(
     fluidRow(
         column(12, p('')),
         column(12, wellPanel(
-            actionButton(inputId = 'run_paea', label = 'Run Principle Angle Enrichment', icon = NULL)
+            uiOutput('run_paea_container')
         )),
         column(12, h4('PAEA results')),
         column(12, dataTableOutput('pae_results'))
