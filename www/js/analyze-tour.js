@@ -29,8 +29,8 @@ function initTour() {
         highlightTarget: true,
         nextButton: true,
         closeButton: true,
-        target: $('#datain'),
-        my: 'bottom center',
+        target: $('#datain_container'),
+        my: 'bottom left',
         at: 'top center',
     }, {
         content: [
