@@ -55,7 +55,7 @@ chdir_tab <- tabPanel(
             uiOutput('run_chdir_container')
         )),
         column(4, wellPanel(
-            h4('chdir results', id='chdir_results'),
+            h3('chdir results', id='chdir_results'),
             tags$dl(
                 tags$dt('#{significant genes}:'),
                 tags$dd(textOutput('n_sig_genes'))
