@@ -36,7 +36,8 @@ chdir_tab <- tabPanel(
     'Characteristic Direction Analysis',
     fluidRow(
         column(12, p('')),
-        column(6, wellPanel(
+             column(12, 
+        column(4, wellPanel(
             tags$dl(
                 tags$dt('#genes:'),
                 tags$dd(textOutput('ngenes')),
@@ -46,10 +47,15 @@ chdir_tab <- tabPanel(
                 tags$dd(textOutput('control_samples')),
                 tags$dt('Treatment samples:'),
                 tags$dd(textOutput('treatment_samples'))
-            ),
+            )
+        )),
+   
+        column(4, wellPanel(
+            numericInput('chdir_gamma', 'Gamma', 1.0, min = NA, max = NA, step = 1),
+            numericInput('chdir_nnull', 'Nnull', 10, min = 1, max = 1000, step = 1),
             actionButton(inputId = 'run_chdir', label = 'Run Characteristic Direction Analysis', icon = NULL)
         )),
-        column(6, wellPanel(
+        column(4, wellPanel(
             h4('chdir results', id='chdir_results'),
             tags$dl(
                 tags$dt('#{significant genes}:'),
@@ -58,7 +64,8 @@ chdir_tab <- tabPanel(
             downloadButton('download_chdir', 'Download chdir'),
             downloadButton('download_chdir_up', 'Download up genes'),
             downloadButton('download_chdir_down', 'Download down genes')
-        )),
+        ))
+        ),
         column(12, ggvisOutput("ggvis"))
     )
 )
@@ -110,6 +117,6 @@ shinyUI(
         tags$script(src='js/underscore-min.js'),
         tags$script(src='js/backbone-min.js'),
         includeScript('www/js/tourist.min.js'),
-        includeScript('www/js/tour.js')
+        includeScript('www/js/analyze-tour.js')
     )
 )
