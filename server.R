@@ -165,7 +165,7 @@ shinyServer(function(input, output, session) {
     #'
     output$download_chdir <- downloadHandler(
             filename = 'data.tsv',
-            content = chdir_download_handler
+            content = chdir_download_handler(values$chdir$chdirprops$chdir)
     )
 
         

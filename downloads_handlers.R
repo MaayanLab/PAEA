@@ -5,7 +5,7 @@
 chdir_download_handler <- function(chdir) {
     function(file) {
         write.table(
-            data.frame(values$chdir$chdirprops$chdir),
+            data.frame(chdir),
             file=file,
             quote = FALSE,
             col.names=FALSE
