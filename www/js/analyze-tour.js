@@ -16,6 +16,11 @@ var swichTab = function(i) {
 function initTour() {
     
     var steps = [{
+            content: '<p>Welcome...</p>',
+            target: [50, 120],
+            nextButton: true,
+            my: 'bottom left'
+    }, {
         content: [
             '<p>Choose expression dataset to upload.</p>',
             '<p>It should contain a sinlge column with gene names ',

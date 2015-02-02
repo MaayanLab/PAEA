@@ -8,7 +8,16 @@ source('downloads_handlers.R', local=TRUE)
 
 options(shiny.maxRequestSize=120*1024^2) 
 
-data <- nasbMicrotaskViewerHelpers::preprocess('http://localhost/microtask.1.24.2015.csv')
+data <- if(file.exists('data/microtask.csv')) {
+        dt <- nasbMicrotaskViewerHelpers::preprocess_data(read.csv('data/microtask.csv', header = FALSE))
+        list(
+            description = nasbMicrotaskViewerHelpers::extract_description(dt),
+            genes = nasbMicrotaskViewerHelpers::extract_genes(dt),
+            samples = nasbMicrotaskViewerHelpers::extract_samples(dt)
+        )
+    } else {
+        nasbMicrotaskViewerHelpers::preprocess('http://localhost/microtask.1.24.2015.csv')
+}
 
 shinyServer(function(input, output, session) {
     
@@ -121,21 +130,10 @@ shinyServer(function(input, output, session) {
         datain <- isolate(datain())
         nnull <- min(as.integer(isolate(input$chdir_nnull)), 1000)
         gamma <- isolate(input$chdir_gamma)
-        
         sampleclass <- factor(ifelse(colnames(datain)[-1] %in% isolate(input$sampleclass), '1', '2'))
-        values$chdir <- tryCatch({
-                png('/dev/null')
-                chdir <- GeoDE::chdirAnalysis(
-                    # TODO move logic to helpers
-                    datain %>% group_by_(as.symbol(colnames(datain)[1])) %>% summarise_each(funs(mean)),
-                    sampleclass = sampleclass,
-                    CalculateSig=TRUE,
-                    gamma=gamma,
-                    nnull=nnull
-                )
-                dev.off()
-                chdir
-            },
+        
+        values$chdir <- tryCatch(
+            chdir_analysis_wrapper(datain, sampleclass, gamma, nnull),
             error = function(e) {
                 values$last_error <- e
                 NULL
