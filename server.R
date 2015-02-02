@@ -156,6 +156,16 @@ shinyServer(function(input, output, session) {
         )
     })
     
+    #' chdir tab - plots container
+    #'
+    output$chdir_plots_container <- renderUI({
+        if(!is.null(values$chdir)) {
+            list(
+                ggvisOutput("ggvis")
+            )
+        }
+    })
+   
     
     #' Plot top genes from Characteristic Direction Analysis
     #'

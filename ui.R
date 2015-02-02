@@ -62,7 +62,7 @@ chdir_tab <- tabPanel(
             ),
             uiOutput('chdir_downloads_container')
         )),
-        column(12, ggvisOutput("ggvis"))
+        column(12, uiOutput('chdir_plots_container'))
     )
 )
 
