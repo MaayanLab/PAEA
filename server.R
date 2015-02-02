@@ -218,7 +218,7 @@ shinyServer(function(input, output, session) {
         content = chdir_download_handler(prepare_down_genes(values$chdir$results[[1]]))
     )
     
-    #'
+    #' paea panel - run button
     #'
     output$run_paea_container <- renderUI({
         button <- actionButton(inputId = 'run_paea', label = 'Run Principle Angle Enrichment', icon = NULL)
@@ -227,6 +227,10 @@ shinyServer(function(input, output, session) {
         }
         list(button)
     })
+    
+    #' See coment for run_chdir_container
+    #'
+    outputOptions(output, 'run_paea_container', suspendWhenHidden = FALSE)
 
         
     #' Run Principle Angle Enrichment Analysis
