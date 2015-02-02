@@ -162,23 +162,19 @@ shinyServer(function(input, output, session) {
         )
     })
     
-    #' chdir tab - plots container
+    
+    #' chdir tab - set plots visibility
     #'
-    output$chdir_plots_container <- renderUI({
-        if(!is.null(values$chdir)) {
-            list(
-                ggvisOutput("ggvis")
-            )
-        }
-    })
-   
+    output$show_chdir_results <- reactive({ !is.null(values$chdir) })
+    outputOptions(output, 'show_chdir_results', suspendWhenHidden = FALSE)
+
     
     #' Plot top genes from Characteristic Direction Analysis
     #'
     observe({
         if(!is.null(values$chdir)) {
             results <- prepare_results(values$chdir$results[[1]])
-            plot_top_genes(results) %>% bind_shiny("ggvis")
+            plot_top_genes(results) %>% bind_shiny('chdir_ggvis_plot')
         }
     })
     
@@ -274,5 +270,5 @@ shinyServer(function(input, output, session) {
             prepare_paea_results(values$paea$p_values, data$description)
         }
     })
-    
+
 })
