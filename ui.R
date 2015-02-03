@@ -25,7 +25,10 @@ upload_tab <- tabPanel(
         )),
         column(12, 
             h3('Input preview', id='datain_preview'),
-            ggvisOutput('datain_density_ggvis'),
+            conditionalPanel(
+                condition = 'output.show_datain_results === true',
+                ggvisOutput('datain_density_ggvis')
+            ),
             textOutput('upload_message'),
             dataTableOutput('contents')
         )

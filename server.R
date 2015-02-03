@@ -112,10 +112,17 @@ shinyServer(function(input, output, session) {
         }
     })
     
+    
+    #' datain tab - set plots visibility
     #'
+    output$show_datain_results <- reactive({ !is.null(datain()) && ncol(datain()) > 1 })
+    outputOptions(output, 'show_datain_results', suspendWhenHidden = FALSE)
+    
+    
+    #' datain tab - density plot
     #'
     observe({
-        if(!is.null(datain())) {
+        if(!is.null(datain()) && ncol(datain()) > 1) {
             plot_density(datain()) %>% bind_shiny('datain_density_ggvis')
         }
     })
