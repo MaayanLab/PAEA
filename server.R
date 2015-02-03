@@ -104,7 +104,18 @@ shinyServer(function(input, output, session) {
         }
     })
     
+    #' upload panel - status message
+    #'
+    output$upload_message <- renderText({
+        if(is.null(datain())) {
+            'preview not available...'
+        }
+    })
     
+    
+    #' chdir panel - run button
+    #'
+    #'
     output$run_chdir_container <- renderUI({
         button <- actionButton(inputId = 'run_chdir', label = 'Run Characteristic Direction Analysis', icon = NULL)
         if(is.null(datain()) | length(values$control_samples) < 2 | length(values$treatment_samples) < 2) {
@@ -270,6 +281,14 @@ shinyServer(function(input, output, session) {
     #' See coment for run_chdir_container
     #'
     outputOptions(output, 'run_paea_container', suspendWhenHidden = FALSE)
+    
+    #' chdir panel - status message
+    #'
+    output$chdir_message <- renderText({
+        if(is.null(values$chdir)) {
+            'results not available...'
+        }
+    })
 
         
     #' Run Principle Angle Enrichment Analysis
@@ -328,9 +347,19 @@ shinyServer(function(input, output, session) {
         }
     })
     
+    #' paea panel - downloads handler
+    #'
     output$download_paea <- downloadHandler(
         filename = 'paea.tsv',
         content = paea_download_handler(paea_results())
     )
+    
+    #' paea panel - status message
+    #'
+    output$paea_message <- renderText({
+        if(is.null(values$paea)) {
+            'results not available...'
+        }
+    })
 
 })

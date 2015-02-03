@@ -25,6 +25,7 @@ upload_tab <- tabPanel(
         )),
         column(12, 
             h3('Input preview', id='datain_preview'),
+            textOutput('upload_message'),
             dataTableOutput('contents')
         )
     )
@@ -68,6 +69,7 @@ chdir_tab <- tabPanel(
        
         column(12,
             h3('CHDIR results', id='chdir_results'),
+            textOutput('chdir_message'),
             conditionalPanel(
                 condition = 'output.show_chdir_results === true',
                 ggvisOutput('chdir_ggvis_plot')
@@ -92,7 +94,8 @@ paea_tab <- tabPanel(
             h3('Downloads', id='paea_downloads'),
             uiOutput('paea_downloads_container')
         )),
-        column(12, h3('PAEA results')),
+        column(12, h3('PAEA results'), textOutput('paea_message')),
+        
         column(12, dataTableOutput('pae_results'))
     )
 )
