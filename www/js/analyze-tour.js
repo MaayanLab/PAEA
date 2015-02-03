@@ -134,7 +134,7 @@ function initTour() {
         highlightTarget: true,
         nextButton: true,
         closeButton: true,
-        target: $('#run_paea'),
+        target: $('#run_paea_container'),
         my: 'bottom center',
         at: 'top center'
     }, {
