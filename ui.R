@@ -37,6 +37,7 @@ chdir_tab <- tabPanel(
     fluidRow(
         column(12, p('')), 
         column(4, wellPanel(
+            h3('Input summary'),
             tags$dl(
                 tags$dt('#genes:'),
                 tags$dd(textOutput('ngenes')),
@@ -50,22 +51,28 @@ chdir_tab <- tabPanel(
         )),
    
         column(4, wellPanel(
+            h3('CHDIR parameters', id='chdir_parameters'),
             numericInput('chdir_gamma', 'Gamma', 1.0, min = NA, max = NA, step = 1),
             numericInput('chdir_nnull', 'Nnull', 10, min = 1, max = 1000, step = 1),
             uiOutput('run_chdir_container')
         )),
+        
         column(4, wellPanel(
-            h3('chdir results', id='chdir_results'),
+            h3('Downloads', id='chdir_results'),
             tags$dl(
                 tags$dt('#{significant genes}:'),
                 tags$dd(textOutput('n_sig_genes'))
             ),
             uiOutput('chdir_downloads_container')
         )),
-        column(12, conditionalPanel(
-            condition = 'output.show_chdir_results === true',
-            ggvisOutput('chdir_ggvis_plot')
-        ))
+       
+        column(12,
+            h3('CHDIR results', id='chdir_results'),
+            conditionalPanel(
+                condition = 'output.show_chdir_results === true',
+                ggvisOutput('chdir_ggvis_plot')
+            ) 
+        )
     )
 )
 
