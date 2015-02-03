@@ -83,8 +83,12 @@ paea_tab <- tabPanel(
     'Principle Angle Enrichment Analysis',
     fluidRow(
         column(12, p('')),
-        column(12, wellPanel(
+        column(6, wellPanel(
+            numericInput('paea_gamma', 'Gamma', 1.0, min = NA, max = NA, step = 1),
             uiOutput('run_paea_container')
+        )),
+        column(6, wellPanel(
+            h3('Downloads', id='paea_downloads')
         )),
         column(12, h3('PAEA results')),
         column(12, dataTableOutput('pae_results'))
