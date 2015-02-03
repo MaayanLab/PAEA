@@ -111,7 +111,7 @@ function initTour() {
         highlightTarget: true,
         nextButton: true,
         closeButton: true,
-        target: $('#chdir_results'),
+        target: $('#chdir_downloads'),
         my: 'bottom center',
         at: 'bottom center'
     }, {
