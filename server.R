@@ -54,6 +54,7 @@ shinyServer(function(input, output, session) {
     datain <- reactive({
         inFile <- input$datain
         values$chdir <- NULL
+        values$paea <- NULL
         
         if (is.null(inFile)) return(NULL)
         # Not optimal but read.csv is easier to handle
