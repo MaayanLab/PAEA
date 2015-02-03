@@ -84,7 +84,7 @@ paea_tab <- tabPanel(
     fluidRow(
         column(12, p('')),
         column(6, wellPanel(
-            numericInput('paea_gamma', 'Gamma', 1.0, min = NA, max = NA, step = 1),
+            checkboxInput('paea_casesensitive', "Casesensitive", FALSE),
             uiOutput('run_paea_container')
         )),
         column(6, wellPanel(

@@ -271,9 +271,15 @@ shinyServer(function(input, output, session) {
     observe({
         if(is.null(input$run_paea)) { return() } else if(input$run_paea == 0) { return() }
         chdir <- isolate(values$chdir)
+        casesensitive <- isolate(input$paea_casesensitive)
+
         if(!(is.null(chdir))) {
             values$paea <- tryCatch(
-                paea_analysis_wrapper(chdir$chdirprops, prepare_gene_sets(data$genes)),
+                paea_analysis_wrapper(
+                    chdirresults=chdir$chdirprops,
+                    gmtfile=prepare_gene_sets(data$genes),
+                    casesensitive=casesensitive
+                ),
                 error = function(e) {
                     print(e)
                     values$last_error <- e
