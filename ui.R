@@ -132,6 +132,7 @@ about_panel <- tabPanel(
 shinyUI(
     navbarPage(
         title='NASB Microtask Viewer',
+        footer=column(12),
         analyze_panel,
         about_panel,
         includeCSS('www/css/tourist.css'),
