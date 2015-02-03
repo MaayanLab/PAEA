@@ -108,7 +108,12 @@ analyze_panel <- tabPanel(
 #'
 about_panel <- tabPanel(
     title = 'About',
-    fluidRow(column(12))
+    fluidRow(column(12,
+        tags$dl(
+            tags$dt('Last update:'),
+            tags$dd(textOutput('last_modified'))
+        )
+    ))
 )
 
 

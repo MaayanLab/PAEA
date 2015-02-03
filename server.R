@@ -6,6 +6,8 @@ library(nasbMicrotaskViewerHelpers)
 
 source('downloads_handlers.R', local=TRUE)
 
+last_modified <- sort(sapply(list.files(), function(x) strftime(file.info(x)$mtime)), decreasing=TRUE)[1]
+
 options(shiny.maxRequestSize=120*1024^2) 
 
 data <- if(file.exists('data/microtask.csv')) {
@@ -20,6 +22,8 @@ data <- if(file.exists('data/microtask.csv')) {
 }
 
 shinyServer(function(input, output, session) {
+    
+    output$last_modified <- renderText({ last_modified })
     
     values <- reactiveValues()
     # Not required. Just to remind myself what is stored inside
