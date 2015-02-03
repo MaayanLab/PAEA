@@ -187,6 +187,7 @@ shinyServer(function(input, output, session) {
                 NULL
             }
         )
+ 
     })
     
     
@@ -199,6 +200,8 @@ shinyServer(function(input, output, session) {
     #' Plot top genes from Characteristic Direction Analysis
     #'
     observe({
+        # Not as reactive as it should be
+        # https://groups.google.com/forum/#!topic/ggvis/kQQsdn1RYaE
         if(!is.null(values$chdir)) {
             results <- prepare_results(values$chdir$results[[1]])
             plot_top_genes(results) %>% bind_shiny('chdir_ggvis_plot')
