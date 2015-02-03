@@ -358,6 +358,12 @@ shinyServer(function(input, output, session) {
         }
     })
     
+    
+    #' See coment for run_chdir_container
+    #'
+    outputOptions(output, 'paea_downloads_container', suspendWhenHidden = FALSE)
+    
+    
     #' paea panel - downloads handler
     #'
     output$download_paea <- downloadHandler(
