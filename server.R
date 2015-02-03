@@ -289,13 +289,40 @@ shinyServer(function(input, output, session) {
         }
     })
     
-    
-    #' PAEA output
-    #'
-    output$pae_results <- renderDataTable({
+    #' PAEA results
+    #' 
+    paea_results <- reactive({
         if(!is.null(values$paea)) {
             prepare_paea_results(values$paea$p_values, data$description)
         }
     })
+    
+    
+    #' PAEA output
+    #'
+    output$pae_results <- renderDataTable({
+        paea_results()
+    })
+    
+    
+    #' paea panel - download block
+    #'
+    output$paea_downloads_container <- renderUI({
+        button <- downloadButton('download_paea', 'Download PAEA results')
+
+        if (is.null(values$paea)) {
+            list(
+                {button$attribs$disabled <- 'true'; button},
+                helpText('No data available. Did you run PAEA analysis?')
+            )
+        } else {
+            button
+        }
+    })
+    
+    output$download_paea <- downloadHandler(
+        filename = 'paea.tsv',
+        content = paea_download_handler(paea_results())
+    )
 
 })

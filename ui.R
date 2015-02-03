@@ -88,7 +88,8 @@ paea_tab <- tabPanel(
             uiOutput('run_paea_container')
         )),
         column(6, wellPanel(
-            h3('Downloads', id='paea_downloads')
+            h3('Downloads', id='paea_downloads'),
+            uiOutput('paea_downloads_container')
         )),
         column(12, h3('PAEA results')),
         column(12, dataTableOutput('pae_results'))

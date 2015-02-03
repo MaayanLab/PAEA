@@ -13,3 +13,17 @@ chdir_download_handler <- function(chdir) {
         )
     }
 }
+
+#' @param paea results
+#' @return function
+#'
+paea_download_handler <- function(paea) {
+    function(file) {
+        write.table(
+            paea,
+            file=file,
+            quote = FALSE,
+            row.names=FALSE
+        )
+    }
+}
