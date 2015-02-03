@@ -37,7 +37,7 @@ chdir_tab <- tabPanel(
     fluidRow(
         column(12, p('')), 
         column(4, wellPanel(
-            h3('Input summary'),
+            h3('Input summary', id='chdir_input_summary'),
             tags$dl(
                 tags$dt('#genes:'),
                 tags$dd(textOutput('ngenes')),

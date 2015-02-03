@@ -70,24 +70,42 @@ function initTour() {
         nextButton: true,
         closeButton: true,
         target: $('#workflow_panel'),
-        my: 'bottom center',
+        my: 'top center',
         at: 'bottom center',
         teardown: function(tour, options) {
             swichTab(1);
         }
     }, {
         content: [
-            '<p>Check parameters and chdir</p>'
+            '<p>Check input data summary</p>'
         ].join(''),
-        highlightTarget: true,
         nextButton: true,
         closeButton: true,
-        target: $('#run_chdir'),
+        target: $('#chdir_input_summary'),
         my: 'bottom center',
         at: 'bottom center'
     }, {
         content: [
-            '<p>When chdir analysis is finished',
+            '<p>Set parameters.../p>'
+        ].join(''),
+        nextButton: true,
+        closeButton: true,
+        target: $('#chdir_parameters'),
+        my: 'bottom center',
+        at: 'bottom center'
+    }, {
+        content: [
+            '<p>...and run chdir</p>'
+        ].join(''),
+        highlightTarget: true,
+        nextButton: true,
+        closeButton: true,
+        target: $('#run_chdir_container'),
+        my: 'bottom center',
+        at: 'top center'
+    }, {
+        content: [
+            '<p>When chdir analysis is finished ',
             'you can download the results...</p>'
         ].join(''),
         highlightTarget: true,
@@ -118,7 +136,7 @@ function initTour() {
         closeButton: true,
         target: $('#run_paea'),
         my: 'bottom center',
-        at: 'bottom center'
+        at: 'top center'
     }, {
         content: [
             '<p>When PAEA is ready results will be shown below</p>'
@@ -127,8 +145,8 @@ function initTour() {
         nextButton: true,
         closeButton: true,
         target: $('#pae_results'),
-        my: 'bottom center',
-        at: 'bottom center'
+        my: 'top left',
+        at: 'top left'
     }];
 
     var tour = new Tourist.Tour({
