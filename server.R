@@ -112,6 +112,14 @@ shinyServer(function(input, output, session) {
         }
     })
     
+    #'
+    #'
+    observe({
+        if(!is.null(datain())) {
+            plot_density(datain()) %>% bind_shiny('datain_density_ggvis')
+        }
+    })
+    
     
     #' chdir panel - run button
     #'
