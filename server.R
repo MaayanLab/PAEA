@@ -102,9 +102,18 @@ shinyServer(function(input, output, session) {
         button <- actionButton(inputId = 'run_chdir', label = 'Run Characteristic Direction Analysis', icon = NULL)
         if(is.null(datain()) | length(values$control_samples) < 2 | length(values$treatment_samples) < 2) {
              button$attribs$disabled <- 'true'
+             list(
+                button,
+                if (is.null(datain())) {
+                    helpText('Upload your dataset and select control samples first.')
+                } else {
+                    helpText('You need at least two control and two treatment samples to run chdir.')
+                }
+             )
             
+        } else {
+            button
         }
-        button
     })
     
     #' Not the best solution, but we want to render buttons even if we switch tabs using tourist
@@ -187,7 +196,10 @@ shinyServer(function(input, output, session) {
             downloadButton('download_chdir_down', 'Download down genes')
         ) 
         if (is.null(values$chdir)) {
-            lapply(buttons, function(x) { x$attribs$disabled <- 'true'; x })
+            append(
+                lapply(buttons, function(x) { x$attribs$disabled <- 'true'; x }),
+                list(helpText('No data available. Did you run CHDIR analysis?'))
+            )
         } else {
             buttons
         }
@@ -236,8 +248,13 @@ shinyServer(function(input, output, session) {
         button <- actionButton(inputId = 'run_paea', label = 'Run Principle Angle Enrichment', icon = NULL)
         if(is.null(values$chdir)) {
             button$attribs$disabled <- 'true'
+            list(
+                button,
+                helpText('Before you can run PAEA you have to execute CHDIR analysis.')
+            )
+        } else {
+            list(button)
         }
-        list(button)
     })
     
     #' See coment for run_chdir_container
