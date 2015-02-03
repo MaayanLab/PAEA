@@ -24,7 +24,10 @@ function initTour() {
         content: [
             '<p>Choose expression dataset to upload.</p>',
             '<p>It should contain a sinlge column with gene names ',
-            'followed by the  expression profiles.</p>',
+            'followed by the  expression profiles. </p>',
+            '<p>If you want to test this app you can use ',
+            '<a href="https://www.dropbox.com/s/151k3l70toseymi/expression_example.csv">',
+            'expression_example.csv</a>.</p>'
         ].join(''),
         highlightTarget: true,
         nextButton: true,
