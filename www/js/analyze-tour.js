@@ -89,7 +89,7 @@ function initTour() {
         at: 'bottom center'
     }, {
         content: [
-            '<p>Set parameters.../p>'
+            '<p>Set parameters...</p>'
         ].join(''),
         nextButton: true,
         closeButton: true,
@@ -148,6 +148,16 @@ function initTour() {
         nextButton: true,
         closeButton: true,
         target: $('#pae_results'),
+        my: 'top left',
+        at: 'top left'
+    },  {
+        content: [
+            '<p>... and will be available for download/p>'
+        ].join(''),
+        highlightTarget: true,
+        nextButton: true,
+        closeButton: true,
+        target: $('#paea_downloads'),
         my: 'top left',
         at: 'top left'
     }];
