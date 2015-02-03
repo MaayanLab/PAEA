@@ -31,6 +31,8 @@ shinyServer(function(input, output, session) {
     values$control_samples <- NULL
     values$treatment_samples <- NULL
     values$last_error <- NULL
+    # Required
+    values$paea_running <- FALSE
     
     
     #' Ugly hack to be able to clear upload widget
@@ -250,10 +252,13 @@ shinyServer(function(input, output, session) {
     #'
     output$run_paea_container <- renderUI({
         button <- actionButton(inputId = 'run_paea', label = 'Run Principle Angle Enrichment', icon = NULL)
-        if(is.null(values$chdir)) {
-            button$attribs$disabled <- 'true'
+        if (values$paea_running) {
+           list(
+                {button$attribs$disabled <- 'true'; button}
+            )
+        } else if(is.null(values$chdir)) {
             list(
-                button,
+                {button$attribs$disabled <- 'true'; button},
                 helpText('Before you can run PAEA you have to execute CHDIR analysis.')
             )
         } else {
@@ -274,6 +279,7 @@ shinyServer(function(input, output, session) {
         casesensitive <- isolate(input$paea_casesensitive)
 
         if(!(is.null(chdir))) {
+            values$paea_running <- TRUE
             values$paea <- tryCatch(
                 paea_analysis_wrapper(
                     chdirresults=chdir$chdirprops,
@@ -286,6 +292,7 @@ shinyServer(function(input, output, session) {
                     NULL
                 }
             )
+            values$paea_running <- FALSE
         }
     })
     

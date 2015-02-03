@@ -84,6 +84,7 @@ paea_tab <- tabPanel(
     fluidRow(
         column(12, p('')),
         column(6, wellPanel(
+            h3('PAEA parameters', id='paea_parameters'),
             checkboxInput('paea_casesensitive', "Casesensitive", FALSE),
             uiOutput('run_paea_container')
         )),
