@@ -119,7 +119,7 @@ paea_tab <- tabPanel(
             tabsetPanel(
                 tabPanel(
                     "Enriched sets",
-                    p(textOutput('paea_message'))),
+                    textOutput('paea_message')),
                     column(12, dataTableOutput('pae_results')
                 )
             )

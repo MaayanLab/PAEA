@@ -4,6 +4,7 @@ library(data.table)
 library(dplyr)
 library(nasbMicrotaskViewerHelpers)
 
+
 source('downloads_handlers.R', local=TRUE)
 
 last_modified <- sort(sapply(list.files(), function(x) strftime(file.info(x)$mtime)), decreasing=TRUE)[1]
@@ -59,6 +60,7 @@ shinyServer(function(input, output, session) {
         if (is.null(inFile)) return(NULL)
         # Not optimal but read.csv is easier to handle
         as.data.table(read.csv(
+       
             inFile$datapath, sep = input$sep
         ))
     })
@@ -74,7 +76,8 @@ shinyServer(function(input, output, session) {
     #' control/treatment samples checboxes
     #'
     output$sampleclass_container <- renderUI({
-        if (!is.null(datain()) && ncol(datain()) > 1 ) {
+        # TODO improve datain_is_valid message so we can use it directly
+        if (datain_is_valid(datain())$valid) {
             checkboxGroupInput(
                 'sampleclass',
                 'Choose control samples',
@@ -86,6 +89,8 @@ shinyServer(function(input, output, session) {
             helpText('No experimental data detected. Please check separator and/or uploaded file')
         } else if (ncol(datain()) < 5) {
             helpText('You need at least four samples to run Characteristic Direction Analysis')
+        } else {
+            helpText('It looks like your dataset is invalid')
         }
     })
     
@@ -122,7 +127,7 @@ shinyServer(function(input, output, session) {
     #' datain tab - density plot
     #'
     observe({
-        if(!is.null(datain()) && ncol(datain()) > 1) {
+        if(datain_is_valid(datain())$valid) {
             plot_density(datain()) %>% bind_shiny('datain_density_ggvis')
         }
     })
