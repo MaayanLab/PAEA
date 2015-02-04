@@ -25,7 +25,8 @@ upload_tab <- tabPanel(
         )), 
         column(4, wellPanel(
             h3('Preprocessing', id='datain_preprocessing'),
-            p()
+            checkboxInput(inputId='log2_transform', label='log2 transform' , value = FALSE),
+            checkboxInput(inputId='quantile_normalize', label='Quantile normalize', value = FALSE)
         )), 
         column(12, 
             h3('Input preview', id='datain_preview_header'),
@@ -33,7 +34,7 @@ upload_tab <- tabPanel(
             tabsetPanel(
                 id='datain_preview',
                 tabPanel(
-                    "Input data",
+                    'Input data',
                     p(textOutput('upload_message')),
                     dataTableOutput('contents')
                 ),
@@ -73,6 +74,12 @@ chdir_tab <- tabPanel(
             h3('CHDIR parameters', id='chdir_parameters'),
             numericInput('chdir_gamma', 'Gamma', 1.0, min = NA, max = NA, step = 1),
             numericInput('chdir_nnull', 'Nnull', 10, min = 1, max = 1000, step = 1),
+            numericInput('random_seed', 'Random  number generator seed', 323),
+            helpText(paste(
+                'Significance test is using random number generator.',
+                'If you want to obtain reproducible results you can set',
+                'seed value.'
+            )),
             uiOutput('run_chdir_container')
         )),
         
