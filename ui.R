@@ -14,15 +14,19 @@ upload_tab <- tabPanel(
     'Upload dataset',
     fluidRow(
         column(12, p('')),
-        column(6, wellPanel(
+        column(4, wellPanel(
             h3('Expression data'),
             uiOutput('datain_container'),
             seperator_input        
         )),
-        column(6, wellPanel(
+        column(4, wellPanel(
             h3('Control samples', id='control_samples'),
             uiOutput('sampleclass_container')
-        )),
+        )), 
+        column(4, wellPanel(
+            h3('Preprocessing', id='datain_preprocessing'),
+            p()
+        )), 
         column(12, 
             h3('Input preview', id='datain_preview_header'),
            
