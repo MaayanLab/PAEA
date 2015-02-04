@@ -142,7 +142,7 @@ shinyServer(function(input, output, session) {
     #'
     output$run_chdir_container <- renderUI({
         button <- actionButton(inputId = 'run_chdir', label = 'Run Characteristic Direction Analysis', icon = NULL)
-        if(datain_valid() | length(values$control_samples) < 2 | length(values$treatment_samples) < 2) {
+        if(!datain_valid() | length(values$control_samples) < 2 | length(values$treatment_samples) < 2) {
              button$attribs$disabled <- 'true'
              list(
                 button,
