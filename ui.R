@@ -113,9 +113,17 @@ paea_tab <- tabPanel(
             h3('Downloads', id='paea_downloads'),
             uiOutput('paea_downloads_container')
         )),
-        column(12, h3('PAEA results'), textOutput('paea_message')),
         
-        column(12, dataTableOutput('pae_results'))
+        column(12,
+            h3('PAEA results'),
+            tabsetPanel(
+                tabPanel(
+                    "Enriched sets",
+                    p(textOutput('paea_message'))),
+                    column(12, dataTableOutput('pae_results')
+                )
+            )
+        )
     )
 )
 
