@@ -24,9 +24,10 @@ upload_tab <- tabPanel(
             uiOutput('sampleclass_container')
         )),
         column(12, 
-            h3('Input preview', id='datain_preview'),
+            h3('Input preview', id='datain_preview_header'),
            
             tabsetPanel(
+                id='datain_preview',
                 tabPanel(
                     "Input data",
                     p(textOutput('upload_message')),
