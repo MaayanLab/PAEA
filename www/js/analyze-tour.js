@@ -1,12 +1,11 @@
 // See: https://gist.github.com/xiaodaigh/6445698
-// TODO Change to more selective solution
-var swichTab = function(i) {
-    tabs = $('.tabbable .nav.nav-tabs li');
+var swichTab = function(tabId, i) {
+    tabs = $(tabId).find('li');
     tabs.each(function() {
         $(this).removeClass('active')
     });
     $(tabs[i]).addClass('active');
-    tabsContents = $('.tabbable .tab-content .tab-pane')
+    tabsContents = $(tabId).next('.tab-content').children('.tab-pane');
     tabsContents.each(function() {
         $(this).removeClass('active')
     });
@@ -76,7 +75,7 @@ function initTour() {
         my: 'top center',
         at: 'bottom center',
         teardown: function(tour, options) {
-            swichTab(1);
+            swichTab('#workflow_panel', 1);
         }
     }, {
         content: [
@@ -128,7 +127,7 @@ function initTour() {
         my: 'bottom center',
         at: 'bottom center',
         teardown: function(tour, options) {
-            swichTab(2);
+            swichTab('#workflow_panel', 2);
         }
     }, {
         content: [
