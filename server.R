@@ -60,10 +60,14 @@ shinyServer(function(input, output, session) {
         if (is.null(inFile)) return(NULL)
         # Not optimal but read.csv is easier to handle
         as.data.table(read.csv(
-       
             inFile$datapath, sep = input$sep
         ))
     })
+    
+    
+    #' Is input valid?
+    #'
+    datain_valid <- reactive({ datain_is_valid(datain())$valid })
     
     
     #' Input data preview
@@ -77,7 +81,7 @@ shinyServer(function(input, output, session) {
     #'
     output$sampleclass_container <- renderUI({
         # TODO improve datain_is_valid message so we can use it directly
-        if (datain_is_valid(datain())$valid) {
+        if (datain_valid()) {
             checkboxGroupInput(
                 'sampleclass',
                 'Choose control samples',
@@ -98,8 +102,8 @@ shinyServer(function(input, output, session) {
     #' Update lists of control/treatment samples
     #'
     observe({
-        datain <- datain()
-        if(!is.null(datain)) {
+        if(datain_valid()) {
+            datain <- datain()
             samples_mask <- colnames(datain)[-1] %in%  input$sampleclass
             values$control_samples <- colnames(datain)[-1][samples_mask]
             values$treatment_samples <- colnames(datain)[-1][!samples_mask]
@@ -120,14 +124,14 @@ shinyServer(function(input, output, session) {
     
     #' datain tab - set plots visibility
     #'
-    output$show_datain_results <- reactive({ !is.null(datain()) && ncol(datain()) > 1 })
+    output$show_datain_results <- reactive({ datain_is_valid(datain())$valid })
     outputOptions(output, 'show_datain_results', suspendWhenHidden = FALSE)
     
     
     #' datain tab - density plot
     #'
     observe({
-        if(datain_is_valid(datain())$valid) {
+        if(datain_valid()) {
             plot_density(datain()) %>% bind_shiny('datain_density_ggvis')
         }
     })
@@ -138,7 +142,7 @@ shinyServer(function(input, output, session) {
     #'
     output$run_chdir_container <- renderUI({
         button <- actionButton(inputId = 'run_chdir', label = 'Run Characteristic Direction Analysis', icon = NULL)
-        if(is.null(datain()) | length(values$control_samples) < 2 | length(values$treatment_samples) < 2) {
+        if(datain_valid() | length(values$control_samples) < 2 | length(values$treatment_samples) < 2) {
              button$attribs$disabled <- 'true'
              list(
                 button,
@@ -162,7 +166,7 @@ shinyServer(function(input, output, session) {
     #' chdir panel - number of probes
     #'
     output$nprobes <- renderText({
-        if(!is.null(datain())) {
+        if(datain_valid()) {
             nrow(datain())
         }
     })
@@ -171,7 +175,7 @@ shinyServer(function(input, output, session) {
     #' chdir panel - number of genes
     #' 
     output$ngenes <- renderText({
-        if(!is.null(datain())) {
+        if(datain_valid()) {
             nlevels(datain()[[1]])
         }
     })
