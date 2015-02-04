@@ -82,12 +82,17 @@ chdir_tab <- tabPanel(
         )),
        
         column(12,
-            h3('CHDIR results', id='chdir_results'),
-            textOutput('chdir_message'),
-            conditionalPanel(
-                condition = 'output.show_chdir_results === true',
-                ggvisOutput('chdir_ggvis_plot')
-            ) 
+            h3('CHDIR results', id='chdir_results_header'),
+            tabsetPanel(
+                id='chdir_results',
+                tabPanel('Plots',
+                    p(textOutput('chdir_message')),
+                    conditionalPanel(
+                        condition = 'output.show_chdir_results === true',
+                        ggvisOutput('chdir_ggvis_plot')
+                    ) 
+                )
+            )
         )
     )
 )
