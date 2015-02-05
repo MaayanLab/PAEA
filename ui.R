@@ -1,6 +1,15 @@
 library(shiny)
 library(ggvis)
 
+#' Disappearing plot help 
+#' https://groups.google.com/forum/#!topic/ggvis/kQQsdn1RYaE
+#'
+ggvis_bug_message <- paste(
+    'If you see this message but the plot is invisible please try to resize it',
+    'using small grey triangle at the bottom. Unfortunately it seems to be s a known bug',
+    'in ggvis/shiny so we\'ll have to wait for a fix.'
+)
+
 #' Input separator choice
 #'
 seperator_input <- radioButtons(
@@ -42,6 +51,7 @@ upload_tab <- tabPanel(
                     "Plots",
                     conditionalPanel(
                         condition = 'output.show_datain_results === true',
+                        helpText(ggvis_bug_message),
                         ggvisOutput('datain_density_ggvis')
                     )
                 )
@@ -100,6 +110,7 @@ chdir_tab <- tabPanel(
                     p(textOutput('chdir_message')),
                     conditionalPanel(
                         condition = 'output.show_chdir_results === true',
+                        helpText(ggvis_bug_message),
                         ggvisOutput('chdir_ggvis_plot')
                     ) 
                 )
@@ -177,5 +188,6 @@ shinyUI(
         tags$script(src='js/backbone-min.js'),
         includeScript('www/js/tourist.min.js'),
         includeScript('www/js/analyze-tour.js')
+       
     )
 )
