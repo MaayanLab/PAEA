@@ -66,6 +66,16 @@ function initTour() {
         at: 'top center'
     }, {
         content: [
+            '<p>Add preprocessing steps/p>'
+        ].join(''),
+        highlightTarget: true,
+        nextButton: true,
+        closeButton: true,
+        target: $('#datain_preprocessing'),
+        my: 'bottom center',
+        at: 'top center'
+    }, {
+        content: [
             '<p>Switch to the Characteristic Direction Analysis</p>'
         ].join(''),
         highlightTarget: true,
