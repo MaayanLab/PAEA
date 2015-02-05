@@ -84,7 +84,8 @@ chdir_tab <- tabPanel(
             h3('CHDIR parameters', id='chdir_parameters'),
             numericInput('chdir_gamma', 'Gamma', 1.0, min = NA, max = NA, step = 1),
             numericInput('chdir_nnull', 'Nnull', 10, min = 1, max = 1000, step = 1),
-            numericInput('random_seed', 'Random  number generator seed', 323),
+            uiOutput('random_seed_container'),
+            checkboxInput('set_random_seed', "Set RNG seed manually", FALSE),
             helpText(paste(
                 'Significance test is using random number generator.',
                 'If you want to obtain reproducible results you can set',

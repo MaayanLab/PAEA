@@ -2,6 +2,7 @@ library(shiny)
 library(ggvis)
 library(data.table)
 library(dplyr)
+library(preprocessCore)
 library(nasbMicrotaskViewerHelpers)
 
 
@@ -70,17 +71,31 @@ shinyServer(function(input, output, session) {
     datain_valid <- reactive({ datain_is_valid(datain())$valid })
     
     
+    #' Apply preprocessing steps to datain
+    #'
+    #'
+    datain_preprocessed <- reactive({
+        if(datain_valid()) {
+            datain_preprocess(
+                datain=datain(),
+                log2_transform=input$log2_transform,
+                quantile_normalize=input$quantile_normalize
+            )
+        } else {
+            datain()
+        }
+    })
+    
     #' Input data preview
     #'
     output$contents <- renderDataTable({
-        datain()
+        datain_preprocessed()
     })
     
     
     #' control/treatment samples checboxes
     #'
     output$sampleclass_container <- renderUI({
-        # TODO improve datain_is_valid message so we can use it directly
         if (datain_valid()) {
             checkboxGroupInput(
                 'sampleclass',
@@ -132,7 +147,7 @@ shinyServer(function(input, output, session) {
     #'
     observe({
         if(datain_valid()) {
-            plot_density(datain()) %>% bind_shiny('datain_density_ggvis')
+            plot_density(datain_preprocessed()) %>% bind_shiny('datain_density_ggvis')
         }
     })
     
@@ -162,6 +177,16 @@ shinyServer(function(input, output, session) {
     #'
     outputOptions(output, 'run_chdir_container', suspendWhenHidden = FALSE)
     
+    
+    #' chdir panel - random number generator seed 
+    #'
+    output$random_seed_container <- renderUI({
+        rng_seed_input <- numericInput('random_seed', 'Random  number generator seed', as.integer(Sys.time()))
+        if(!input$set_random_seed) {
+            rng_seed_input$children[[2]]$attribs$disabled <- 'true'
+        }
+        rng_seed_input
+    })
     
     #' chdir panel - number of probes
     #'
@@ -199,10 +224,12 @@ shinyServer(function(input, output, session) {
     #'
     observe({
         if(is.null(input$run_chdir)) { return() } else if(input$run_chdir == 0) { return() }
-        datain <- isolate(datain())
+        datain <- isolate(datain_preprocessed())
         nnull <- min(as.integer(isolate(input$chdir_nnull)), 1000)
         gamma <- isolate(input$chdir_gamma)
         sampleclass <- factor(ifelse(colnames(datain)[-1] %in% isolate(input$sampleclass), '1', '2'))
+        
+        set.seed(input$random_seed)
         
         values$chdir <- tryCatch(
             chdir_analysis_wrapper(datain, sampleclass, gamma, nnull),
