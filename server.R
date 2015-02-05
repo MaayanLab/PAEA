@@ -229,7 +229,7 @@ shinyServer(function(input, output, session) {
         gamma <- isolate(input$chdir_gamma)
         sampleclass <- factor(ifelse(colnames(datain)[-1] %in% isolate(input$sampleclass), '1', '2'))
         
-        set.seed(input$random_seed)
+        set.seed(isolate(input$random_seed))
         
         values$chdir <- tryCatch(
             chdir_analysis_wrapper(datain, sampleclass, gamma, nnull),
