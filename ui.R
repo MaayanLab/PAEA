@@ -115,6 +115,10 @@ chdir_tab <- tabPanel(
                         helpText(ggvis_bug_message),
                         ggvisOutput('chdir_ggvis_plot')
                     ) 
+                ),
+                tabPanel('Upregulated genes'
+                ),
+                tabPanel('Downregulated genes'
                 )
             )
         )
