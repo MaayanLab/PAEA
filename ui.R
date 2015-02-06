@@ -118,9 +118,17 @@ chdir_tab <- tabPanel(
                         ggvisOutput('chdir_ggvis_plot')
                     ) 
                 ),
-                tabPanel('Upregulated genes'
+                tabPanel(
+                    'Upregulated genes',
+                    #TODO style with css
+                    p(),
+                    dataTableOutput('chdir_up_genes_table')
                 ),
-                tabPanel('Downregulated genes'
+                tabPanel(
+                    'Downregulated genes',
+                    #TODO style with css
+                    p(),
+                    dataTableOutput('chdir_down_genes_table')
                 )
             )
         )

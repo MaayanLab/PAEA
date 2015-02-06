@@ -357,6 +357,24 @@ shinyServer(function(input, output, session) {
         content = chdir_download_handler(chdir_down_genes())
     )
     
+    #' chdir panel - up genes table
+    #'
+    output$chdir_up_genes_table <- renderDataTable({
+        if(!is.null(values$chdir)) {
+            chdir_up_genes() %>%  rename(Gene = g, 'Characteristic Direction Coefficient' = v)
+        }
+    })
+    
+    
+    #' chdir panel - down genes table
+    #'
+    output$chdir_down_genes_table <- renderDataTable({
+        if(!is.null(values$chdir)) {
+            chdir_down_genes() %>% rename(Gene = g, 'Characteristic Direction Coefficient' = v)
+        }
+    })
+    
+    
     #' paea panel - run button
     #'
     output$run_paea_container <- renderUI({
