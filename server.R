@@ -299,11 +299,19 @@ shinyServer(function(input, output, session) {
     outputOptions(output, 'chdir_downloads_container', suspendWhenHidden = FALSE)
     
 
-    #' chdir panel - number of significant genes
+    #' chdir panel - number of significant upregulated genes
     #'
-    output$n_sig_genes <- renderText({
+    output$n_sig_up_genes <- renderText({
         if(!is.null(values$chdir)) {
-            values$chdir$chdirprops$number_sig_genes[[1]]
+            nrow(chdir_up_genes())
+        }
+    })
+    
+    #' chdir panel - number of significant downregulated genes
+    #'
+    output$n_sig_down_genes <- renderText({
+        if(!is.null(values$chdir)) {
+            nrow(chdir_down_genes())
         }
     })
 

@@ -98,8 +98,10 @@ chdir_tab <- tabPanel(
             h3('Downloads', id='chdir_downloads'),
             uiOutput('ngenes_tokeep_contatiner'),
             tags$dl(
-                tags$dt('#{significant genes}:'),
-                tags$dd(textOutput('n_sig_genes'))
+                tags$dt('#{significant upregulated genes}:'),
+                tags$dd(textOutput('n_sig_up_genes')),
+                tags$dt('#{significant downregulated genes}:'),
+                tags$dd(textOutput('n_sig_down_genes'))
             ),
             uiOutput('chdir_downloads_container')
         )),
