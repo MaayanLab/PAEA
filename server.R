@@ -269,8 +269,8 @@ shinyServer(function(input, output, session) {
         if(!is.null(values$chdir)) {
             ngenes <- length(values$chdir$results[[1]])
             limit <- min(config$max_fgenes_tokeep * ngenes, min(config$max_ngenes_tokeep, ngenes))
-            sliderInput$max <- limit
-            slider$value <- ceiling(limit / 2)
+            slider$children[[2]]$attribs['data-max'] <- limit
+            slider$children[[2]]$attribs['data-from'] <- ceiling(limit / 2)
         }
         slider
     })
