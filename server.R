@@ -316,11 +316,29 @@ shinyServer(function(input, output, session) {
     )
     
     
+    #' chdir panel - prepare down genes
+    #'
+    chdir_up_genes <- reactive({
+        if(!is.null(values$chdir)) {
+            prepare_up_genes(values$chdir$results[[1]])
+        }
+    })
+    
+    
+    #' chdir panel - prepare up genes
+    #'
+    chdir_down_genes <- reactive({
+        if(!is.null(values$chdir)) {
+            prepare_down_genes(values$chdir$results[[1]])
+        }
+    })
+    
+    
     #' chdir panel - chdir download
     #'
     output$download_chdir_up <- downloadHandler(
         filename = 'chdir_up_genes.tsv',
-        content = chdir_download_handler(prepare_up_genes(values$chdir$results[[1]]))
+        content = chdir_download_handler(chdir_up_genes())
 
     )
     
@@ -328,7 +346,7 @@ shinyServer(function(input, output, session) {
     #'
     output$download_chdir_down <- downloadHandler(
         filename = 'chdir_up_genes.tsv',
-        content = chdir_download_handler(prepare_down_genes(values$chdir$results[[1]]))
+        content = chdir_download_handler(chdir_down_genes())
     )
     
     #' paea panel - run button
