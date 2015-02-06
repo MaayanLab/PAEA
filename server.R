@@ -142,7 +142,6 @@ shinyServer(function(input, output, session) {
     output$show_datain_results <- reactive({ datain_is_valid(datain())$valid })
     outputOptions(output, 'show_datain_results', suspendWhenHidden = FALSE)
     
-    
     #' datain tab - density plot
     #'
     observe({
@@ -262,18 +261,18 @@ shinyServer(function(input, output, session) {
     #' chdir panel number of significant genes to keep
     #' 
     output$ngenes_tokeep_contatiner <- renderUI({
+        slider <- sliderInput(
+            'ngenes_tokeep', label='Limit number of genes to return',
+            min=1, max=config$max_ngenes_tokeep, step=1, value=100, round=TRUE
+        )
+        
         if(!is.null(values$chdir)) {
             ngenes <- length(values$chdir$results[[1]])
-            # TODO create configuration file to handle stuff like this
             limit <- min(config$max_fgenes_tokeep * ngenes, min(config$max_ngenes_tokeep, ngenes))
-            
-            sliderInput(
-                'ngenes_tokeep', label='Limit number of genes to return',
-                min=1, max=limit, value=ceiling(limit / 2),
-                step=1, round=TRUE)
-        } else {
-            
+            sliderInput$max <- limit
+            slider$value <- ceiling(limit / 2)
         }
+        slider
     })
     
     
