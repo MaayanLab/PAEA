@@ -5,8 +5,8 @@ library(dplyr)
 library(preprocessCore)
 library(nasbMicrotaskViewerHelpers)
 
-
 source('downloads_handlers.R', local=TRUE)
+source('config.R', local=TRUE)
 
 last_modified <- sort(sapply(list.files(), function(x) strftime(file.info(x)$mtime)), decreasing=TRUE)[1]
 
@@ -258,6 +258,24 @@ shinyServer(function(input, output, session) {
             plot_top_genes(results) %>% bind_shiny('chdir_ggvis_plot')
         }
     })
+    
+    #' chdir panel number of significant genes to keep
+    #' 
+    output$ngenes_tokeep_contatiner <- renderUI({
+        if(!is.null(values$chdir)) {
+            ngenes <- length(values$chdir$results[[1]])
+            # TODO create configuration file to handle stuff like this
+            limit <- min(config$max_fgenes_tokeep * ngenes, min(config$max_ngenes_tokeep, ngenes))
+            
+            sliderInput(
+                'ngenes_tokeep', label='Limit number of genes to return',
+                min=1, max=limit, value=ceiling(limit / 2),
+                step=1, round=TRUE)
+        } else {
+            
+        }
+    })
+    
     
     #' chdir panel - download block
     #'

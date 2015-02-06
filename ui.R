@@ -96,6 +96,7 @@ chdir_tab <- tabPanel(
         
         column(4, wellPanel(
             h3('Downloads', id='chdir_downloads'),
+            uiOutput('ngenes_tokeep_contatiner'),
             tags$dl(
                 tags$dt('#{significant genes}:'),
                 tags$dd(textOutput('n_sig_genes'))
