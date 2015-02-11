@@ -184,6 +184,14 @@ about_panel <- tabPanel(
     title = 'About',
     fluidRow(column(12,
         tags$dl(
+            tags$dt('External links:'),
+            tags$dd(a('NASB Crowdsourcing portal', href='http://maayanlab.net/crowdsourcing/')),
+            tags$dd(a('The development version of this app', href='https://zero323.shinyapps.io/nasb-microtask-viewer-dev/'))
+            )
+        )),
+
+    fluidRow(column(12,
+        tags$dl(
             tags$dt('Last update:'),
             tags$dd(textOutput('last_modified'))
         )
