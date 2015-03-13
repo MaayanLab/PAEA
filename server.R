@@ -1,10 +1,20 @@
 library(shiny)
 library(ggvis)
 library(data.table)
+library(tidyr)
 library(dplyr)
 library(preprocessCore)
-library(nasbMicrotaskViewerHelpers)
+# library(nasbMicrotaskViewerHelpers)
+library(stringi)
 
+
+
+source('preprocess.R')
+source('datain.R')
+source('chdir.R')
+source('paea.R')
+source('misc.R')
+source('stats.R')
 source('downloads_handlers.R', local=TRUE)
 source('config.R', local=TRUE)
 
@@ -13,14 +23,14 @@ last_modified <- sort(sapply(list.files(), function(x) strftime(file.info(x)$mti
 options(shiny.maxRequestSize=120*1024^2) 
 
 data <- if(file.exists('data/microtask.csv')) {
-        dt <- nasbMicrotaskViewerHelpers::preprocess_data(read.csv('data/microtask.csv', header = FALSE))
+        dt <- preprocess_data(read.csv('data/microtask.csv', header = TRUE))
         list(
-            description = nasbMicrotaskViewerHelpers::extract_description(dt),
-            genes = nasbMicrotaskViewerHelpers::extract_genes(dt),
-            samples = nasbMicrotaskViewerHelpers::extract_samples(dt)
+            description = extract_description(dt),
+            genes = extract_genes(dt),
+            samples = extract_samples(dt)
         )
     } else {
-        nasbMicrotaskViewerHelpers::preprocess('http://localhost/microtask.1.24.2015.csv')
+        preprocess('http://localhost/microtask.1.24.2015.csv')
 }
 
 shinyServer(function(input, output, session) {
