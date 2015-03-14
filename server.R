@@ -6,7 +6,7 @@ library(dplyr)
 library(preprocessCore)
 # library(nasbMicrotaskViewerHelpers)
 library(stringi)
-
+# library(GeoDE)
 
 
 source('preprocess.R')
@@ -247,7 +247,7 @@ shinyServer(function(input, output, session) {
                 NULL
             }
         )
- 
+
     })
     
     

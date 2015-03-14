@@ -1,3 +1,4 @@
+source('GeoDE.R')
 #' Prepare chdir results for plotting
 #' @param results numeric vector extracted from pchdir results
 #' @param n numeric max number of genes to keep
@@ -79,11 +80,11 @@ preprocess_chdir_input <- function(datain) {
 chdir_analysis_wrapper <- function(datain, sampleclass, gammas, nnull) {
 
     png('/dev/null')
-    chdir <- GeoDE::chdirAnalysis(
+    chdir <- chdirAnalysis(
         # Group by gene label and compute mean
         datain,
         sampleclass=sampleclass,
-        CalculateSig=TRUE,
+        CalculateSig=FALSE,
         gammas=gammas,
         nnull=nnull
     )
