@@ -81,7 +81,7 @@ chdir_analysis_wrapper <- function(datain, sampleclass, gammas, nnull) {
 
     png('/dev/null')
     datain <- preprocess_chdir_input(datain)
-    datain <- as.data.frame(datain)
+    datain <- dplyr::tbl_df(datain)
     chdir <- chdirAnalysis(
         # Group by gene label and compute mean
         datain,

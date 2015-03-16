@@ -36,6 +36,7 @@ data <- if(file.exists('data/microtask.csv')) {
         preprocess('http://localhost/microtask.1.24.2015.csv')
 }
 
+
 shinyServer(function(input, output, session) {
     
     output$last_modified <- renderText({ last_modified })
@@ -425,7 +426,6 @@ shinyServer(function(input, output, session) {
         if(is.null(input$run_paea)) { return() } else if(input$run_paea == 0) { return() }
         chdir <- isolate(values$chdir)
         casesensitive <- isolate(input$paea_casesensitive)
-
         if(!(is.null(chdir))) {
             values$paea_running <- TRUE
             values$paea <- tryCatch(
@@ -435,7 +435,6 @@ shinyServer(function(input, output, session) {
                     casesensitive=casesensitive
                 ),
                 error = function(e) {
-                    print(e)
                     values$last_error <- e
                     NULL
                 }
@@ -448,7 +447,8 @@ shinyServer(function(input, output, session) {
     #' 
     paea_results <- reactive({
         if(!is.null(values$paea)) {
-            prepare_paea_results(values$paea$p_values, data$description)
+            paea_df <- paea_to_df(values$paea)
+            prepare_paea_results(paea_df, data$description)
         }
     })
     
