@@ -1,17 +1,14 @@
 library(shiny)
 library(ggvis)
 library(data.table)
-
 library(tidyr)
 library(dplyr)
 library(preprocessCore)
-# library(nasbMicrotaskViewerHelpers)
 library(stringi)
-# library(GeoDE)
 library(Matrix)
 library(MASS)
 
-
+source('dataAccess.R')
 source('preprocess.R')
 source('datain.R')
 source('chdir.R')
@@ -25,16 +22,20 @@ last_modified <- sort(sapply(list.files(), function(x) strftime(file.info(x)$mti
 
 options(shiny.maxRequestSize=120*1024^2) 
 
-data <- if(file.exists('data/microtask.csv')) {
-        dt <- preprocess_data(read.csv('data/microtask.csv', header = TRUE))
-        list(
-            description = extract_description(dt),
-            genes = extract_genes(dt),
-            samples = extract_samples(dt)
-        )
-    } else {
-        preprocess('http://localhost/microtask.1.24.2015.csv')
-}
+# data <- if(file.exists('data/microtask.csv')) {
+#         dt <- preprocess_data(read.csv('data/microtask.csv', header = TRUE))
+#         list(
+#             description = extract_description(dt),
+#             genes = extract_genes(dt),
+#             samples = extract_samples(dt)
+#         )
+#     } else {
+#         preprocess('http://localhost/microtask.1.24.2015.csv')
+# }
+
+# Meta data of all gmt files from the Enrichr API
+meta_gmts <- getGroupedLibraries()
+meta_gmts <- as.data.frame(meta_gmts)
 
 
 shinyServer(function(input, output, session) {
@@ -388,112 +389,128 @@ shinyServer(function(input, output, session) {
         }
     })
     
-    
-    #' paea panel - run button
+
+    #' paea panel - output a table of active gmt files
     #'
-    output$run_paea_container <- renderUI({
-        button <- actionButton(inputId = 'run_paea', label = 'Run Principle Angle Enrichment', icon = NULL)
-        if (values$paea_running) {
-           list(
-                {button$attribs$disabled <- 'true'; button}
-            )
-        } else if(is.null(values$chdir)) {
-            list(
-                {button$attribs$disabled <- 'true'; button},
-                helpText('Before you can run PAEA you have to execute CHDIR analysis.')
-            )
-        } else {
-            list(button)
-        }
-    })
+    # output$gmt_meta <- renderDataTable({
+    #     if(!is.null(meta_gmts)) {
+    #         isolate(meta_gmts)
+    #     }
+    # })
     
-    #' See coment for run_chdir_container
-    #'
-    outputOptions(output, 'run_paea_container', suspendWhenHidden = FALSE)
+    #' radio button for selecting category
+    output$categories <- renderUI(
+        radioButtons('categories','Categories of Gene-set Library', unique(meta_gmts$name), unique(meta_gmts$name)[[1]])
+    )
+
+
+
     
-    #' chdir panel - status message
-    #'
-    output$chdir_message <- renderText({
-        if(is.null(values$chdir)) {
-            'results not available...'
-        }
-    })
+    # #' paea panel - run button
+    # #'
+    # output$run_paea_container <- renderUI({
+    #     button <- actionButton(inputId = 'run_paea', label = 'Run Principle Angle Enrichment', icon = NULL)
+    #     if (values$paea_running) {
+    #        list(
+    #             {button$attribs$disabled <- 'true'; button}
+    #         )
+    #     } else if(is.null(values$chdir)) {
+    #         list(
+    #             {button$attribs$disabled <- 'true'; button},
+    #             helpText('Before you can run PAEA you have to execute CHDIR analysis.')
+    #         )
+    #     } else {
+    #         list(button)
+    #     }
+    # })
+    
+    # #' See coment for run_chdir_container
+    # #'
+    # outputOptions(output, 'run_paea_container', suspendWhenHidden = FALSE)
+    
+    # #' chdir panel - status message
+    # #'
+    # output$chdir_message <- renderText({
+    #     if(is.null(values$chdir)) {
+    #         'results not available...'
+    #     }
+    # })
 
         
-    #' Run Principle Angle Enrichment Analysis
-    #'
-    observe({
-        if(is.null(input$run_paea)) { return() } else if(input$run_paea == 0) { return() }
-        chdir <- isolate(values$chdir)
-        casesensitive <- isolate(input$paea_casesensitive)
-        if(!(is.null(chdir))) {
-            values$paea_running <- TRUE
-            values$paea <- tryCatch(
-                paea_analysis_wrapper(
-                    chdirresults=chdir$chdirprops,
-                    gmtfile=prepare_gene_sets(data$genes),
-                    casesensitive=casesensitive
-                ),
-                error = function(e) {
-                    values$last_error <- e
-                    NULL
-                }
-            )
-            values$paea_running <- FALSE
-        }
-    })
+    # #' Run Principle Angle Enrichment Analysis
+    # #'
+    # observe({
+    #     if(is.null(input$run_paea)) { return() } else if(input$run_paea == 0) { return() }
+    #     chdir <- isolate(values$chdir)
+    #     casesensitive <- isolate(input$paea_casesensitive)
+    #     if(!(is.null(chdir))) {
+    #         values$paea_running <- TRUE
+    #         values$paea <- tryCatch(
+    #             paea_analysis_wrapper(
+    #                 chdirresults=chdir$chdirprops,
+    #                 gmtfile=prepare_gene_sets(data$genes),
+    #                 casesensitive=casesensitive
+    #             ),
+    #             error = function(e) {
+    #                 values$last_error <- e
+    #                 NULL
+    #             }
+    #         )
+    #         values$paea_running <- FALSE
+    #     }
+    # })
     
-    #' PAEA results
-    #' 
-    paea_results <- reactive({
-        if(!is.null(values$paea)) {
-            paea_df <- paea_to_df(values$paea)
-            prepare_paea_results(paea_df, data$description)
-        }
-    })
-    
-    
-    #' PAEA output
-    #'
-    output$pae_results <- renderDataTable({
-        paea_results()
-    })
+    # #' PAEA results
+    # #' 
+    # paea_results <- reactive({
+    #     if(!is.null(values$paea)) {
+    #         paea_df <- paea_to_df(values$paea)
+    #         prepare_paea_results(paea_df, data$description)
+    #     }
+    # })
     
     
-    #' paea panel - download block
-    #'
-    output$paea_downloads_container <- renderUI({
-        button <- downloadButton('download_paea', 'Download PAEA results')
+    # #' PAEA output
+    # #'
+    # output$pae_results <- renderDataTable({
+    #     paea_results()
+    # })
+    
+    
+    # #' paea panel - download block
+    # #'
+    # output$paea_downloads_container <- renderUI({
+    #     button <- downloadButton('download_paea', 'Download PAEA results')
 
-        if (is.null(values$paea)) {
-            list(
-                {button$attribs$disabled <- 'true'; button},
-                helpText('No data available. Did you run PAEA analysis?')
-            )
-        } else {
-            button
-        }
-    })
+    #     if (is.null(values$paea)) {
+    #         list(
+    #             {button$attribs$disabled <- 'true'; button},
+    #             helpText('No data available. Did you run PAEA analysis?')
+    #         )
+    #     } else {
+    #         button
+    #     }
+    # })
     
     
-    #' See coment for run_chdir_container
-    #'
-    outputOptions(output, 'paea_downloads_container', suspendWhenHidden = FALSE)
+    # #' See coment for run_chdir_container
+    # #'
+    # outputOptions(output, 'paea_downloads_container', suspendWhenHidden = FALSE)
     
     
-    #' paea panel - downloads handler
-    #'
-    output$download_paea <- downloadHandler(
-        filename = 'paea.tsv',
-        content = paea_download_handler(paea_results())
-    )
+    # #' paea panel - downloads handler
+    # #'
+    # output$download_paea <- downloadHandler(
+    #     filename = 'paea.tsv',
+    #     content = paea_download_handler(paea_results())
+    # )
     
-    #' paea panel - status message
-    #'
-    output$paea_message <- renderText({
-        if(is.null(values$paea)) {
-            'results not available...'
-        }
-    })
+    # #' paea panel - status message
+    # #'
+    # output$paea_message <- renderText({
+    #     if(is.null(values$paea)) {
+    #         'results not available...'
+    #     }
+    # })
 
 })

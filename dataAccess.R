@@ -10,9 +10,23 @@ subVars <- function(strexpr, vars){
   eval((parse(text = strexpr)), envir = parent.frame())
 }
 
+getCategories <- function(){
+  libraryTable <- dplyr::tbl(src = databaseConn, "category")
+  dplyr::select(libraryTable, categoryId, name)
+}
+
 getActiveLibraries <- function(){
   libraryTable <- dplyr::tbl(src = databaseConn, "geneSetLibrary")
   dplyr::filter(libraryTable, isActive == 1)
+}
+
+getGroupedLibraries <- function(){
+  meta_gmts <- getActiveLibraries()
+  meta_gmts <- dplyr::filter(meta_gmts, isFuzzy==0)
+  cate <- getCategories()
+  meta_gmts <- dplyr::inner_join(cate, meta_gmts, by="categoryId")
+  meta_gmts %>% dplyr::arrange(categoryId) %>%
+    dplyr::select(name, libraryName, numTerms, geneCoverage)
 }
 
 getGeneSetLibrary_ <- function(libName){
@@ -36,7 +50,7 @@ getTerms <- function(libName){
   terms <- dplyr::arrange(terms, term.name)
   terms <- as.data.frame(terms, n=-1)
 
-  
+
   starts <- which(!duplicated(terms$term.name))
   start_ <<- 1
   raggedArray <- lapply(starts[-1], function(x) {ret <- c(terms$term.name[start_], terms$gene.name[start_:x])

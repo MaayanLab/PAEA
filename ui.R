@@ -141,27 +141,37 @@ chdir_tab <- tabPanel(
 paea_tab <- tabPanel(
     'Principle Angle Enrichment Analysis',
     fluidRow(
-        column(12, p('')),
-        column(6, wellPanel(
-            h3('PAEA parameters', id='paea_parameters'),
-            checkboxInput('paea_casesensitive', "Casesensitive", FALSE),
-            uiOutput('run_paea_container')
-        )),
-        column(6, wellPanel(
-            h3('Downloads', id='paea_downloads'),
-            uiOutput('paea_downloads_container')
-        )),
-        
-        column(12,
-            h3('PAEA results'),
-            tabsetPanel(
-                tabPanel(
-                    "Enriched sets",
-                    p(textOutput('paea_message'))),
-                    column(12, dataTableOutput('pae_results')
-                )
+        column(3, # for categories
+            # dataTableOutput('gmt_meta') 
+            uiOutput('categories')
+            ),
+        column(3 # for gmts
+            ),
+        column(6 # for results
+            # dataTableOutput('pae_results')
             )
-        )
+
+        # column(12, p('')),
+        # column(6, wellPanel(
+        #     h3('PAEA parameters', id='paea_parameters'),
+        #     checkboxInput('paea_casesensitive', "Casesensitive", FALSE),
+        #     uiOutput('run_paea_container')
+        # )),
+        # column(6, wellPanel(
+        #     h3('Downloads', id='paea_downloads'),
+        #     uiOutput('paea_downloads_container')
+        # )),
+        
+        # column(12,
+        #     h3('PAEA results'),
+        #     tabsetPanel(
+        #         tabPanel(
+        #             "Enriched sets",
+        #             p(textOutput('paea_message'))),
+        #             column(12, dataTableOutput('pae_results')
+        #         )
+        #     )
+        # )
     )
 )
 
