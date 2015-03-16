@@ -1,6 +1,7 @@
-library('dplyr')
+## Script to connect to the database behind Enrichr
+## Authors: Matthew Jones, Zichen Wang
 
-databaseConn <- src_mysql(dbname = 'enrichr', host = 'master', user = 'root', password = '4reYuXuhuz')
+databaseConn <- dplyr::src_mysql(dbname = 'enrichr', host = 'master', user = 'root', password = '4reYuXuhuz')
 
 subVars <- function(strexpr, vars){
   for(i in range(length(vars))){
@@ -10,33 +11,35 @@ subVars <- function(strexpr, vars){
 }
 
 getActiveLibraries <- function(){
-  libraryTable <- tbl(src = databaseConn, "geneSetLibrary")
-  filter(libraryTable, isActive == 1)
+  libraryTable <- dplyr::tbl(src = databaseConn, "geneSetLibrary")
+  dplyr::filter(libraryTable, isActive == 1)
 }
 
 getGeneSetLibrary_ <- function(libName){
-  libraryTable <- tbl(src = databaseConn, "geneSetLibrary")
-  termTable <- tbl(databaseConn, "term")
-  termTable <- rename(termTable, term.name = name)
-  termGenesTable <- tbl(databaseConn, "termGenes")
-  genesTable <- tbl(databaseConn, "genes")
-  genesTable <- rename(genesTable, gene.name = name)
+  libraryTable <- dplyr::tbl(src = databaseConn, "geneSetLibrary")
+  termTable <- dplyr::tbl(databaseConn, "term")
+  termTable <- dplyr::rename(termTable, term.name = name)
+  termGenesTable <- dplyr::tbl(databaseConn, "termGenes")
+  genesTable <- dplyr::tbl(databaseConn, "genes")
+  genesTable <- dplyr::rename(genesTable, gene.name = name)
   
-  a <- inner_join(libraryTable, termTable, by = "libraryId")
-  b <- inner_join(a, termGenesTable, by="termId")
-  allTables <- inner_join(b, genesTable, by="geneId")
+  a <- dplyr::inner_join(libraryTable, termTable, by = "libraryId")
+  b <- dplyr::inner_join(a, termGenesTable, by="termId")
+  allTables <- dplyr::inner_join(b, genesTable, by="geneId")
   
   subVars(strexpr = "filter(allTables, libraryName == x_)", vars = list(x_ = libName))
 }
 
 getTerms <- function(libName){
   gsl <- getGeneSetLibrary_(libName)
-  terms <- select(gsl, term.name, gene.name)
-  terms <- arrange(terms, term.name)
+  terms <- dplyr::select(gsl, term.name, gene.name)
+  terms <- dplyr::arrange(terms, term.name)
   terms <- as.data.frame(terms, n=-1)
+
+  
   starts <- which(!duplicated(terms$term.name))
   start_ <<- 1
-  raggedArray <- lapply(starts[-1], function(x) {ret <- terms$gene.name[start_:x]
+  raggedArray <- lapply(starts[-1], function(x) {ret <- c(terms$term.name[start_], terms$gene.name[start_:x])
                                   start_ <<- x
                                   ret})
   raggedArray
