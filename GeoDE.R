@@ -21,9 +21,9 @@ chdirAnalysis <- function(datain, sampleclass, gammas=list(1.0), nnull=10,Calcul
   chdirresults <- chdirSig(datain,sampleclass,gammas,nnull=nnull,CalculateSig=CalculateSig)
   
   # produce plots
-#  print("plotting...")
-  chdirplots(chdirresults,sampleclass,gammas,CalculateSig)
-#  print("generating output...")
+ # print("plotting...")
+ #  chdirplots(chdirresults,sampleclass,gammas,CalculateSig)
+ # print("generating output...")
   
   # Generate result dataframe
   outAll <- lapply(chdirresults[[1]], function(x) {x[sort.list(x^2,decreasing=TRUE),]})
@@ -117,11 +117,10 @@ chdirSig <- function(data,sampleclass,gammas=list(1.0),nnull=10,CalculateSig=FAL
   #
   # Calculate the pca
   #
-  
+
   pca1 <- prcomp(t(as.matrix(data[-1])))
-  
+
   meanvec <- rowMeans(as.matrix(data[-1][sampleclass==2]))-rowMeans(as.matrix(data[-1][sampleclass==1]))
-  
   n1 <- sum(sampleclass==1)
   n2 <- sum(sampleclass==2)
   
@@ -132,7 +131,6 @@ chdirSig <- function(data,sampleclass,gammas=list(1.0),nnull=10,CalculateSig=FAL
   
   cumsum <- pca1$sdev^2/sum(pca1$sdev^2)
   keepPC <- length(cumsum[cumsum>0.001])
-  
   #
   # Now calculte the characteristic direction in pca space
   #
@@ -158,14 +156,11 @@ chdirSig <- function(data,sampleclass,gammas=list(1.0),nnull=10,CalculateSig=FAL
   # b<-as.vector(b[[1]])  
   #The projection of the characteristic direction in the first two PCs
   
-  
   b2dscale <- colMeans(R[sampleclass==2,1:2])- colMeans(R[sampleclass==1,1:2])
   
   
   b2dscale <- sqrt(sum(b2dscale^2))
-  
-  #print(b2dscale)
-  
+    
   projchdir2d <-lapply(b, function(x) list( b2dscale*as.numeric(as.vector(x)%*%as.vector(V[,1])), b2dscale*as.numeric(as.vector(x)%*%as.vector(V[,2]))))  
   
   
