@@ -7,10 +7,9 @@ source('GeoDE.R')
 #'
 paea_to_df <- function(paea_results) {
     dplyr::tbl_df(data.frame(
-        set=colnames(paea_results$p_value),
+        Term=colnames(paea_results$p_value),
         pvalue=as.vector(paea_results$p_value)
-    )) %>%
-    tidyr::separate(set, into=c('id', 'category'), sep='_')
+    ))
 }
 
 

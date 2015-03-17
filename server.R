@@ -22,17 +22,6 @@ last_modified <- sort(sapply(list.files(), function(x) strftime(file.info(x)$mti
 
 options(shiny.maxRequestSize=120*1024^2) 
 
-# data <- if(file.exists('data/microtask.csv')) {
-#         dt <- preprocess_data(read.csv('data/microtask.csv', header = TRUE))
-#         list(
-#             description = extract_description(dt),
-#             genes = extract_genes(dt),
-#             samples = extract_samples(dt)
-#         )
-#     } else {
-#         preprocess('http://localhost/microtask.1.24.2015.csv')
-# }
-
 # Meta data of all gmt files from the Enrichr API
 meta_gmts <- getGroupedLibraries()
 meta_gmts <- as.data.frame(meta_gmts)
@@ -48,6 +37,7 @@ shinyServer(function(input, output, session) {
     values$control_samples <- NULL
     values$treatment_samples <- NULL
     values$last_error <- NULL
+    values$paea <- list()
     # Required
     values$paea_running <- FALSE
     
@@ -400,8 +390,54 @@ shinyServer(function(input, output, session) {
     
     #' radio button for selecting category
     output$categories <- renderUI(
-        radioButtons('categories','Categories of Gene-set Library', unique(meta_gmts$name), unique(meta_gmts$name)[[1]])
+        selectInput('categories','Categories of Gene-set Library', unique(meta_gmts$name), unique(meta_gmts$name)[[1]])
     )
+    
+    output$libraries <- renderUI({
+        selected_category <- input$categories
+        libraries <- meta_gmts %>% dplyr::filter(name==selected_category) %>% dplyr::select(libraryName)
+        libraries <- sort(as.data.frame(libraries)$libraryName) # names of library within the selected category
+        radioButtons('libraries', 'Gene-set Libraries', libraries)
+    })
+    observe({
+        library <- input$libraries[[1]]
+        chdir <- isolate(values$chdir)
+        if(!(is.null(chdir)) & is.null(values$paea[[library]])) {
+            values$paea_running <- TRUE
+            gmtfile <- getTerms(library)
+            values$paea[[library]] <- tryCatch(
+                paea_analysis_wrapper(
+                    chdirresults=chdir$chdirprops,
+                    gmtfile=gmtfile,
+                    casesensitive=FALSE
+                ),
+                error = function(e) {
+                    values$last_error <- e
+                    NULL
+                }
+            )
+            values$paea_running <- FALSE
+        }
+    })
+    
+
+    #' PAEA results
+    #' 
+    paea_results <- reactive({
+        library <- input$libraries[[1]]
+        if(!is.null(values$paea[[library]])) {
+            paea_to_df(values$paea[[library]])
+        } 
+        # else { # show a progress bar
+            
+        # }
+    })
+    
+    #' PAEA output
+    #'
+    output$pae_results <- renderDataTable({
+        paea_results()
+    })
 
 
 

@@ -141,14 +141,15 @@ chdir_tab <- tabPanel(
 paea_tab <- tabPanel(
     'Principle Angle Enrichment Analysis',
     fluidRow(
-        column(3, # for categories
+        column(2, # for categories
             # dataTableOutput('gmt_meta') 
             uiOutput('categories')
             ),
-        column(3 # for gmts
+        column(3, # for gmts
+            uiOutput('libraries')
             ),
-        column(6 # for results
-            # dataTableOutput('pae_results')
+        column(7, # for results
+            dataTableOutput('pae_results')
             )
 
         # column(12, p('')),
