@@ -300,6 +300,12 @@ PAEAAnalysis <- function(chdirresults,gmtfile,gammas=c(1.0),casesensitive=FALSE,
   gmtlines <- lapply(gmtfile, function(x) x[-1])
   
 #  print("processed gmt")
+  if(!casesensitive) {
+    gmtlines <- lapply(gmtlines, toupper)
+    rownames(chdirresults[[1]][[1]]) <- toupper(rownames(chdirresults[[1]][[1]]))
+  }
+
+  lookup_table <- buildLookupTable(chdirresults[[1]])
   
   # Calculate the PEAE results for each gmt line
   if(showprogress){
@@ -307,13 +313,13 @@ PAEAAnalysis <- function(chdirresults,gmtfile,gammas=c(1.0),casesensitive=FALSE,
     PAEAresults <-mapply(function(x,count) 
       {
       setTxtProgressBar(pb, count)
-      PAEA(chdirresults[[1]],x,casesensitive=casesensitive)
+      PAEA(chdirresults[[1]],x,casesensitive=casesensitive,lookuptable=lookup_table)
     },gmtlines,c(1:length(gmtlines)),SIMPLIFY=FALSE)    
     close(pb)
     
   }else{
    
-    PAEAresults <-lapply(gmtlines, function(x) PAEA(chdirresults[[1]],x,casesensitive=casesensitive))
+    PAEAresults <-lapply(gmtlines, function(x) PAEA(chdirresults[[1]],x,casesensitive=casesensitive,lookuptable=lookup_table))
     
   }
   
@@ -368,20 +374,22 @@ PAEAAnalysis <- function(chdirresults,gmtfile,gammas=c(1.0),casesensitive=FALSE,
 # 1) The principal angle
 # 2) The p value
 #####################################
-PAEA<-function(chdir,gmtline,casesensitive=FALSE)
+PAEA<-function(chdir,gmtline,casesensitive=FALSE,lookuptable)
 {
   genenames<-rownames(chdir[[1]])
   
 #  print("in PAEA")
 
   
-  keepgenes <-is.element(toupper(genenames), toupper(gmtline))
   ngenes <-length(genenames)
   
   # A matrix with a 1 in rows corresponding to genes in the gmt line
   #gvec <- as.matrix(lapply(keepgenes, function(x) if (x==TRUE) 1 else 0))
   
-  gpos <-which(toupper(genenames)%in%toupper(gmtline))
+  gpos <- {
+    gpos <- unique(unlist(lapply(gmtline, function(x) { lookuptable[[x]] })))
+    if(!is.null(gpos)) { sort(gpos) } else { numeric(0) }
+  }  
  
   nset <-length(gmtline)
 
@@ -399,7 +407,7 @@ PAEA<-function(chdir,gmtline,casesensitive=FALSE)
   
   if((length(gpos)>0)&(m>1)&(m<n))
   {
-  gsa <- as.matrix(sparseMatrix(gpos, c(1:length(gpos)), dims=c(ngenes,length(gpos)),x=1))
+  gsa <- sparseMatrix(gpos, c(1:length(gpos)), dims=c(ngenes,length(gpos)),x=1)
   
   #   Calculate the principal angle
   
@@ -437,4 +445,27 @@ PAEA<-function(chdir,gmtline,casesensitive=FALSE)
   }
   
   
+}
+
+
+#####################################
+# Helper
+# Input:
+# 1) A characteristic direction
+# Output
+# 1) Environment
+#####################################
+buildLookupTable <- function(chdir) {
+ genenames <- toupper(rownames(chdir[[1]]))
+ env <- new.env()
+ for (i in 1:length(genenames)) {
+ gn <- genenames[i]
+ if(!is.null(env[[gn]])) {
+ v <- c(i, env[[gn]])
+ } else {
+ v <- i
+ }
+ assign(gn, v, envir = env)
+ }
+ env
 }
