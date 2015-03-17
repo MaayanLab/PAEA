@@ -142,14 +142,14 @@ paea_tab <- tabPanel(
     'Principle Angle Enrichment Analysis',
     fluidRow(
         column(2, # for categories
-            # dataTableOutput('gmt_meta') 
             uiOutput('categories')
             ),
         column(3, # for gmts
             uiOutput('libraries')
             ),
         column(7, # for results
-            dataTableOutput('pae_results')
+            # dataTableOutput('pae_results')
+            uiOutput('pae_results')
             )
 
         # column(12, p('')),

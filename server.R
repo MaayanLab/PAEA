@@ -382,64 +382,62 @@ shinyServer(function(input, output, session) {
 
     #' paea panel - output a table of active gmt files
     #'
-    # output$gmt_meta <- renderDataTable({
-    #     if(!is.null(meta_gmts)) {
-    #         isolate(meta_gmts)
-    #     }
-    # })
     
     #' radio button for selecting category
     output$categories <- renderUI(
         selectInput('categories','Categories of Gene-set Library', unique(meta_gmts$name), unique(meta_gmts$name)[[1]])
     )
     
+    #' select libraries for selected category
     output$libraries <- renderUI({
         selected_category <- input$categories
         libraries <- meta_gmts %>% dplyr::filter(name==selected_category) %>% dplyr::select(libraryName)
         libraries <- sort(as.data.frame(libraries)$libraryName) # names of library within the selected category
         radioButtons('libraries', 'Gene-set Libraries', libraries)
     })
-    observe({
-        library <- input$libraries[[1]]
-        chdir <- isolate(values$chdir)
-        if(!(is.null(chdir)) & is.null(values$paea[[library]])) {
-            values$paea_running <- TRUE
-            gmtfile <- getTerms(library)
-            values$paea[[library]] <- tryCatch(
-                paea_analysis_wrapper(
-                    chdirresults=chdir$chdirprops,
-                    gmtfile=gmtfile,
-                    casesensitive=FALSE
-                ),
-                error = function(e) {
-                    values$last_error <- e
-                    NULL
-                }
-            )
-            values$paea_running <- FALSE
-        }
-    })
-    
 
-    #' PAEA results
+    #' PAEA results // stable
     #' 
     paea_results <- reactive({
-        library <- input$libraries[[1]]
-        if(!is.null(values$paea[[library]])) {
-            paea_to_df(values$paea[[library]])
-        } 
-        # else { # show a progress bar
-            
-        # }
+        if(is.null(values$chdir)) {
+            helpText('Before you can run PAEA you have to execute CHDIR analysis.')
+        } else { # chdir finished
+            library <- input$libraries[[1]]
+            if(!is.null(values$paea[[library]])) { 
+                list(renderDataTable({
+                    paea_to_df(values$paea[[library]])
+                    })
+                )
+            } else {
+                values$paea_running <- TRUE
+                chdir <- isolate(values$chdir)
+                gmtfile <- getTerms(library)
+                values$paea[[library]] <- tryCatch(
+                    paea_analysis_wrapper(
+                        chdirresults=chdir$chdirprops,
+                        gmtfile=gmtfile,
+                        casesensitive=FALSE
+                    ),
+                    error = function(e) {
+                        values$last_error <- e
+                        NULL
+                    }
+                )
+                values$paea_running <- FALSE
+                results <- paea_to_df(values$paea[[library]])
+                list(renderDataTable({
+                    paea_to_df(results)
+                    })
+                )
+            }
+        }
     })
-    
+
     #' PAEA output
-    #'
-    output$pae_results <- renderDataTable({
+    #'   
+    output$pae_results <- renderUI({
         paea_results()
     })
-
-
 
     
     # #' paea panel - run button
