@@ -79,7 +79,6 @@ preprocess_chdir_input <- function(datain) {
 #'
 chdir_analysis_wrapper <- function(datain, sampleclass, gammas, nnull) {
 
-    png('/dev/null')
     datain <- preprocess_chdir_input(datain)
     datain <- dplyr::tbl_df(datain)
     chdir <- chdirAnalysis(
@@ -90,7 +89,6 @@ chdir_analysis_wrapper <- function(datain, sampleclass, gammas, nnull) {
         gammas=gammas,
         nnull=nnull
     )
-    dev.off()
     chdir
 }
 

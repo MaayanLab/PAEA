@@ -357,8 +357,8 @@ PAEAAnalysis <- function(chdirresults,gmtfile,gammas=c(1.0),casesensitive=FALSE,
 
 #  print(pvalues[1,gmtp[1:nbars]])
 
-  par(las = 1, mar=c(5,20,1,1))
-  barplot(-rev(log(pvalues[1,gmtp[1:nbars]])), horiz = TRUE,xlab="-log(p)")
+  # par(las = 1, mar=c(5,20,1,1))
+  # barplot(-rev(log(pvalues[1,gmtp[1:nbars]])), horiz = TRUE,xlab="-log(p)")
   
   list(p_values=t(pvalues[,gmtp]),principal_angles=t(pavalues[,gmtp]))
 }
