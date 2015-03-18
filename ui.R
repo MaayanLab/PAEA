@@ -142,15 +142,18 @@ paea_tab <- tabPanel(
     'Principle Angle Enrichment Analysis',
     fluidRow(
         column(2, # for categories
-            uiOutput('categories')
-            ),
-        column(3, # for gmts
-            uiOutput('libraries')
-            ),
-        column(7, # for results
-            # dataTableOutput('pae_results')
-            uiOutput('pae_results')
+            wellPanel(
+                uiOutput('categories')
             )
+        ),
+        column(3, # for gmts
+            wellPanel(
+                uiOutput('libraries')
+            )
+        ),
+        column(7, # for results
+            uiOutput('pae_results')
+        )
 
         # column(12, p('')),
         # column(6, wellPanel(
@@ -214,7 +217,7 @@ about_panel <- tabPanel(
 #'
 shinyUI(
     navbarPage(
-        title='NASB Microtask Viewer',
+        title='PAEA: Principle Angle Enrichment Analysis',
         footer=column(12),
         analyze_panel,
         about_panel,

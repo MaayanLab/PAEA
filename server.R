@@ -393,6 +393,7 @@ shinyServer(function(input, output, session) {
         selected_category <- input$categories
         libraries <- meta_gmts %>% dplyr::filter(name==selected_category) %>% dplyr::select(libraryName)
         libraries <- sort(as.data.frame(libraries)$libraryName) # names of library within the selected category
+        # seems to introduce an error here "Error in eval(substitute(expr), envir, enclos) : incorrect length (0), expecting: 58"
         radioButtons('libraries', 'Gene-set Libraries', libraries)
     })
 
