@@ -293,7 +293,7 @@ multigmtPAEAAnalysis <- function(chdirresults,gmtfiles=AllGMTfiles,gammas=c(1.0)
 #
 #################################################
 
-PAEAAnalysis <- function(chdirresults,gmtfile,gammas=c(1.0),casesensitive=FALSE,showprogress=TRUE)
+PAEAAnalysis <- function(chdirresults,gmtfile,gammas=c(1.0),casesensitive=FALSE,updateProgress=NULL)
 {
   # Extract the names of the gmt lines and the gmt lines
   gmtlinenames <- lapply(gmtfile, function(x) x[[1]])
@@ -308,15 +308,17 @@ PAEAAnalysis <- function(chdirresults,gmtfile,gammas=c(1.0),casesensitive=FALSE,
   lookup_table <- buildLookupTable(chdirresults[[1]])
   
   # Calculate the PEAE results for each gmt line
-  if(showprogress){
-    pb <- txtProgressBar(min = 0, max = length(gmtlines),style=3)
+  if (is.function(updateProgress)) {
+    getlen <- length(gmtlines)
     PAEAresults <-mapply(function(x,count) 
       {
-      setTxtProgressBar(pb, count)
+      if (count %% 25 == 0){
+        text <- paste0('Completed gene-sets:', count , '/', getlen)
+        updateProgress(value=count,detail=text)
+      }  
       PAEA(chdirresults[[1]],x,casesensitive=casesensitive,lookuptable=lookup_table)
     },gmtlines,c(1:length(gmtlines)),SIMPLIFY=FALSE)    
-    close(pb)
-    
+
   }else{
    
     PAEAresults <-lapply(gmtlines, function(x) PAEA(chdirresults[[1]],x,casesensitive=casesensitive,lookuptable=lookup_table))

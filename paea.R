@@ -34,9 +34,9 @@ prepare_paea_results <- function(paea, data_description) {
 #' @return paea results
 #'
 
-paea_analysis_wrapper <- function(chdirresults, gmtfile, gammas = c(1), casesensitive = FALSE){
+paea_analysis_wrapper <- function(chdirresults, gmtfile, gammas = c(1), casesensitive = FALSE, updateProgress = updateProgress){
     if(length(gmtfile) > 0 & length(chdirresults) > 0) {
-        paea <- PAEAAnalysis(chdirresults, gmtfile, gammas, casesensitive, showprogress=TRUE)
+        paea <- PAEAAnalysis(chdirresults, gmtfile, gammas, casesensitive, updateProgress)
         paea
     } else {
         warning('Cannot run paea with on empty input.')

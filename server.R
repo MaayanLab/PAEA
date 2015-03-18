@@ -412,17 +412,26 @@ shinyServer(function(input, output, session) {
                 values$paea_running <- TRUE
                 chdir <- isolate(values$chdir)
                 gmtfile <- getTerms(library)
-                values$paea[[library]] <- tryCatch(
-                    paea_analysis_wrapper(
-                        chdirresults=chdir$chdirprops,
-                        gmtfile=gmtfile,
-                        casesensitive=FALSE
-                    ),
-                    error = function(e) {
-                        values$last_error <- e
-                        NULL
-                    }
+                gmtlen <- length(gmtfile)
+
+                progress <- shiny::Progress$new(max=gmtlen)
+                progress$set(message = "Performing PAEA", value = 0)
+                on.exit(progress$close())
+                
+                updateProgress <- function(value = NULL, detail = NULL) {
+                  if (is.null(value)) {
+                    value <- progress$getValue()
+                  }
+                  progress$set(value = value, detail = detail)
+                }
+
+                values$paea[[library]] <- paea_analysis_wrapper(
+                    chdirresults=chdir$chdirprops,
+                    gmtfile=gmtfile,
+                    casesensitive=FALSE,
+                    updateProgress=updateProgress
                 )
+
                 values$paea_running <- FALSE
                 results <- paea_to_df(values$paea[[library]])
                 list(renderDataTable({
