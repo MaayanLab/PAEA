@@ -141,17 +141,14 @@ chdir_tab <- tabPanel(
 paea_tab <- tabPanel(
     'Principle Angle Enrichment Analysis',
     fluidRow(
-        column(2, # for categories
+        column(3, 
             wellPanel(
-                uiOutput('categories')
+                h3('Choose gene-set libraries'),
+                uiOutput('categories'), # for categories
+                uiOutput('libraries') # for gmts
             )
         ),
-        column(3, # for gmts
-            wellPanel(
-                uiOutput('libraries')
-            )
-        ),
-        column(7, # for results
+        column(9, # for results
             uiOutput('pae_results')
         )
 

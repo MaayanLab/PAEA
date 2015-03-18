@@ -350,7 +350,7 @@ PAEAAnalysis <- function(chdirresults,gmtfile,gammas=c(1.0),casesensitive=FALSE,
   gmtp <- sort.list(pvalues[1,])
   
   # Produce a bar-graph plot of the top enriched lists
-  nbars<-min(10,length(gmtlines))
+  # nbars<-min(10,length(gmtlines))
   
   
 #  print(pvalues[1,gmtp[1:nbars]])

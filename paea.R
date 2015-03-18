@@ -8,6 +8,7 @@ source('GeoDE.R')
 paea_to_df <- function(paea_results) {
     dplyr::tbl_df(data.frame(
         Term=colnames(paea_results$p_value),
+        principal_angle=as.vector(paea_results$principal_angles),
         pvalue=as.vector(paea_results$p_value)
     ))
 }
