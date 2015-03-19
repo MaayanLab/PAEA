@@ -53,7 +53,8 @@ plot_top_genes <- function(results) {
         ggvis::layer_bars(width = 0.75) %>%
         ggvis::scale_numeric('y', domain = c(min(results$v), max(results$v))) %>%
         ggvis::add_axis('y', grid=FALSE, title = 'Coefficient', properties = properties_y) %>%
-        ggvis::add_axis('x', grid=FALSE, offset = 10, title = '', properties = properties_x)
+        ggvis::add_axis('x', grid=FALSE, offset = 10, title = '', properties = properties_x) %>%
+        ggvis::add_tooltip(function(df) df$x_)
 }
 
 

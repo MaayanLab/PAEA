@@ -258,7 +258,7 @@ shinyServer(function(input, output, session) {
         # Not as reactive as it should be
         # https://groups.google.com/forum/#!topic/ggvis/kQQsdn1RYaE
         if(!is.null(values$chdir)) {
-            results <- prepare_results(values$chdir$results[[1]])
+            results <- prepare_results(values$chdir$results[[1]]) # top 40 genes to plot
             plot_top_genes(results) %>% bind_shiny('chdir_ggvis_plot')
         }
     })
