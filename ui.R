@@ -8,14 +8,14 @@ ggvis_bug_message <- paste(
     'If you see this message but the plot is invisible please try to resize it',
     'using small grey triangle at the bottom. Unfortunately it seems to be s a known bug',
     'in ggvis/shiny so we\'ll have to wait for a fix.'
-)
+    )
 
 #' Input separator choice
 #'
 seperator_input <- radioButtons(
     'sep', 'Separator',
     c(Comma=',', Semicolon=';', Tab='\t'),
-)
+    )
 
 #' Dataset download 
 #'
@@ -27,37 +27,37 @@ upload_tab <- tabPanel(
             h3('Expression data'),
             uiOutput('datain_container'),
             seperator_input        
-        )),
+            )),
         column(4, wellPanel(
             h3('Control samples', id='control_samples'),
             uiOutput('sampleclass_container')
-        )), 
+            )), 
         column(4, wellPanel(
             h3('Preprocessing', id='datain_preprocessing'),
             checkboxInput(inputId='log2_transform', label='log2 transform' , value = FALSE),
             checkboxInput(inputId='quantile_normalize', label='Quantile normalize', value = FALSE)
-        )), 
+            )), 
         column(12, 
             h3('Input preview', id='datain_preview_header'),
-           
+
             tabsetPanel(
                 id='datain_preview',
                 tabPanel(
                     'Input data',
                     p(textOutput('upload_message')),
                     dataTableOutput('contents')
-                ),
+                    ),
                 tabPanel(
                     "Plots",
                     conditionalPanel(
                         condition = 'output.show_datain_results === true',
                         helpText(ggvis_bug_message),
                         ggvisOutput('datain_density_ggvis')
+                        )
                     )
                 )
             )
         )
-    )
 )
 
 #' Characteristic Direction Analysis ouput tab
@@ -77,9 +77,9 @@ chdir_tab <- tabPanel(
                 tags$dd(textOutput('control_samples')),
                 tags$dt('Treatment samples:'),
                 tags$dd(textOutput('treatment_samples'))
-            )
-        )),
-   
+                )
+            )),
+
         column(4, wellPanel(
             h3('CHDIR parameters', id='chdir_parameters'),
             numericInput('chdir_gamma', 'Gamma', 1.0, min = NA, max = NA, step = 1),
@@ -90,9 +90,9 @@ chdir_tab <- tabPanel(
                 'Significance test is using random number generator.',
                 'If you want to obtain reproducible results you can set',
                 'seed value.'
-            )),
+                )),
             uiOutput('run_chdir_container')
-        )),
+            )),
         
         column(4, wellPanel(
             h3('Downloads', id='chdir_downloads'),
@@ -102,10 +102,10 @@ chdir_tab <- tabPanel(
                 tags$dd(textOutput('n_sig_up_genes')),
                 tags$dt('#{significant downregulated genes}:'),
                 tags$dd(textOutput('n_sig_down_genes'))
-            ),
+                ),
             uiOutput('chdir_downloads_container')
-        )),
-       
+            )),
+
         column(12,
             h3('CHDIR results', id='chdir_results_header'),
             tabsetPanel(
@@ -116,23 +116,23 @@ chdir_tab <- tabPanel(
                         condition = 'output.show_chdir_results === true',
                         helpText(ggvis_bug_message),
                         ggvisOutput('chdir_ggvis_plot')
-                    ) 
-                ),
+                        ) 
+                    ),
                 tabPanel(
                     'Upregulated genes',
                     #TODO style with css
                     p(),
                     dataTableOutput('chdir_up_genes_table')
-                ),
+                    ),
                 tabPanel(
                     'Downregulated genes',
                     #TODO style with css
                     p(),
                     dataTableOutput('chdir_down_genes_table')
+                    )
                 )
             )
         )
-    )
 )
 
 
@@ -146,11 +146,27 @@ paea_tab <- tabPanel(
                 h3('Choose gene-set libraries'),
                 uiOutput('categories'), # for categories
                 uiOutput('libraries') # for gmts
-            )
-        ),
+                )
+            ),
         column(9, # for results
-            uiOutput('pae_results')
-        )
+            h3('PAEA results'),
+            tabsetPanel(
+                id="paea_results",
+                tabPanel('Table',
+                    conditionalPanel(
+                        condition="output.show_chdir_results === true",
+                        dataTableOutput('paea_table')
+                        )
+                    ),
+                tabPanel('Bar Graph',
+                    conditionalPanel(
+                        condition="output.show_chdir_results === true",
+                        ggvisOutput('paea_bars')
+                        )                    
+                    )
+
+                )
+            )
 
         # column(12, p('')),
         # column(6, wellPanel(
@@ -162,7 +178,7 @@ paea_tab <- tabPanel(
         #     h3('Downloads', id='paea_downloads'),
         #     uiOutput('paea_downloads_container')
         # )),
-        
+
         # column(12,
         #     h3('PAEA results'),
         #     tabsetPanel(
@@ -173,7 +189,7 @@ paea_tab <- tabPanel(
         #         )
         #     )
         # )
-    )
+)
 )
 
 
@@ -186,8 +202,8 @@ analyze_panel <- tabPanel(
         upload_tab,
         chdir_tab,
         paea_tab
+        )
     )
-)
 
 #' About tab
 #'
@@ -205,9 +221,9 @@ about_panel <- tabPanel(
         tags$dl(
             tags$dt('Last update:'),
             tags$dd(textOutput('last_modified'))
-        )
-    ))
-)
+            )
+        ))
+    )
 
 
 #' Complete UI
@@ -225,6 +241,6 @@ shinyUI(
             tags$script(src='js/backbone-min.js'),
             includeScript('www/js/tourist.min.js'),
             includeScript('www/js/analyze-tour.js')
+            )
         )
     )
-)

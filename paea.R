@@ -7,12 +7,35 @@ source('GeoDE.R')
 #'
 paea_to_df <- function(paea_results) {
     dplyr::tbl_df(data.frame(
+        Index=c(1:length(paea_results$p_value)),
         Term=colnames(paea_results$p_value),
-        principal_angle=as.vector(paea_results$principal_angles),
-        pvalue=as.vector(paea_results$p_value)
+        Principal_Angle=as.vector(paea_results$principal_angles),
+        p_value=as.vector(paea_results$p_value)
     ))
 }
 
+#' Take PAEA results and plot the
+#' -log10(p_value) of top n enriched terms
+#'
+#' @param paea_results paea_analysis_wrapper output
+#' @param n number of terms to plot
+#' @return 
+#'
+plot_paea_bars <- function(paea_results, n) {
+    # properties_x <- ggvis::axis_props(
+    #     labels=list(fontSize=12), title=list(fontSize=14, dy=-35)
+    # )
+    paea_results %>%
+        dplyr::mutate(logp=-log10(p_value)) %>%
+        dplyr::top_n(n, logp) %>%
+        ggvis(~factor(Term, Term[order(logp, decreasing=TRUE)]),~logp) %>%
+        ggvis::layer_bars() %>%
+        # ggvis::scale_numeric('y', domain = c(min(paea_results$logp), max(paea_results$logp))) %>%
+        # ggvis::add_axis('x', grid=FALSE, title = '-log10(p-value)') %>%
+        ggvis::add_axis('y', grid=FALSE, title = '-log10(p-value)') %>%
+        ggvis::hide_axis("x") %>%
+        ggvis::add_tooltip(function(df) df$x_)
+}
 
 #' Join PAEA results with data description
 #' @param paea data frame as returned from paea_to_df

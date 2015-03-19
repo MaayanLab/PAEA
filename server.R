@@ -401,14 +401,13 @@ shinyServer(function(input, output, session) {
     #' 
     paea_results <- reactive({
         if(is.null(values$chdir)) {
-            helpText('Before you can run PAEA you have to execute CHDIR analysis.')
+            # helpText('Before you can run PAEA you have to execute CHDIR analysis.')
+            NULL
         } else { # chdir finished
             library <- input$libraries[[1]]
             if(!is.null(values$paea[[library]])) { 
-                list(renderDataTable({
-                    paea_to_df(values$paea[[library]])
-                    })
-                )
+                # paea_to_df(values$paea[[library]])
+                values$paea[[library]]
             } else {
                 values$paea_running <- TRUE
                 chdir <- isolate(values$chdir)
@@ -434,19 +433,26 @@ shinyServer(function(input, output, session) {
                 )
 
                 values$paea_running <- FALSE
-                results <- paea_to_df(values$paea[[library]])
-                list(renderDataTable({
-                    paea_to_df(results)
-                    })
-                )
+                values$paea[[library]]
+                # paea_to_df(values$paea[[library]])
             }
         }
     })
+    
 
     #' PAEA output
-    #'   
-    output$pae_results <- renderUI({
-        paea_results()
+    #' table
+    output$paea_table <- renderDataTable({
+        if(!is.null(paea_results())){
+            print('paea_results() is not null')
+            paea_to_df(paea_results())
+        }
+    })
+    #' bar graph
+    observe({
+        if(!is.null(paea_results())) {
+            plot_paea_bars(paea_to_df(paea_results()), 10) %>% bind_shiny('paea_bars')
+        }
     })
 
     
