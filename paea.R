@@ -28,13 +28,13 @@ plot_paea_bars <- function(paea_results, n) {
     paea_results %>%
         dplyr::mutate(logp=-log10(p_value)) %>%
         dplyr::top_n(n, logp) %>%
-        ggvis(~factor(Term, Term[order(logp, decreasing=TRUE)]),~logp) %>%
-        ggvis::layer_bars() %>%
+        ggvis(y=~factor(Term, Term[order(logp, decreasing=TRUE)]),x=~logp,x2=0, height=ggvis::band()) %>%
+        ggvis::layer_rects() %>%
         # ggvis::scale_numeric('y', domain = c(min(paea_results$logp), max(paea_results$logp))) %>%
-        # ggvis::add_axis('x', grid=FALSE, title = '-log10(p-value)') %>%
-        ggvis::add_axis('y', grid=FALSE, title = '-log10(p-value)') %>%
-        ggvis::hide_axis("x") %>%
-        ggvis::add_tooltip(function(df) df$x_)
+        ggvis::add_axis('x', grid=FALSE, title = '-log10(p-value)') %>%
+        # ggvis::add_axis('y', grid=FALSE, title = '-log10(p-value)') %>%
+        ggvis::hide_axis("y") %>%
+        ggvis::add_tooltip(function(df) df[[1]])
 }
 
 #' Join PAEA results with data description
