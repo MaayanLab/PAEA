@@ -32,8 +32,8 @@ plot_paea_bars <- function(paea_results, n) {
         ggvis::layer_rects() %>%
         # ggvis::scale_numeric('y', domain = c(min(paea_results$logp), max(paea_results$logp))) %>%
         ggvis::add_axis('x', grid=FALSE, title = '-log10(p-value)') %>%
-        # ggvis::add_axis('y', grid=FALSE, title = '-log10(p-value)') %>%
-        ggvis::hide_axis("y") %>%
+        ggvis::add_axis('y', grid=FALSE, title = '') %>%
+        # ggvis::hide_axis("y") %>%
         ggvis::add_tooltip(function(df) df[[1]])
 }
 
