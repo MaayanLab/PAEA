@@ -406,7 +406,6 @@ shinyServer(function(input, output, session) {
         } else { # chdir finished
             library <- input$libraries[[1]]
             if(!is.null(values$paea[[library]])) { 
-                # paea_to_df(values$paea[[library]])
                 values$paea[[library]]
             } else {
                 values$paea_running <- TRUE
@@ -434,7 +433,6 @@ shinyServer(function(input, output, session) {
 
                 values$paea_running <- FALSE
                 values$paea[[library]]
-                # paea_to_df(values$paea[[library]])
             }
         }
     })
@@ -444,14 +442,13 @@ shinyServer(function(input, output, session) {
     #' table
     output$paea_table <- renderDataTable({
         if(!is.null(paea_results())){
-            print('paea_results() is not null')
             paea_to_df(paea_results())
         }
     })
     #' bar graph
     observe({
         if(!is.null(paea_results())) {
-            plot_paea_bars(paea_to_df(paea_results()), 10) %>% bind_shiny('paea_bars')
+            plot_paea_bars(paea_to_df(paea_results()), config$num_paea_bars) %>% bind_shiny('paea_bars')
         }
     })
 

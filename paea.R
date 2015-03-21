@@ -7,10 +7,11 @@ source('GeoDE.R')
 #'
 paea_to_df <- function(paea_results) {
     dplyr::tbl_df(data.frame(
-        Index=c(1:length(paea_results$p_value)),
+        Rank=c(1:length(paea_results$p_value)),
         Term=colnames(paea_results$p_value),
         Principal_Angle=as.vector(paea_results$principal_angles),
-        p_value=as.vector(paea_results$p_value)
+        p_value=as.vector(paea_results$p_value),
+        FDR=p.adjust(paea_results$p_value, 'BH')
     ))
 }
 
