@@ -14,12 +14,8 @@ var swichTab = function(tabId, i) {
 
 function initTour() {
     
-    var steps = [{
-            content: '<p>Welcome...</p>',
-            target: [50, 120],
-            nextButton: true,
-            my: 'bottom left'
-    }, {
+    var steps = [
+    {
         content: [
             '<p>Choose expression dataset to upload.</p>',
             '<p>It should contain a sinlge column with gene names ',
@@ -32,7 +28,7 @@ function initTour() {
         nextButton: true,
         closeButton: true,
         target: $('#datain_container'),
-        my: 'bottom left',
+        my: 'top left',
         at: 'top center',
     }, {
         content: [
@@ -66,7 +62,7 @@ function initTour() {
         at: 'top center'
     }, {
         content: [
-            '<p>Add preprocessing steps/p>'
+            '<p>Add preprocessing steps</p>'
         ].join(''),
         highlightTarget: true,
         nextButton: true,
@@ -128,45 +124,35 @@ function initTour() {
         at: 'bottom center'
     }, {
         content: [
-            '<p>... and start PAE analysis</p>'
+            '<p>... and start Principle Angle Enrichment Analysis</p>'
         ].join(''),
         highlightTarget: true,
         nextButton: true,
         closeButton: true,
         target: $('#workflow_panel'),
-        my: 'bottom center',
+        my: 'top center',
         at: 'bottom center',
         teardown: function(tour, options) {
             swichTab('#workflow_panel', 2);
         }
     }, {
         content: [
-            '<p>To run PAEA click Run Principle Angle Enrichment</p>'
+            '<p>Select a of gene-set libraries and PAEA should be running instantly</p>'
         ].join(''),
         highlightTarget: true,
         nextButton: true,
         closeButton: true,
-        target: $('#run_paea_container'),
+        target: $('#select_gmt'),
         my: 'bottom center',
         at: 'top center'
     }, {
         content: [
-            '<p>When PAEA is ready results will be shown below</p>'
+            '<p>When PAEA is ready results will be in data table and bar graphs</p>'
         ].join(''),
         highlightTarget: true,
         nextButton: true,
         closeButton: true,
-        target: $('#pae_results'),
-        my: 'top left',
-        at: 'top left'
-    },  {
-        content: [
-            '<p>... and will be available for download/p>'
-        ].join(''),
-        highlightTarget: true,
-        nextButton: true,
-        closeButton: true,
-        target: $('#paea_downloads'),
+        target: $('#paea_results'),
         my: 'top left',
         at: 'top left'
     }];

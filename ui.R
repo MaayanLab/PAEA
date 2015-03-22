@@ -143,6 +143,7 @@ paea_tab <- tabPanel(
     fluidRow(
         column(3, 
             wellPanel(
+                id='select_gmt',
                 h3('Choose gene-set libraries'),
                 uiOutput('categories'), # for categories
                 uiOutput('libraries') # for gmts
@@ -153,12 +154,14 @@ paea_tab <- tabPanel(
             tabsetPanel(
                 id="paea_results",
                 tabPanel('Table',
+                    id='paea_table_tab',
                     conditionalPanel(
                         condition="output.show_chdir_results === true",
                         dataTableOutput('paea_table')
                         )
                     ),
                 tabPanel('Bar Graph',
+                    id='paea_bars_tab',
                     conditionalPanel(
                         condition="output.show_chdir_results === true",
                         ggvisOutput('paea_bars')
