@@ -225,7 +225,6 @@ about_panel <- tabPanel(
         ))
     )
 
-
 #' Complete UI
 #'
 shinyUI(
@@ -234,13 +233,14 @@ shinyUI(
         footer=column(12),
         analyze_panel,
         about_panel,
-        
+
         tags$head(
             includeCSS('www/css/tourist.css'),
             tags$script(src='js/underscore-min.js'),
             tags$script(src='js/backbone-min.js'),
             includeScript('www/js/tourist.min.js'),
             includeScript('www/js/analyze-tour.js')
-            )
+            ),
+        collapsible=TRUE
         )
     )
