@@ -180,7 +180,7 @@ function initTour() {
 }
 
 $(document).ready(function() {
-    $("div.navbar-collapse").append("<button id='tour_btn' class='btn btn-info navbar-right'>Take a tour</button>")
+    $("div.navbar-collapse").append("<div class='navbar-form navbar-right'><button id='tour_btn' class='btn btn-info'>Take a tour</button></div>")
     $("#tour_btn").click(function(){
         window.setTimeout(initTour, 500);
     })
