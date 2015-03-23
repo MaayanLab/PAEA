@@ -21,7 +21,7 @@ function initTour() {
             '<p>It should contain a sinlge column with gene names ',
             'followed by the  expression profiles. </p>',
             '<p>If you want to test this app you can use ',
-            '<a href="https://www.dropbox.com/s/151k3l70toseymi/expression_example.csv">',
+            '<a href="data/expression_example.csv">',
             'expression_example.csv</a>.</p>'
         ].join(''),
         highlightTarget: true,
@@ -143,8 +143,8 @@ function initTour() {
         nextButton: true,
         closeButton: true,
         target: $('#select_gmt'),
-        my: 'bottom center',
-        at: 'top center'
+        my: 'top center',
+        at: 'bottom center'
     }, {
         content: [
             '<p>When PAEA is ready results will be in data table and bar graphs</p>'

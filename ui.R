@@ -241,7 +241,7 @@ shinyUI(
             includeCSS('www/css/tourist.css'),
             tags$script(src='js/underscore-min.js'),
             tags$script(src='js/backbone-min.js'),
-            includeScript('www/js/tourist.min.js'),
+            tags$script(src='js/tourist.min.js'),
             includeScript('www/js/analyze-tour.js')
             ),
         collapsible=TRUE
