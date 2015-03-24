@@ -1,7 +1,7 @@
 ## Script to connect to the database behind Enrichr
 ## Authors: Matthew Jones, Zichen Wang
 
-databaseConn <- dplyr::src_mysql(dbname = 'enrichr', host = 'master', user = 'root', password = '4reYuXuhuz')
+databaseConn <- dplyr::src_mysql(dbname = 'enrichr', host = 'amp.pharm.mssm.edu', user = 'root', password = '4reYuXuhuz')
 
 subVars <- function(strexpr, vars){
   for(i in range(length(vars))){
