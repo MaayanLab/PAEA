@@ -94,7 +94,7 @@ shinyServer(function(input, output, session) {
     #' Input data preview
     #'
     output$contents <- renderDataTable({
-        datain_preprocessed()
+        format(datain_preprocessed(), digits=config$digits) # to keep digits to display in the dataTable
     })
     
     
@@ -442,7 +442,7 @@ shinyServer(function(input, output, session) {
     #' table
     output$paea_table <- renderDataTable({
         if(!is.null(paea_results())){
-            paea_to_df(paea_results())
+            format(paea_to_df(paea_results()), digits=config$digits)
         }
     })
     #' bar graph

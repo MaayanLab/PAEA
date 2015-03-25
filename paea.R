@@ -35,7 +35,7 @@ plot_paea_bars <- function(paea_results, n) {
         ggvis::add_axis('x', grid=FALSE, title = '-log10(p-value)') %>%
         ggvis::add_axis('y', grid=FALSE, title = '') %>%
         # ggvis::hide_axis("y") %>%
-        ggvis::add_tooltip(function(df) paste('-log10(p-value):',df[[2]]))
+        ggvis::add_tooltip(function(df) paste('-log10(p-value):',format(df[[2]], digits=3)))
 }
 
 #' Join PAEA results with data description
