@@ -41,33 +41,24 @@ shinyServer(function(input, output, session) {
     # Required
     values$paea_running <- FALSE
     
-    
-    #' Ugly hack to be able to clear upload widget
-    #' 
-    output$datain_container <- renderUI({
-        fileInput(
-            'datain', 'Choose file to upload',
-            accept = c(
-                'text/csv', 'text/comma-separated-values',
-                'text/tab-separated-values', 'text/plain',
-                '.csv', '.tsv'
-            )
-        )
-    })
-    
-    
     #' Read input data
     #'
     datain <- reactive({
         inFile <- input$datain
         values$chdir <- NULL
         values$paea <- NULL
-        
-        if (is.null(inFile)) return(NULL)
-        # Not optimal but read.csv is easier to handle
-        as.data.table(read.csv(
-            inFile$datapath, sep = input$sep
-        ))
+
+        if (is.null(inFile)) {
+            if (input$load_example_data != 0) {
+                as.data.table(read.csv(
+                    'www/data/expression_example.csv', sep = input$sep
+                ))
+            } 
+        } else { # has file uploaded
+            as.data.table(read.csv(
+                inFile$datapath, sep = input$sep
+            ))
+        }
     })
     
     

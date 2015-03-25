@@ -25,8 +25,16 @@ upload_tab <- tabPanel(
         column(12, p('')),
         column(4, wellPanel(
             h3('Expression data'),
-            uiOutput('datain_container'),
-            seperator_input        
+            fileInput(
+                'datain', 'Choose file to upload',
+                accept = c(
+                    'text/csv', 'text/comma-separated-values',
+                    'text/tab-separated-values', 'text/plain',
+                    '.csv', '.tsv'
+                    )
+                ),
+            actionLink('load_example_data', 'Load example expression data'),
+            seperator_input
             )),
         column(4, wellPanel(
             h3('Control samples', id='control_samples'),
@@ -141,6 +149,7 @@ chdir_tab <- tabPanel(
 paea_tab <- tabPanel(
     'Principle Angle Enrichment Analysis',
     fluidRow(
+        column(12, p('')),
         column(3, 
             wellPanel(
                 id='select_gmt',
@@ -170,29 +179,7 @@ paea_tab <- tabPanel(
 
                 )
             )
-
-        # column(12, p('')),
-        # column(6, wellPanel(
-        #     h3('PAEA parameters', id='paea_parameters'),
-        #     checkboxInput('paea_casesensitive', "Casesensitive", FALSE),
-        #     uiOutput('run_paea_container')
-        # )),
-        # column(6, wellPanel(
-        #     h3('Downloads', id='paea_downloads'),
-        #     uiOutput('paea_downloads_container')
-        # )),
-
-        # column(12,
-        #     h3('PAEA results'),
-        #     tabsetPanel(
-        #         tabPanel(
-        #             "Enriched sets",
-        #             p(textOutput('paea_message'))),
-        #             column(12, dataTableOutput('pae_results')
-        #         )
-        #     )
-        # )
-)
+        )
 )
 
 
