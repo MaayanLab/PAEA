@@ -242,7 +242,8 @@ shinyUI(
             tags$script(src='js/underscore-min.js'),
             tags$script(src='js/backbone-min.js'),
             tags$script(src='js/tourist.min.js'),
-            includeScript('www/js/analyze-tour.js')
+            includeScript('www/js/analyze-tour.js'),
+            includeScript('www/js/ga.js')
             ),
         collapsible=TRUE
         )
