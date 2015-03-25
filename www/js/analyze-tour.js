@@ -30,6 +30,9 @@ function initTour() {
         target: $('#datain_container'),
         my: 'top left',
         at: 'top center',
+        setup: function(tour, options){
+            swichTab('#workflow_panel', 0)
+        }
     }, {
         content: [
             '<p>Select input file separator</p>'
