@@ -25,14 +25,7 @@ upload_tab <- tabPanel(
         column(12, p('')),
         column(4, wellPanel(
             h3('Expression data'),
-            fileInput(
-                'datain', 'Choose file to upload',
-                accept = c(
-                    'text/csv', 'text/comma-separated-values',
-                    'text/tab-separated-values', 'text/plain',
-                    '.csv', '.tsv'
-                    )
-                ),
+            uiOutput('datain_container'),
             actionLink('load_example_data', 'Load example expression data'),
             seperator_input
             )),

@@ -40,6 +40,19 @@ shinyServer(function(input, output, session) {
     values$paea <- list()
     # Required
     values$paea_running <- FALSE
+
+    #' File upload widget
+    #' 
+    output$datain_container <- renderUI({
+        fileInput(
+            'datain', 'Choose file to upload',
+            accept = c(
+                'text/csv', 'text/comma-separated-values',
+                'text/tab-separated-values', 'text/plain',
+                '.csv', '.tsv'
+            )
+        )
+    })
     
     #' Read input data
     #'
