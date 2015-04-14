@@ -68,6 +68,10 @@ chdir_tab <- tabPanel(
     fluidRow(
         column(12, p('')), 
         column(4, wellPanel(
+            radioButtons(
+                'input_type', 'Input type',
+                c('Custom expression data'='upload', 'Disease signature'='disease'),
+                ),
             h3('Input summary', id='chdir_input_summary'),
             tags$dl(
                 tags$dt('#genes:'),
@@ -81,59 +85,74 @@ chdir_tab <- tabPanel(
                 )
             )),
 
-        column(4, wellPanel(
-            h3('CHDIR parameters', id='chdir_parameters'),
-            numericInput('chdir_gamma', 'Gamma', 1.0, min = NA, max = NA, step = 1),
-            numericInput('chdir_nnull', 'Nnull', 10, min = 1, max = 1000, step = 1),
-            uiOutput('random_seed_container'),
-            checkboxInput('set_random_seed', "Set RNG seed manually", FALSE),
-            helpText(paste(
-                'Significance test is using random number generator.',
-                'If you want to obtain reproducible results you can set',
-                'seed value.'
-                )),
-            uiOutput('run_chdir_container')
-            )),
-        
-        column(4, wellPanel(
-            h3('Downloads', id='chdir_downloads'),
-            uiOutput('ngenes_tokeep_contatiner'),
-            tags$dl(
-                tags$dt('#{significant upregulated genes}:'),
-                tags$dd(textOutput('n_sig_up_genes')),
-                tags$dt('#{significant downregulated genes}:'),
-                tags$dd(textOutput('n_sig_down_genes'))
+        column(4, 
+            conditionalPanel(
+                'input.input_type === "upload"',
+                wellPanel(
+                    h3('CHDIR parameters', id='chdir_parameters'),
+                    numericInput('chdir_gamma', 'Gamma', 1.0, min = NA, max = NA, step = 1),
+                    numericInput('chdir_nnull', 'Nnull', 10, min = 1, max = 1000, step = 1),
+                    uiOutput('random_seed_container'),
+                    checkboxInput('set_random_seed', "Set RNG seed manually", FALSE),
+                    helpText(paste(
+                        'Significance test is using random number generator.',
+                        'If you want to obtain reproducible results you can set',
+                        'seed value.'
+                        )),
+                    uiOutput('run_chdir_container')
+                    )
                 ),
-            uiOutput('chdir_downloads_container')
-            )),
+            conditionalPanel(
+                'input.input_type === "disease"',
+                wellPanel(
+                    selectizeInput(
+                        'disease_sigs_choices', 'Choose disease signature', 
+                        choices = NULL, options = list(placeholder = 'type disease name')
+                        ),
+                    actionButton('fetch_disease_sig', 'Fetch signature')
+                    )
+                )
+            ),
 
-        column(12,
-            h3('CHDIR results', id='chdir_results_header'),
-            tabsetPanel(
-                id='chdir_results',
-                tabPanel('Plots',
-                    p(textOutput('chdir_message')),
-                    conditionalPanel(
-                        condition = 'output.show_chdir_results === true',
-                        helpText(ggvis_bug_message),
-                        ggvisOutput('chdir_ggvis_plot')
-                        ) 
-                    ),
-                tabPanel(
-                    'Upregulated genes',
+column(4, wellPanel(
+    h3('Downloads', id='chdir_downloads'),
+    uiOutput('ngenes_tokeep_contatiner'),
+    tags$dl(
+        tags$dt('#{significant upregulated genes}:'),
+        tags$dd(textOutput('n_sig_up_genes')),
+        tags$dt('#{significant downregulated genes}:'),
+        tags$dd(textOutput('n_sig_down_genes'))
+        ),
+    uiOutput('chdir_downloads_container')
+    )),
+
+column(12,
+    h3('CHDIR results', id='chdir_results_header'),
+    tabsetPanel(
+        id='chdir_results',
+        tabPanel('Plots',
+            p(textOutput('chdir_message')),
+            conditionalPanel(
+                condition = 'output.show_chdir_results === true',
+                helpText(ggvis_bug_message),
+                ggvisOutput('chdir_ggvis_plot')
+                ) 
+            ),
+        tabPanel(
+            'Upregulated genes',
                     #TODO style with css
                     p(),
                     dataTableOutput('chdir_up_genes_table')
                     ),
-                tabPanel(
-                    'Downregulated genes',
+        tabPanel(
+            'Downregulated genes',
                     #TODO style with css
                     p(),
                     dataTableOutput('chdir_down_genes_table')
                     )
-                )
-            )
         )
+    )
+)
 )
 
 
