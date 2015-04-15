@@ -7,6 +7,7 @@ library(preprocessCore)
 library(stringi)
 library(Matrix)
 library(MASS)
+library(rjson)
 
 source('dataAccess.R')
 source('preprocess.R')
