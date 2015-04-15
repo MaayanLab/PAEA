@@ -1,0 +1,718 @@
+uid	disease_name	geo_id	cell_type
+1	Cushing Syndrome	GSE4060	Adrenal gland
+10	Hepatic lipidosis	GSE5538	Hepatic Tissue
+102	MELAS - Mitochondrial myopathy, encephalopathy, lactic acidosis and stroke-like episodes	GSE1462	Muscle - Striated (Skeletal) (MMHCC)
+104	Peripheral motor neuropathy	GSE1947	Sciatic Nerve
+105	Down Syndrome	GSE1611	CNS - Brain - Cerebellum (MMHCC)
+107	Bipolar Disorder	GSE5388	frontal cortex
+109	Sickle Cell Anemia	GSE9877	Endothelial cell
+110	RA (rheumatoid arthritis)	GSE1919	Synovial Membrane
+111	Anxiety Disorder	GSE932	CNS - Brain - Hippocampus (MMHCC)
+114	Senescence	GSE1786	Muscle - Striated (Skeletal) (MMHCC)
+115	Cardiomyopathy, Dilated	GSE9800	Myocardial tissue
+116	Oligodendroglioma	GSE2223	CNS - Brain (MMHCC)
+117	Malignant Melanoma	GSE3189	Epidermis
+118	Malignant mesothelioma of pleura	GSE2549	Pleura
+119	Carcinoma in situ of small intestine	GSE422	Intestinal Epithelium
+12	Sarcoidosis	GSE2657	T lymphocyte
+123	Systemic lupus erythematosus (SLE)	GSE12374	Whole blood
+125	Carcinoma, Hepatocellular	GSE3632	Liver
+126	Spinal Muscular Atrophy, Infantile	GSE3075	CNS - Spinal Cord (MMHCC)
+127	Infection by Yersinia enterocolitica	GSE2973	macrophage
+128	Osteolysis	GSE755	Leukocyte - Lymphocyte - B-Lymphocyte - Plasma Cell (MMHCC)
+130	Dermatomyositis	GSE1551	Muscle - Striated (Skeletal) (MMHCC)
+133	Bacterial Infection	GSE6435	Leukocyte - Monocyte - Macrophage (MMHCC)
+135	Cancer of prostate	GSE3868	Prostate
+137	Familial combined hyperlipidaemia	GSE1010	lymphoblast
+138	Cystic Fibrosis	GSE3100	Lung
+141	Infantile neuronal ceroid lipofuscinosis	GSE6678	Brain
+144	Duchenne muscular dystrophy (DMD)	GSE1025	Muscle - Striated (Skeletal) (MMHCC)
+146	Retinoschisis	GSE5581	Retina
+148	Breast Cancer	GSE2429	Mammary Gland Tissue
+149	Endometriosis	GSE7305	Endometrium
+15	Obesity	GSE1813	Adipose tissue
+150	Sepsis	GSE4479	Splenocyte
+151	Infertility due to azoospermia	GSE3676	Testicular Tissue
+152	Acute Lung Injury	GSE1871	Lung Tissue
+154	Obesity	GSE5109	Muscle - Striated (Skeletal) (MMHCC)
+155	Scleroderma	GSE1724	Fibroblast
+157	HIV - Human immunodeficiency virus infection	GSE2504	T lymphocyte
+158	Muscular Dystrophy	GSE3252	Muscle - Striated (Skeletal) - Diaphragm (MMHCC)
+16	Uterine leiomyoma	GSE593	Uterus - Myometrium (MMHCC)
+160	Nemaline Myopathy	GSE3384	Muscle - Striated (Skeletal) - Diaphragm (MMHCC)
+163	Osteoporosis	GSE2208	Blood monocyte
+164	Adenocarcinoma of esophagus	GSE1420	Esophageal Tissue
+165	Severe acute respiratory syndrome (SARS)	GSE1739	Peripheral blood mononuclear cell
+167	Senescence	GSE3531	CNS - Brain - Hippocampus (MMHCC)
+168	Acute Lung Injury	GSE10474	Whole blood
+169	Generalized seizures	GSE6614	Brain
+170	Pseudomonas Infection	GSE923	Lung Tissue
+172	Familial hypophosphataemic rickets	GSE868	Renal Tissue
+173	Type 1 diabetes mellitus	GSE11	Splenic Tissue
+175	Dental cavity, complex	GSE1629	Dental Pulp
+176	JRA - Juvenile rheumatoid arthritis	GSE7753	Peripheral blood mononuclear cell
+177	Hereditary gingival fibromatosis	GSE4250	Gingiva
+178	Type 1 diabetes mellitus	GSE11	Thymic epithelial cell
+18	Muscular Dystrophy	GSE2629	Muscle - Striated (Skeletal) (MMHCC)
+180	Nemaline Myopathy	GSE3384	Gastrocnemius Muscle
+181	Bipolar Disorder	GSE7036	Lymphocyte
+183	RA (rheumatoid arthritis)	GSE3592	Peripheral blood mononuclear cell
+185	NASH	GSE24807	Liver
+186	Erectile dysfunction associated with type 2 diabetes mellitus	GSE2457	"Penis, NOS"
+187	Nephrolithiasis	GSE10162	Kidney
+188	Ulcerative Colitis	GSE3365	Peripheral blood mononuclear cell
+189	Diabetic Retinopathy	GSE1979	Retina
+190	Carcinoma in situ of large intestine	GSE4183	Colon
+193	Atherosclerosis	GSE363	Hepatic Tissue
+194	B-cell chronic lymphocytic leukaemia/small lymphocytic lymphoma	GSE8835	Peripheral blood mononuclear cell
+196	COPD - Chronic obstructive pulmonary disease	GSE3212	Alveolar Macrophage
+198	Cardiomyopathy, Dilated	GSE3585	Myocardial tissue
+199	Osteoarthritis	GSE16464	Chondrocyte
+2	HIV encephalitis	GSE3489	frontal cortex
+20	Primary pulmonary hypoplasia	GSE1363	Lung Tissue
+201	SCID - Severe combined immunodeficiency	GSE3414	Lung Tissue
+202	Ankylosing Spondylitides	GSE11886	macrophage
+203	Type 2 diabetes mellitus	GSE2899	Soleus Muscle
+204	Type 1 diabetes mellitus	GSE2254	pancreatic islet
+205	Gamma-hydroxybutyric acidaemia	GSE2866	CNS - Brain - Cerebellum (MMHCC)
+206	MDS - Myelodysplastic syndrome	GSE4619	Bone marrow stem cell
+207	Lymphatic edema	GSE4333	Skin tissue
+208	Anterior Horn Cell Disease	GSE1481	CNS - Spinal Cord (MMHCC)
+209	Hypertension	GSE2739	CNS - Brain (MMHCC)
+21	Anaplasmosis	GSE2600	Leukemic Cell
+210	Dehydration	GSE4130	CNS - Brain - Hypothalamus (MMHCC)
+212	Neurological pain disorder	GSE18803	CNS - Spinal Cord (MMHCC)
+213	Leber congenital amaurosis	GSE3249	Retina
+217	Obstructive sleep apnea	GSE1873	Hepatic Tissue
+218	Turner Syndrome	GSE1606	CNS - Brain (MMHCC)
+22	Synovial sarcoma	GSE6461	Synovial Membrane
+221	Hypercholesteremia	GSE3889	Hepatic Tissue
+223	Diabetic Nephropathy	GSE1009	Renal Tissue
+225	Uterine leiomyoma	GSE2724	Uterus
+226	Schizophrenia	GSE12654	Cerebral cortex
+227	Polymyositis	GSE3112	Muscle tissue
+228	Dry eye syndrome	GSE844	Eye - Lacrimal Gland (MMHCC)
+229	Urothelial carcinoma in situ	GSE3167	Urothelium
+23	Dehydration	GSE4130	Pituitary Gland
+230	Hepatitis, Autoimmune	GSE867	Hepatic Tissue
+232	Muscular Dystrophy	GSE2507	Myocardial tissue
+235	Spinal Muscular Atrophy	GSE10599	Kidney
+236	Obesity	GSE474	Muscle - Striated (Skeletal) (MMHCC)
+238	Type 2 diabetes mellitus	GSE2470	Pancreas
+239	Protozoan Infection	GSE2077	Intestinal Epithelium
+24	Breast Cancer	GSE3744	Mammary Gland Tissue
+240	Fracture of femur	GSE1685	Femur
+241	Pulmonary Hypertension	GSE703	Peripheral blood mononuclear cell
+242	Malignant tumor of pancreas	GSE14245	saliva
+244	Tachycardia	GSE7999	Myocardial tissue
+245	Cancer of Colon	GSE4107	Intestine - Large Intestine - Colon (MMHCC)
+246	Cancer of the testis	GSE1818	Testis
+248	Hypertrophy, Left Ventricular	GSE2116	Myocardial tissue
+249	Ulcerative Colitis	GSE6731	Intestine - Large Intestine - Colon (MMHCC)
+250	Hypoxia	GSE4630	macrophage
+251	Oligodendroglioma	GSE4290	CNS - Brain (MMHCC)
+253	Thrombocytopenia	GSE2527	Megakaryocyte
+255	COPD - Chronic obstructive pulmonary disease	GSE3320	Bronchial epithelium
+257	Primary open angle glaucoma	GSE2705	Optic Disk
+258	Congestive heart disease	GSE2236	Myocardial tissue
+260	Glaucoma	GSE3554	Retina
+261	Schizophrenia	GSE12649	Cerebral cortex
+262	Cerebral Infarction	GSE63	CNS - Brain (MMHCC)
+263	Streptococcal tonsillitis	GSE11494	Tonsillar Lymphoid Tissue
+264	Ulcerative Colitis	GSE1710	Sigmoid colon
+265	Mitral valve disorder	GSE11460	Mitral Valve
+267	Familial combined hyperlipidaemia	GSE11393	Blood monocyte
+268	Eczema	GSE6012	Integument
+27	GERD - Gastro-esophageal reflux disease	GSE2144	Esophageal Tissue
+270	Gastrointestinal stromal tumor	GSE2719	Connective Tissue
+271	Arthropathy	GSE10575	Chondrocyte
+272	Idiopathic fibrosing alveolitis	GSE10921	Fibroblast
+273	Cardiac Failure	GSE1988	Myocardial tissue
+274	Type 2 diabetes mellitus	GSE12643	Muscle tissue
+275	Bone fracture	GSE594	Femur
+277	Down Syndrome	GSE5390	Brain
+278	Fracture of femur	GSE1371	Femur
+279	Type 2 diabetes mellitus	GSE2899	Adipose tissue
+28	Breast Cancer	GSE2528	Mammary gland
+283	ALS (Amyotrophic Lateral Sclerosis)	GSE833	CNS - Spinal Cord (MMHCC)
+284	Primary open angle glaucoma	GSE4316	Trabecular Meshwork
+285	Setleis syndrome	GSE16524	Skin fibroblast
+286	Overexertion	GSE3606	Leukocyte
+288	Alcohol poisoning	GSE3311	Pancreas
+291	Type 2 diabetes mellitus	GSE6428	Endocrine Pancreas - Islet Cell of Langerhans - Beta Cell (MMHCC)
+292	Polycystic Ovary Syndrome	GSE6798	Skeletal muscle
+294	Adenoma	GSE8514	Adrenal gland
+295	Squamous cell carcinoma of mouth	GSE3524	Oropharynx Epithelium
+297	Acne	GSE10432	Sebocyte
+298	Duchenne muscular dystrophy (DMD)	GSE1008	Extraocular muscle
+299	Type 2 diabetes mellitus	GSE2899	pancreatic islet
+300	Carcinoma, Hepatocellular	GSE2127	Hepatic Tissue
+302	Bipolar Disorder	GSE5389	frontal cortex
+304	Idiosyncratic drug effect	GSE2825	Hepatic Tissue
+306	Papillary Carcinoma of the Thyroid	GSE3678	Thyroid Gland (MMHCC)
+307	Septic Shock	GSE9692	Whole blood
+308	Polycystic Ovary Syndrome	GSE5090	Adipose tissue
+309	Hepatitis C infection	GSE2067	Hepatocyte
+310	Down Syndrome	GSE10758	Fetus
+311	Gamma-hydroxybutyric acidaemia	GSE2866	CNS - Brain - Hippocampus (MMHCC)
+312	Retinal damage	GSE1001	Retina
+313	Ventricular hypertrophy	GSE4678	Myocardial tissue
+314	Sepsis	GSE1781	Hepatic Tissue
+315	Carcinoma, Hepatocellular	GSE4612	Hepatic Tissue
+317	Nemaline Myopathy	GSE3384	Tibialis Muscle
+318	Asthma	GSE4302	Epithelial Cell
+319	Obesity	GSE4692	Adipose tissue
+320	Type 2 diabetes mellitus	GSE642	Renal Tissue
+321	Idiopathic fibrosing alveolitis	GSE21369	Lung Tissue
+323	Cardiomyopathy, Dilated	GSE3586	Myocardial tissue
+324	Rhinovirus infection	GSE11348	Nose
+325	Nicotine addiction	GSE11208	Ganglioneuroblastoma
+326	Malignant Melanoma	GSE4587	Epidermis
+328	Duchenne muscular dystrophy (DMD)	GSE466	Muscle - Striated (Skeletal) (MMHCC)
+329	Dystonia	GSE3064	Brain
+33	Retinitis Pigmentosa	GSE128	Retina
+331	Senescence	GSE5078	CNS - Brain - Hippocampus (MMHCC)
+334	Dermatomyositis	GSE5370	Muscle - Striated (Skeletal) (MMHCC)
+335	Type 2 diabetes mellitus	GSE3068	Muscle - Striated (Skeletal) (MMHCC)
+336	Sendai virus infection	GSE2935	macrophage
+338	PTSD - Post-traumatic stress disorder	GSE860	Peripheral blood mononuclear cell
+341	Escherichia coli infection of the central nervous system	GSE3253	CNS - Brain (MMHCC)
+342	Generalized seizures	GSE1156	Hippocampus
+343	COPD - Chronic obstructive pulmonary disease	GSE475	Muscle - Striated (Skeletal) - Diaphragm (MMHCC)
+344	Thymic Carcinoma	GSE2501	Thymus
+346	Type 1 diabetes mellitus	GSE1659	Muscle - Striated (Skeletal) (MMHCC)
+347	Meningococcal infection	GSE4646	Umbilical vein
+348	Asthma, allergic	GSE2276	Lung Tissue
+349	Intestinal metaplasia of gastric mucosa	GSE2669	Gastric Tissue
+35	Psoriasis vulgaris	GSE13355	Skin tissue
+350	Actinic keratosis	GSE2503	Skin tissue
+351	Leukemia, Adult T Cell	GSE10789	Blood monocyte
+352	Preeclampsia	GSE4707	Placenta
+354	Cardiac Hypertrophy	GSE1055	cardiomyocyte
+355	Ventilator-associated lung injury	GSE2411	Lung Tissue
+356	Neurological pain disorder	GSE15041	Dorsal Root Ganglia
+357	Schizophrenia	GSE4036	CNS - Brain - Cerebellum (MMHCC)
+358	Purpura, Idiopathic Thrombocytopenic	GSE574	T lymphocyte
+359	Vitamin A Deficiency	GSE1600	Hepatic Tissue
+36	COPD - Chronic obstructive pulmonary disease	GSE1650	Lung Tissue
+360	Asthma, allergic	GSE3004	Bronchial epithelium
+361	Cancer of the Stomach	GSE2685	Stomach
+362	Small cell carcinoma of lung	GSE1037	Lung Tissue
+363	Type 1 diabetes mellitus	GSE4616	Myocardial tissue
+371	Granulomatous Disease, Chronic	GSE935	Blood neutrophil
+372	Hepatic Cirrhosis	GSE1843	Hepatic Tissue
+373	Transplanted Heart Complication	GSE582	Myocardial tissue
+376	Acute pancreatitis	GSE3644	Pancreas
+377	MS (Multiple Sclerosis)	GSE10064	B Cell Lymphocyte
+38	Hyperlipidemia	GSE3512	Hepatic Tissue
+381	MS (Multiple Sclerosis)	GSE842	CNS - Spinal Cord (MMHCC)
+382	Hypertrophy, Left Ventricular	GSE2459	Myocardial tissue
+384	Viral cardiomyopathy	GSE4172	Myocardial tissue
+386	Infection by Aspergillus fumigatus	GSE6965	Dendritic cell
+388	Hypotensive episode	GSE2401	Renal Tissue
+389	ALS (Amyotrophic Lateral Sclerosis)	GSE4390	CNS - Spinal Cord (MMHCC)
+39	Breast Cancer	GSE2155	Epithelial Cell
+390	Rett Syndrome	GSE6955	frontal cortex
+391	Status Epilepticus	GSE4236	CNS - Brain - Hippocampus (MMHCC)
+392	Breast Cancer	GSE1379	Mammary Gland Tissue
+393	Endometriosis	GSE6364	Endometrium
+396	Neurogenic Muscular Atrophy	GSE2566	Muscle - Striated (Skeletal) (MMHCC)
+397	Papillary Carcinoma of the Thyroid	GSE3467	Thyroid Gland (MMHCC)
+399	Uterine leiomyoma	GSE2725	Uterus
+4	CML - Chronic myeloid leukemia	GSE4170	Haematopoietic stem cell
+40	HIV - Human immunodeficiency virus infection	GSE2171	Peripheral blood mononuclear cell
+400	Hypertension	GSE1674	Adrenal gland
+401	Colitis	GSE2172	Intestine - Large Intestine - Colon (MMHCC)
+403	CML - Chronic myeloid leukemia	GSE11889	Haematopoietic stem cell
+404	Smoldering multiple myeloma	GSE5900	Bone Marrow
+405	Muscular Dystrophy	GSE2507	Muscle - Striated (Skeletal) (MMHCC)
+406	Pulmonary Fibrosis	GSE2640	Lung Tissue
+407	Carcinoma, Hepatocellular	GSE6764	Liver
+408	Senescence	GSE1572	frontal cortex
+409	Gamma-hydroxybutyric acidaemia	GSE2866	Cerebral cortex
+410	Duchenne muscular dystrophy (DMD)	GSE1472	Muscle - Striated (Skeletal) (MMHCC)
+412	Essential Hypertension	GSE1675	Adrenal Gland Tissue
+414	Bacterial Infection	GSE4748	Dendritic cell
+415	Androgen insensitivity syndrome	GSE3871	Fibroblast
+417	Epilepsy	GSE7486	lymphoblast
+418	Nephroblastoma	GSE2712	Renal Tissue
+419	HIV - Human immunodeficiency virus infection	GSE6740	T lymphocyte
+422	Nutritional deficiency, NEC	GSE1776	Skeletal Myocyte
+424	Aplastic anaemia	GSE3807	Bone Marrow
+426	Spinal Cord Injury	GSE2599	CNS - Spinal Cord (MMHCC)
+427	Spinal Cord Injury	GSE16710	CNS - Spinal Cord (MMHCC)
+428	Cystic Fibrosis	GSE769	Pancreas
+43	Rotavirus infection of children	GSE2729	Peripheral blood mononuclear cell
+430	Pauciarticular juvenile arthritis	GSE1402	Peripheral blood mononuclear cell
+431	Adenocarcinoma of lung	GSE1987	Lung Tissue
+432	Arrhythmogenic Right Ventricular Cardiomyopathy	GSE4120	Myocardial tissue
+434	Essential Thrombocytemia	GSE2006	Thrombocyte
+436	Asthma, allergic	GSE3184	Lung Tissue
+437	Myocardial Infarction	GSE4105	Myocardial tissue
+439	Schistosomiases	GSE19525	Spleen
+440	Hypoxia	GSE4483	Astrocyte
+441	Squamous cell carcinoma of lung	GSE3268	Lung Tissue
+443	Dehydration	GSE3110	Hypothalamus
+444	Psoriasis vulgaris	GSE6710	Skin tissue
+446	Hypoxia	GSE2271	Heart
+447	Dengue Fever	GSE51808	Whole Blood
+448	breast cancer	GSE9574	Breast Epithelium
+449	pancreatic cancer	GSE47811	Panc02
+45	Type 2 diabetes mellitus	GSE2899	Hepatic Tissue
+450	systemic lupus erythematosus	GSE13887	CD3+ T cells
+451	Schizophrenia	GSE12679	endothelial cells and neurons from dorsolateral prefrontal cortex
+453	Barrett's esophagus	GSE34619	esophagus
+454	ulcerative colitis	GSE9452	colon
+455	retinoblastoma	GSE6787	Liver
+456	Chronic phase chronic myelogenous leukemia	GSE5550	CD34+ hematopoietic stem and progenitor cells from the bone marrow of untreated patients
+457	Wolfram Syndrome	GSE33372	Hypothalmus
+458	head and neck squamous cell carcinoma	GSE6631	Head and Neck Squamous Cell (Normal vs. Tumor)
+459	Inflammatory papules (Acne)	GSE6475	Skin
+46	Macular degeneration	GSE1719	Fibroblast
+460	cellular phase chronic idiopathic myelofibrosis	GSE3410	hematopoietic CD34+ stem cells
+461	Bipolar Disorder	GSE12654	Prefrontal Cortex
+462	Depression	GSE12654	Prefrontal Cortex
+463	Depression	GSE26025	hippocampus
+464	Autism	GSE25507	blood lymphocytes
+465	schizophrenia	GSE12654	Prefrontal Cortex
+466	Huntington's disease	GSE24250	blood
+467	severe asthma	GSE43696	bronchial epithelial cells
+468	polycystic ovary syndrome	GSE48301	Mesenchymal Cells
+469	Niemann-Pick disease Type C	GSE39621	brain tissue
+47	LGLL - Large granular lymphocytic leukemia	GSE10631	Peripheral blood mononuclear cell
+470	Tendonopathy	GSE26051	Tendons
+471	Niemann-Pick Type C disease	GSE39621	spleen
+472	Diamond-Blackfan anaemia	GSE14335	fibroblasts
+474	type 1 diabetes mellitus	GSE4990	mast cells
+475	pancreatic cancer	GSE16515	Pancreatic tissue
+476	methylmalonic acidemia	GSE41044	kidney
+477	Alcoholic Hepatitis	GSE28619	liver tissue
+478	Breast Cancer	GSE34925	MDA-MB231 cells
+48	Cancer of prostate	GSE1413	Prostate
+480	Treacher Collins syndrome	GSE10167	embryonic tissue
+481	sickle cell anemia	GSE11524	platelets
+482	Leukemia	GSE44025	bone marrow
+483	pancreatic cancer	GSE18670	pancreas
+485	prostate cancer	GSE39452	LNCaP
+486	glaucoma associated with systemic syndromes	GSE26299	Optic nerve head
+487	glaucoma associated with systemic syndromes	GSE26299	Optic nerve head
+488	glaucoma associated with systemic syndromes	GSE26299	Optic nerve head
+489	glaucoma associated with systemic syndromes	GSE26299	Retina
+490	glaucoma associated with systemic syndromes	GSE26299	Retina
+491	glaucoma associated with systemic syndromes	GSE26299	Retina
+492	glomerulosclerosis	GSE20844	OVE26 type 1
+493	Hepatocellular carcinoma	GSE10393	Huh-7
+494	Down Syndrome	GSE23910	Thymus
+495	Niemann-Pick Type C	GSE39621	spleen
+496	Parkinson's disease	GSE19587	PD medullas
+497	Zaire ebolavirus	GSE31747	macrophage
+498	swine influenza	GSE48466	primary lung bronchial epithelial cells
+5	Cardiac Hypertrophy	GSE5500	Myocardial tissue
+501	chronic myeloid leukemia	GSE48438	osteoblastic lineage cells
+502	colon cancer	GSE34299	HT29 Colo205
+503	cerebral palsy	GSE31243	gracilis and semitendinosus muscle
+504	breast cancer	GSE14943	MDA-MB-231 breast cancer cells
+505	sickle-cell anemia	GSE16728	peripheral blood
+506	sickle-cell anemia	GSE16728	peripheral blood
+507	sickle-cell anemia	GSE16728	peripheral blood
+508	atherosclerosis	GSE43292	Carotid artery
+509	Eczema	GSE32924	derma (skin)
+51	Cardiac Hypertrophy	GSE1621	Myocardial tissue
+510	acute myocardial infarction	GSE48060	Peripheral blood
+511	salivary gland adenoid cystic carcinoma	GSE36820	salivary tissue
+512	systemic lupus erythematosus (SLE)	GSE36700	synovial biopsies from affected knees
+513	pancreatitis	GSE3644	pancreas
+514	H1N1	GSE27131	peripheral blood
+515	fragile X syndrome	GSE7329	lymphoblastoid cells
+516	progressive myoclonus epilepsy	GSE47516	cultured cerebellar granule cells, Cystatin B knockout model of progressive myoclonus epilepsy
+517	progressive myoclonus epilepsy	GSE47516	postnatal day 30 cerebellum, Cystatin B knockout model of progressive myoclonus epilepsy
+518	progressive myoclonus epilepsy	GSE47516	postnatal day 7 cerebellum, Cystatin B knockout model of progressive myoclonus epilepsy
+519	Alzheimer's disease	GSE36980	male hippocampus
+52	Breast Cancer	GSE1378	Mammary Gland Tissue
+520	Alzheimer's disease	GSE36980	female hippocampus
+521	Alzheimer's disease	GSE36980	male temporal cortex
+522	Alzheimer's disease	GSE36980	female temporal cortex
+523	Alzheimer's disease	GSE36980	male frontal cortex
+524	Alzheimer's disease	GSE36980	female frontal cortex
+525	fetal alcohol spectrum disorder	GSE34305	brain from adult (postnatal day 70) male offspring prenatally exposed to alcohol via voluntary maternal consumption from gestational day 0 to pup postnatal day 10
+526	fetal alcohol spectrum disorder	GSE34305	brain from adult (postnatal day 70) male offspring prenatally exposed to alcohol via voluntary maternal consumption from gestational day 0 to pup postnatal day 10
+527	Huntington's disease	GSE19780	cerebellum, HdhQ111 knock-in model of Huntington's disease
+528	Huntington's disease	GSE19780	striatum, HdhQ111 knock-in model of Huntington's disease
+529	Down syndrome	GSE39159	soleus muscle, in the basal state, from five-month-old Ts65Dn Down syndrome (DS) males
+53	Type 1 diabetes mellitus	GSE1623	Pancreas
+530	muscular dystrophy	GSE42806	skeletal muscle
+539	tibial muscular dystrophy	GSE42806	skeletal muscle
+540	facioscapulohumeral muscular dystrophy	GSE15090	skeletal muscle (biceps &amp; deltoid)
+541	facioscapulohumeral muscular dystrophy	GSE15090	skeletal muscle (biceps &amp; deltoid)
+542	schizophrenia	GSE12679	endothelial cells
+543	schizophrenia	GSE12679	neuron
+544	bipolar disorder	GSE12679	neuron
+545	schizophrenia	GSE62191	brain tissue (frontal cortex)
+546	bipolar disorder	GSE62191	brain tissue (frontal cortex)
+547	schizophrenia	GSE62105	fibroblast
+548	schizophrenia	GSE27383	PBMC (peripheral blood mononuclear cells)
+549	schizophrenia	GSE27383	PBMC (peripheral blood mononuclear cells)
+55	Premature aging	GSE10123	Skin fibroblast
+550	colon adenoma	GSE4183	Colon biopsy
+551	inflammatory bowel disease	GSE4183	Colon biopsy
+552	colorectal cancer	GSE32323	Colon
+553	stomach cancer	GSE49515	Peripheral blood mononuclear cells
+554	hepatocellular carcinoma	GSE49515	Peripheral blood mononuclear cells
+555	pancreatic cancer	GSE49515	Peripheral blood mononuclear cells
+556	dengue disease	GSE51808	whole blood
+557	dengue hemorrhagic fever	GSE51808	whole blood
+558	polycystic ovary syndrome	GSE48301	Endothelial cells
+559	polycystic ovary syndrome	GSE48301	Epithelial cells
+560	polycystic ovary syndrome	GSE48301	Stromal cells
+561	multiple myeloma	GSE47552	Bone marrow plasma cells
+562	smoldering myeloma	GSE47552	Bone marrow plasma cells
+563	monoclonal gammopathy of uncertain significance	GSE47552	Bone marrow plasma cells
+564	tuberculosis	GSE54992	Peripheral blood mononuclear cells
+565	asthma	GSE27011	white blood cells - Male Mild Asthma
+566	asthma	GSE27011	white blood cells - Female Mild Asthma
+567	asthma	GSE27011	white blood cells - Female Severe Asthma
+568	asthma	GSE27011	white blood cells - Male Severe Asthma
+57	Hypertrophy	GSE739	Myocardial tissue
+570	bipolar disorder	GSE46449	peripheral blood leukocytes
+572	bipolar disorder	GSE46449	peripheral blood leukocytes
+573	bipolar disorder	GSE5392	brain tissue (dorsolateral prefrontal cortex and orbitofrontal cortex)
+574	systemic juvenile idiopathic arthritis (sJIA)	GSE21521	PBMC (peripheral blood mononuclear cells)
+575	systemic juvenile idiopathic arthritis (sJIA) (enthesitis-related)	GSE21521	PBMC (peripheral blood mononuclear cells)
+576	systemic juvenile idiopathic arthritis (sJIA) (subgroup: extended oligo)	GSE21521	PBMC (peripheral blood mononuclear cells)
+577	non-systemic juvenile idiopathic arthritis (sJIA) (subgroup: oligoarticular)	GSE21521	PBMC (peripheral blood mononuclear cells)
+578	non-systemic juvenile idiopathic arthritis (sJIA) (subgroup: RF-polyarthritis)	GSE21521	PBMC (peripheral blood mononuclear cells)
+579	non-systemic juvenile idiopathic arthritis (sJIA) (subgroup: RF+ polyarthritis)	GSE21521	PBMC (peripheral blood mononuclear cells)
+58	Serous carcinoma	GSE10971	Fallopian tube
+580	non-systemic juvenile idiopathic arthritis (sJIA) (subgroup: psoriatic)	GSE21521	PBMC (peripheral blood mononuclear cells)
+581	Insulin Resistance	GSE36297	skeletal muscle
+582	nicotine dependence	GSE6264	lymphoblast cell lines
+583	morbid obesity	GSE48964	adipose stem cells
+584	multiple sclerosis	GSE16461	CD8+ T cells
+585	ulcerative colitis	GSE11223	sigmoid colon
+586	ulcerative colitis	GSE11223	sigmoid colon
+587	ulcerative colitis	GSE11223	terminal ileum
+588	ulcerative colitis	GSE11223	descending colon
+589	ulcerative colitis	GSE11223	descending colon
+590	ulcerative colitis	GSE11223	ascending colon
+591	ulcerative colitis	GSE11223	ascending colon
+592	Alzheimer's disease	GSE4757	entorhinal cortex neurons
+593	ulcerative colitis	GSE11223	sigmoid colon
+594	ulcerative colitis	GSE37283	colon mucosa
+595	colorectal adenocarcinoma	GSE24514	Colon mucosa - colorectal adenocarcinomas with microsatellite instability (MSI CRCs)
+596	Barrett's esophagus	GSE34619	Esopahgus endoscopic biopsies
+597	hepatitis C	GSE20948	Huh7 hepatoma cells (infected with JFH-1 HCV) - 6 Hours post-infection
+598	hepatitis C	GSE20948	Huh7 hepatoma cells (infected with JFH-1 HCV) - 12 Hours post-infection
+599	hepatitis C	GSE20948	Huh7 hepatoma cells (infected with JFH-1 HCV) - 18 Hours post-infection
+6	APECED - Autoimmune polyendocrinopathy-candidiasis-ectodermal dystrophy	GSE85	Thymic epithelial cell
+60	Dehydration	GSE3131	CNS - Brain - Hypothalamus (MMHCC)
+600	hepatitis C	GSE20948	Huh7 hepatoma cells (infected with JFH-1 HCV) - 24 Hours post-infection
+601	hepatitis C	GSE20948	Huh7 hepatoma cells (infected with JFH-1 HCV) - 48 Hours post-infection
+602	breast cancer	GSE26910	Stromal cells
+603	prostate cancer	GSE26910	Stromal cells
+604	pancreatic ductal adenocarcinoma	GSE15471	Pancreatic tissue
+605	ductal carcinoma in situ	GSE21422	Mammary gland
+606	invasive ductal carcinoma	GSE21422	Mammary gland
+607	esophagus squamous cell carcinoma	GSE20347	Esophageal normal adjacent tissue
+608	pancreatic intraductal papillary-mucinous adenoma	GSE19650	Epithelial cells (pancreatic duct)
+609	pancreatic non-invasive intraductal papillary-mucinous carcinoma	GSE19650	Epithelial cells (pancreatic duct))
+610	pancreatic invasive intraductal papillary-mucinous carcinoma	GSE19650	Epithelial cells (pancreatic duct)
+611	ovarian cancer	GSE14407	ovarian epithelial cells
+612	obesity	GSE55389	neuroretina
+613	nasopharynx carcinoma	GSE13597	Nasopharyngeal biopsies (with Epstein-Barr virus (EBV)-positive undifferentiated NPC)
+614	type 2 diabetes mellitus	GSE54917	quadriceps
+615	lung cancer	GSE14277	lung tumor cells
+616	Breast cancer	GSE24594	mammary tumors
+617	cervical cancer	GSE9750	Cervical cancer primary tumors and normal cervical epithelium
+618	Non-syndromic cleft lip and palate	GSE42589	dental pulp stem cell culture
+619	cervical cancer	GSE9750	Cervical cancer cell line and normal cervical epithelium
+62	Duchenne muscular dystrophy (DMD)	GSE1472	Extraocular muscle
+622	testis seminoma	GSE8607	Testicular seminoma tumors (at pT1) and normal testicular tissue
+623	testis seminoma	GSE8607	Testicular seminoma tumors (at pT2) and normal testicular tissue
+624	testis seminoma	GSE8607	Testicular seminoma tumors (at pT3) and normal testicular tissue
+625	invasive lobular carcinoma	GSE5764	Invasive lobular carcinoma (ILC) cells and their normal counterpart
+626	invasive ductal carcinoma	GSE5764	Invasive ductal carcinoma (IDC) cells,  and their normal counterpart
+627	skin squamous cell carcinoma	GSE2503	Normal skin and squamous cell carcinoma (SCC) tumor biopsies
+628	actinic keratosis	GSE2503	Normal skin and actinic keratotic (AK) lesion
+629	amyotrophic lateral sclerosis type 10	GSE18632	HEK293E
+63	Breast Cancer	GSE1872	Mammary Gland Tissue
+630	atopic dermatitis skin	GSE32924	Skin biopsy specimens
+631	Fibrosis of lung (disorder)	GSE43695	Fra-1 null mice
+632	Huntington&acirc;€™s disease	GSE24250	whole blood
+633	systemic lupus erythematosus	GSE2376	sanroque mutant mice
+634	Asthma	GSE43696	Female bronchial epithelial cell
+635	Asthma	GSE43696	Male bronchial epithelial cell
+636	prolactinoma	GSE36314	human prolactinomas
+638	prostate cancer	GSE3868	Normal prostate epithelial cells and Primary epithelial cell culture (Gleason 6 score tumor)
+639	prostate cancer	GSE3868	Normal prostate epithelial cells and Primary epithelial cell culture (Gleason 7 score tumor)
+643	Barrett's esophagus	GSE1420	Esophagus epithelium
+644	esophagus adenocarcinoma	GSE1420	Esophagus epithelium
+65	Cystic Fibrosis	GSE765	Intestinal Epithelium
+650	colon adenoma	GSE422	Intestinal epithelium
+651	colon carcinoma	GSE422	Intestinal epithelium
+652	papillary thyroid carcinoma	GSE54958	Papillary thyroid carcinoma tumors (without a BRAF mutation) and Normal thyroid specimens
+653	papillary thyroid carcinoma	GSE54958	Papillary thyroid carcinoma tumors (with a BRAF mutation) and Normal thyroid specimens
+654	anaplastic thyroid carcinoma	GSE65144	Anaplastic thyroid carcinoma tissue and Normal thyroid tissue
+655	in situ carcinoma	GSE64756	Normal urothelium cells and CIS cells
+656	hepatocellular carcinoma	GSE60502	Hepatocellular carcinoma and Adjacent non-tumorous liver tissues
+657	skin squamous cell carcinoma	GSE45164	Skin from SCCs and Normal human epidermis
+658	esophagus squamous cell carcinoma	GSE63941	KYSE human esophageal squamous cell carcinoma cell line and Normal esophageal tissue
+659	esophagus squamous cell carcinoma	GSE63941	TE human esophageal squamous cell carcinoma cell line and Normal esophageal tissue
+66	Lung transplant rejection	GSE2018	Lung Tissue
+660	hepatocellular carcinoma	GSE57957	Tumor tissues and Adjacent non-tumorous tissues of Hepatocellular Carcinoma
+661	colon cancer	GSE63032	Whole heart (myocardium) from colon cancer bearing mice and non-tumor bearing mice
+662	colon cancer	GSE63032	Skeletal muscle (whole gastrocnemius muscle) from colon cancer bearing mice and non-tumor bearing mice
+663	hepatocellular carcinoma	GSE39791	HCC tumor and matched non-tumor surrounding tissues
+664	renal cell carcinoma	GSE38424	Blood myelomonocytic cells from RCC and Healthy blood myelomonocytic cells
+665	Neurofibromatosis	GSE1482	hippocampus
+666	neurofibromatosis	GSE1482	Hippocampus
+667	Neurofibromatosis	GSE1482	Hippocampus
+668	Neurofibromatosis	GSE1482	Hippocampus
+669	Neurofibromatosis	GSE1482	Hippocampus
+67	Lung Injury	GSE1541	Lung Tissue
+670	neurofibromatosis	GSE29343	skeletal muscle (triceps)
+671	Huntington's disease	GSE24250	whole blood, female
+672	facioscapulohumeral muscular dystrophy	GSE36398	bicep
+673	facioscapulohumeral muscular dystrophy	GSE36398	deltoid
+674	Duchenne muscular dystrophy	GSE6011	quadriceps
+675	Emery-Dreifuss muscular dystrophy	GSE6399	whole heart
+676	Emery-Dreifuss muscular dystrophy, autosomal dominant form	GSE8000	whole heart
+677	Emery-Dreifuss muscular dystrophy, autosomal recessive form	GSE8000	whole heart
+678	dilated cardiomyopathy	GSE42955	heart, left ventricle apex
+679	amyotrophic lateral sclerosis	GSE10953	motor neurons, 60 days old
+680	amyotrophic lateral sclerosis	GSE10953	motor neurons, 90 days old
+681	amyotrophic lateral sclerosis	GSE10953	motor neurons, 120 days old
+682	amyotrophic lateral sclerosis	GSE7493	ventral spinal cord, motor neurons
+683	amyotrophic lateral sclerosis	GSE3343	spinal cord, 10 weeks old
+684	diffuse large B-cell lymphoma	GSE6136	normal resting B cell
+685	amyotrophic lateral sclerosis	GSE3343	ocular motor neurons, 10 weeks old
+686	diffuse large B-cell lymphoma	GSE6136	marginal lymphoma, BRD2 transgenic
+687	diffuse large B-cell lymphoma	GSE6136	transitional lymphoma, BRD2 transgenic
+688	diffuse large B-cell lymphoma	GSE6136	aggressive lymphoma, BRD2 trangenic
+689	discoid lupus erythematosus	GSE52471	skin
+690	psoriasis	GSE52471	skin
+691	systemic lupus erythematosus	GSE10325	CD33+ myeloid cells
+692	systemic lupus erythematosus	GSE10325	CD4+ T cells
+693	systemic lupus erythematosus	GSE10325	CD19+ B cells
+694	Wolfram syndrome	GSE15293	Temporal Lobes
+695	Wolfram syndrome	GSE15293	Temporal Lobes
+696	psoriatic arthritis	GSE61281	Whole blood
+697	psoriasis	GSE61281	Whole blood (Cutaneous Psoriasis)
+698	pancreatic ductal adenocarcinoma	GSE61412	Pancreas (Advanced stage of murine PDAC and Control pancreas)
+699	pancreatic ductal adenocarcinoma	GSE53659	Pancreatic tumor cells (bitransgenic Pdx1-cre/Kras*A MICE) and Pancreatic cells (WT MICE)
+7	Diabetic Neuropathy	GSE11343	Sciatic Nerve
+70	Hypoxia	GSE3195	Fibroblast
+702	Huntington's disease	GSE3621	Brain
+703	Huntington's disease	GSE3621	Brain
+704	Huntington's disease	GSE3621	Brain
+705	dermatomyositis	GSE48280	Pathological skeletal muscle fibers
+706	inclusion body myositis	GSE48280	Pathological skeletal muscle fibers
+707	multiple myeloma	GSE36474	Bone marrow mesenchymal stromal cells
+708	sarcoidosis	GSE19314	Peripheral blood mononuclear cells
+709	adrenoleukodystrophy	GSE34308	Primary dermal fibroblasts (Childhood cerebral adrenoleukodystrophy)
+710	ulcerative colitis	GSE22619	Intestinal biopsies
+711	epidermolysis bullosa simplex	GSE28315	Epidermal punch biopsies
+712	asthma	GSE31773	Circulating CD4+ T-cells (severe asthma)
+713	asthma	GSE31773	circulating CD4+ T-cells (non-severe asthma)
+714	asthma	GSE31773	Circulating CD8+ T-cells (severe asthma)
+715	asthma	GSE31773	Circulating CD8+ T-cells (non-severe asthma)
+716	allergic asthma	GSE41649	Bronchial biopsies
+717	Huntington's disease	GSE9038	striatum
+718	Huntington's disease	GSE9038	cerebellum
+719	Huntington's disease	GSE26001	embryonic stem
+72	Duchenne muscular dystrophy (DMD)	GSE1026	Muscle - Striated (Skeletal) - Diaphragm (MMHCC)
+720	Huntington's disease	GSE26001	embryonic stem
+721	Huntington's disease	GSE5786	striatum
+722	Huntington's disease	GSE3248	cerebellum
+723	Huntington's disease	GSE3248	cerebellum
+724	Huntington's disease	GSE3248	cerebellum
+725	Huntington's disease	GSE3248	cerebellum
+726	Huntington's disease	GSE3248	cerebellum
+727	Huntington's disease	GSE3248	cerebellum
+728	Huntington's disease	GSE3248	cerebellum
+729	asthma	GSE16032	PBMC
+730	basal cell carcinoma	GSE58894	Mouse epidermis (GNAS KO Skin)
+731	adenosquamous cell lung carcinoma	GSE51852	Primary lung tumor and Normal lung
+732	lung large cell carcinoma	GSE51852	Primary lung tumor and Normal lung
+733	large cell neuroendocrine carcinoma	GSE51852	Primary lung tumor and Normal lung
+734	lung squamous cell carcinoma	GSE51852	Primary lung tumor and Normal lung
+735	hepatocellular carcinoma	GSE58208	Peripheral blood mononuclear cell
+736	hepatitis C virus related hepatocellular carcinoma	GSE58208	Peripheral blood mononuclear cells
+737	multiple sclerosis	GSE38010	brain lesion (MS after demyelination - active inflammation)
+738	multiple sclerosis	GSE38010	brain lesion (MS after inflammation - late stage)
+739	lupus erythematosus	GSE30153	Peripheral blood B cells (inactive lupus)
+74	Leukemia, Chronic T-Cell	GSE5788	T lymphocyte
+740	Parkinson's disease	GSE19587	DMNV (dorsal motor nucleus of the vagus)
+741	Parkinson's disease	GSE19587	ION (inferior olivary nucleus)
+742	multiple sclerosis	GSE26484	Peripheral blood cells (with low serum levels of transmembrane-type semaphorin Sema4A)
+743	multiple sclerosis	GSE21942	peripheral blood mononuclear cells
+744	intracranial aneurysm	GSE26969	cerebral artery
+745	Chronic Lymphocytic Leukemia (Chronic B-lymphocytic leukemia)	GSE26725	Peripheral blood
+746	multiple sclerosis	GSE23832	Peripheral blood mononuclear cells
+747	myelodysplastic syndrome	GSE19429	CD34+ hematopoietic stem cells (refractory anemia)
+748	myelodysplastic syndrome	GSE19429	CD34+ hematopoietic stem cells (refractory anemia with excess blasts 1)
+749	myelodysplastic syndrome	GSE19429	CD34+ hematopoietic stem cells (refractory anemia with excess blasts 2)
+75	Heart Injury	GSE4710	Myocardial tissue
+750	myelodysplastic syndrome	GSE19429	CD34+ hematopoietic stem cells (refractory anemia with ringed sideroblasts)
+751	osteoarthritis	GSE16464	Hyaff-11 scaffold culture
+752	osteoarthritis	GSE16464	chondrocytes monolayer culture
+753	asthma	GSE18965	Airway epithelial cells
+754	psoriasis	GSE14905	Non-lesional skin
+755	low-grade serous ovarian carcinomas	GSE56443	low-grade serous ovarian carcinomas (tumors from patients with matched border control)
+757	Crohn's disease	GSE6731	Colon
+758	Crohn's disease	GSE6731	Colon
+759	ulcerative colitis	GSE6731	Colon
+76	Gastrointestinal stromal tumor	GSE15966	Gastric Tissue
+760	ulcerative colitis	GSE6731	Colon
+761	colitis	GSE6731	Colon
+762	ulcerative colitis	GSE3365	PBMC (peripheral blood mononuclear cells)
+763	colorectal cancer	GSE1323	primary tumor colon cancer cell line (SW480) vs  isogenic metastatic colon cancer cell line (SW620)
+764	pulmonary sarcoidosis	GSE19976	human lung tissue
+765	pulmonary sarcoidosis	GSE19976	lung tissue
+766	diabetes mellitus type 2	GSE12643	myotubes
+767	schizophrenia	GSE12679	Endothelial cells - male
+768	schizophrenia	GSE12679	Neurons - male
+769	schizophrenia	GSE12679	Neurons - female
+77	Atherosclerosis	GSE1560	Aorta Smooth Muscle Tissue
+770	bipolar disorder	GSE12679	Neurons - male
+771	juvenile dermatomyositis	GSE11971	Skeletal muscle biopsies - long duration
+772	juvenile dermatomyositis	GSE11971	Skeletal muscle biopsies - short duration
+773	familial combined hyperlipidemia	GSE11393	Peripheral blood monocytes
+774	nasopharynx carcinoma	GSE12452	Microdissected nasopharyngeal carcinoma (NPC) tissues samples - stage T1N0
+775	nasopharynx carcinoma	GSE12452	Microdissected nasopharyngeal carcinoma (NPC) tissues samples - stage T1N1
+776	nasopharynx carcinoma	GSE12452	Microdissected nasopharyngeal carcinoma (NPC) tissues samples - stage T2N1
+777	nasopharynx carcinoma	GSE12452	Microdissected nasopharyngeal carcinoma (NPC) tissues samples - stage T2N2
+778	nasopharynx carcinoma	GSE12452	Microdissected nasopharyngeal carcinoma (NPC) tissues samples - stage T3N2
+779	rheumatoid arthritis	GSE10500	Synovial fluid macrophages
+78	Nemaline Myopathy	GSE3384	Extensor digitorum longus muscle
+780	cardiomyopathy	GSE9128	Peripheral blood mononuclear cells (non-ischemic cardiomyopathy)
+781	cardiomyopathy	GSE9128	Peripheral blood mononuclear cells (ischemic cardiomyopathy)
+782	acute myeloid leukemia	GSE9476	Bone marrow
+783	acute myeloid leukemia	GSE9476	Peripheral blood
+784	Waldenstrom Macroglobulinemia	GSE6691	B lymphocytes
+785	Waldenstrom Macroglobulinemia	GSE6691	Plasma cells
+786	chronic lymphocytic leukemia	GSE6691	B lymphocytes
+787	multiple myeloma	GSE6691	Plasma cells
+788	Parkinson's disease	GSE6613	Whole blood
+79	Cardiomyopathy	GSE1869	Myocardial tissue
+791	anemia	GSE4619	CD34+ cells (refractory anemia)
+792	anemia	GSE4619	CD34+ cells (refractory anemia with ringed sideroblasts)
+793	anemia	GSE4619	CD34+ cells (refractory anemia with excess blasts)
+794	Crohn's disease	GSE3365	Peripheral blood mononuclear cells
+795	Huntington's disease	GSE1751	Peripheral blood expression profile - symptomatic patients (HG-U133A)
+796	Huntington's disease	GSE1751	Peripheral blood expression profile - presymptomatic patients (HG-U133A)
+797	polycystic ovary syndrome	GSE34526	Granulosa cells
+798	pancreatic cancer	GSE23952	PANC-1 PANCREATIC ADENOCARCINOMA CELL LINE
+8	Kidney disorder associated with type 2 diabetes mellitus	GSE2557	Mesangial cell
+800	colitis	GSE34874	Colon (DSS - induced colitis)
+801	acute myocarditis	GSE35182	Heart (from CVB3-infected males - day 10 postinfection)
+802	acute myocarditis	GSE35182	Heart (from CVB3-infected females - day 10 postinfection)
+803	precursor B lymphoblastic lymphoma/leukemia	GSE29639	AT2 E/R positive BCP ALL cell line (following E/R -ETV6/RUNX1- knockdown)
+804	Epilepsy	GSE2880	brain
+805	Diabetes	GSE31150	beta cells of pancreas
+806	polycystic ovary syndrome	GSE48301	endometrial cells
+807	Diabetes and Obesity	GSE54917	Skeletal Muscle
+808	nasopharynx carcinoma	GSE13597	nasopharynx
+809	fragile X syndrome	GSE7329	lymphoblastoid cells
+810	ulcerative colitis	GSE38713	Intestinal mucosa
+812	myelodysplastic syndrome	GSE19429	HSC cells
+813	psoriasis	GSE53431	Epidermis
+815	idiopathic urticaria	GSE57178	Skin
+816	systemic lupus erythematosus	GSE61635	Connective Tissue in Joints
+817	peripartum cardiomyopathy	GSE42955	Left Ventricle Apex Tissue
+818	polycystic ovary syndrome	GSE48301	endometrial tissue
+819	psoriasis	GSE27628	Tail skin ( K14-AREG psoriasis model)
+82	Sendai virus infection	GSE10211	Tracheal epithelium
+820	psoriasis	GSE27628	Ear Skin ( K14-AREG psoriasis model)
+821	psoriasis	GSE27628	Back Skin (K5-Stat3C psoriasis model)
+822	psoriasis	GSE27628	Back Skin (K5-TGFbeta1 psoriasis model)
+823	psoriasis	GSE27628	Back Skin (K5-Tie2 psoriasis model)
+824	psoriasis	GSE27628	Back Skin ( imiquimod -IMQ- psoriasis model)
+825	polycystic ovary syndrome	GSE10946	Cumulus cells cultured (Lean patients)
+826	polycystic ovary syndrome	GSE10946	Cumulus cells cultured (Obese patients)
+827	asthma	GSE43696	Bronchial epithelial cells - Female - Mild asthma
+828	asthma	GSE43696	Bronchial epithelial cells - Female - Severe asthma
+829	asthma	GSE43696	Bronchial epithelial cells - Male - Mild asthma
+83	Lung transplant rejection	GSE3418	Trachea
+830	asthma	GSE43696	Bronchial epithelial cells - Male - Severe asthma
+831	pulmonary tuberculosis	GSE48027	Lung (from B6D2F1 females) - 42 days post infection
+832	pulmonary tuberculosis	GSE48027	Lung (from B6D2F1 females) - 63 days post infection
+833	cystic fibrosis	GSE15568	Rectal mucosal epithelia (CFTR D508 Mutation)
+834	prostate cancer	GSE55945	Radical prostatectomy tissue samples (TMPRSS2:ERG gene fusion POSITIVE) and Benign prostate tissue
+835	prostate cancer	GSE55945	Radical prostatectomy tissue samples (TMPRSS2:ERG gene fusion NEGATIVE) and Benign prostate tissue
+836	psoriasis	GSE32407	Non-lesional (NL) Skin
+837	psoriasis	GSE13355	Non-lesional (NL) Skin - (Uninvolved samples)
+838	endometrial cancer	GSE17025	Uterine tumors (endometrioid histologic subtype) - Stage-Grade:IA-G1
+839	endometrial cancer	GSE17025	Uterine tumors (endometrioid histologic subtype) - Stage-Grade:IA-G2
+840	endometrial cancer	GSE17025	Uterine tumors (endometrioid histologic subtype) - Stage-Grade:IA-G3
+841	endometrial cancer	GSE17025	Uterine tumors (endometrioid histologic subtype) - Stage-Grade:IB-G1
+842	endometrial cancer	GSE17025	Uterine tumors (endometrioid histologic subtype) - Stage-Grade:IB-G2
+843	endometrial cancer	GSE17025	Uterine tumors (endometrioid histologic subtype) - Stage-Grade:IB-G3
+844	endometrial cancer	GSE17025	Uterine tumors (endometrioid histologic subtype) - Stage-Grade:IC-G1
+845	endometrial cancer	GSE17025	Uterine tumors (endometrioid histologic subtype) - Stage-Grade:IC-G2
+846	endometrial cancer	GSE17025	Uterine tumors (endometrioid histologic subtype) - Stage-Grade:IC-G3
+847	endometrial cancer	GSE17025	Uterine tumors (papillary serous histologic subtype) - Stage-Grade:IA-G2
+848	endometrial cancer	GSE17025	Uterine tumors (papillary serous histologic subtype) - Stage-Grade:IA-G3
+849	endometrial cancer	GSE17025	Uterine tumors (papillary serous histologic subtype) - Stage-Grade:IB-G3
+85	Influenza	GSE3203	B Cell Lymphocyte
+850	idiopathic pulmonary fibrosis	GSE44723	Lung fibroblasts (Rapid progressing fibrosis)
+851	idiopathic pulmonary fibrosis	GSE44723	Lung fibroblasts (Slow progressing fibrosis)
+852	schizophrenia	GSE17612	Anterior prefrontal cortex - postmortem - Female
+853	schizophrenia	GSE17612	Anterior prefrontal cortex - postmortem - Male
+854	schizophrenia	GSE21935	Superior temporal cortex - postmortem - Female
+855	schizophrenia	GSE21935	Superior temporal cortex - postmortem - Male
+856	Ischemic stroke	GSE22255	Peripheral blood mononuclear cells (collected from IS patients at least 6 months after the first and only stroke event)
+857	atopic dermatitis	GSE32924	Skin (LESIONAL atopic dermatitis (AL) skin lesions)
+858	oligodendroglioma	GSE15824	Brain tumor tissue samples of human gliomas and normal brain - Grade:OGII - Primary tumor
+859	oligodendroglioma	GSE15824	Brain tumor tissue samples of human gliomas and normal brain - Grade:OGIII - Primary tumor
+860	astrocytoma	GSE15824	Brain tumor tissue samples of human gliomas and normal brain - Grade:AII - Primary tumor
+861	astrocytoma	GSE15824	Brain tumor tissue samples of human gliomas and normal brain - Grade:AIII - Primary tumor
+862	glioblastoma	GSE15824	Brain tumor tissue samples of human gliomas and normal brain - Grade:IV - Primary tumor
+863	glioblastoma	GSE15824	Brain tumor tissue samples of human gliomas and normal brain - Grade:IV - Secundary tumor
+864	adrenoleukodystrophy	GSE34309	Dermal fibroblast (from childhood cerebral adrenoleukodystrophy (CCALD) patient) and healthy fibroblasts
+865	adrenoleukodystrophy	GSE34309	Induced pluripotent stem cells -iPSC- (derived from childhood cerebral adrenoleukodystrophy patient dermal fibroblasts) and healthy fibroblasts
+866	prostate cancer	GSE30174	Peripheral white blood cells
+867	idiopathic pulmonary fibrosis	GSE24206	Whole lung - EARLY idiopathic pulmonary fibrosis - male
+868	idiopathic pulmonary fibrosis	GSE24206	Lung - UPPER LOBE - ADVANCED idiopathic pulmonary fibrosis - Male
+869	idiopathic pulmonary fibrosis	GSE24206	Lung - UPPER LOBE - ADVANCED idiopathic pulmonary fibrosis - Female
+87	Alexander Disease	GSE977	CNS - Brain - Olfactory Bulb (MMHCC)
+870	Pompe disease, infantile-onset form	GSE38680	Biceps biopsies
+871	idiopathic pulmonary fibrosis	GSE24206	Lung - LOWER LOBE - EARLY idiopathic pulmonary fibrosis - Male
+872	idiopathic pulmonary fibrosis	GSE24206	Lung - LOWER LOBE - ADVANCED idiopathic pulmonary fibrosis - Male
+873	idiopathic pulmonary fibrosis	GSE24206	Lung - LOWER LOBE - ADVANCED idiopathic pulmonary fibrosis - Female
+874	West Nile fever	GSE30719	Primary retinal pigment epithelial (RPE) cells
+875	Rift Valley fever	GSE18064	Embryonic fibroblasts - MBT/Pas animals
+876	Rift Valley fever	GSE18064	Embryonic fibroblasts - BALB/cByJ animals
+877	cerebral palsy	GSE31243	Skeletal muscle - Gracilis muscle biopsies
+878	cerebral palsy	GSE31243	Skeletal muscle - Semitendinosus muscle biopsies
+879	relapsing-remitting multiple sclerosis	GSE16461	CD4+ T cells Lymphocytes (sorted from PBMCs from monozygotic twin pairs discordant for RRMS)
+88	Cardiomyopathy	GSE5406	Myocardial tissue
+880	polycystic ovary syndrome	GSE8157	Skeletal muscle (from obese women with polycystic ovary syndrome)
+882	type 2 diabetes mellitus	GSE13760	Mammary arterial tissue
+883	endometriosis	GSE23339	Endometrial tissue  (Endometrioma tissue and eutopic endometrium controls)
+888	Sjogren's syndrome	GSE23117	Minor salivary glands - Early Sjogren's syndrome
+889	Sjogren's syndrome	GSE23117	Minor salivary glands - Advanced Sjogren's syndrome
+890	Sjogren's syndrome	GSE23117	Minor salivary glands - Moderate Sjogren's syndrome
+891	schizophrenia	GSE25673	Induced pluripotent stem cell-derived neurons - Male
+892	schizophrenia	GSE25673	Induced pluripotent stem cell-derived neurons - Female
+893	type 2 diabetes mellitus	GSE23343	Percutaneous needle LIVER biopsies - (hepatokines) - Male
+895	type 2 diabetes mellitus	GSE23343	Percutaneous needle LIVER biopsies - (hepatokines) - Female
+9	Type 1 diabetes mellitus	GSE10586	T lymphocyte
+90	Cancer of the Intestine	GSE3915	Small bowel
+903	Williams-Beuren syndrome	GSE16715	Fibroblast cell lines - 3 years
+904	rheumatoid arthritis	GSE15573	Peripheral blood mononuclear cells
+905	nephrosclerosis	GSE20602	Glomeruli
+906	atherosclerosis	GSE19286	aorta
+907	familial hypercholesterolemia	GSE6088	T lymphocytes - Heterozygous FH
+908	familial hypercholesterolemia	GSE6088	T lymphocytes - Homozygous FH
+909	familial hypercholesterolemia	GSE6054	Monocytes - Heterozygous FH
+910	familial hypercholesterolemia	GSE6054	Monocytes - Homozygous FH
+911	diabetic retinopathy	GSE12610	Retina (adult CD-1 animals) - 5 weeks
+912	cerebral palsy	GSE11686	Wrist muscles - Extensor
+913	cerebral palsy	GSE11686	Wrist muscles - Flexor
+916	pulmonary sarcoidosis	GSE16538	Lungs
+917	Barrett's esophagus	GSE13083	Esophageal squamous epithelium
+92	Simian Acquired Immune Deficiency Syndrome	GSE4785	T lymphocyte
+93	Psoriasis vulgaris	GSE14905	Skin tissue
+95	Leukemia, Acute Megakaryocytic	GSE2433	Megakaryocyte
+97	Burn	GSE802	Hepatic Tissue
+98	Appendicitis	GSE9579	Appendix

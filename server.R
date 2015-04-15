@@ -12,6 +12,7 @@ source('dataAccess.R')
 source('preprocess.R')
 source('datain.R')
 source('chdir.R')
+source('diseases.R')
 source('paea.R')
 source('misc.R')
 source('stats.R')
@@ -25,7 +26,8 @@ options(shiny.maxRequestSize=120*1024^2)
 # Meta data of all gmt files from the Enrichr API
 meta_gmts <- getGroupedLibraries()
 meta_gmts <- as.data.frame(meta_gmts)
-
+# Meta data for disease signatures from file
+disease_sigs_choices <- read_disease_meta(config$dz_meta)
 
 shinyServer(function(input, output, session) {
     
@@ -202,6 +204,9 @@ shinyServer(function(input, output, session) {
         if(datain_valid()) {
             nrow(datain())
         }
+        if(!is.null(values$chdir)){
+            length(values$chdir$results[[1]])
+        }
     })
     
     
@@ -210,6 +215,9 @@ shinyServer(function(input, output, session) {
     output$ngenes <- renderText({
         if(datain_valid()) {
             nlevels(datain()[[1]])
+        }
+        if(!is.null(values$chdir)){
+            length(values$chdir$results[[1]])
         }
     })
 
@@ -249,7 +257,25 @@ shinyServer(function(input, output, session) {
 
     })
     
-    
+
+    #' chdir panel - disease signature choice
+    updateSelectizeInput(
+        session, 'disease_sigs_choices',
+        choices = disease_sigs_choices, server = TRUE
+        )
+
+    #' chdir panel - disease sig observe
+    #'
+    observe({
+        if(is.null(input$fetch_disease_sig) || input$fetch_disease_sig == 0) { return() }
+        if(input$disease_sigs_choices == '') return()        
+        uid <- isolate(input$disease_sigs_choices)
+        signature_path <- paste0('data/dz_signatures/', uid, '.json')
+        values$chdir <- prepare_disease_signature(signature_path) # load disease signature
+        # TODO: add meta data to display
+    })
+
+
     #' chdir tab - set plots visibility
     #'
     output$show_chdir_results <- reactive({ !is.null(values$chdir) })

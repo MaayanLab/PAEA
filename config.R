@@ -6,5 +6,7 @@ config <- list(
     # Number of bars in the PAEA bar plot
     num_paea_bars = 15,
     # Number of digits to keep for displaying the expression data
-    digits = 3
+    digits = 3,
+    # Path of the meta data file of disease signatures
+    dz_meta = 'data/meta.txt'
 )
