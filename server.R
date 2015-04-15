@@ -267,13 +267,18 @@ shinyServer(function(input, output, session) {
 
     #' chdir panel - disease sig observe
     #'
+    values$fetch_disease_sig <- isolate(input$fetch_disease_sig)
     observe({
-        if(is.null(input$fetch_disease_sig) || input$fetch_disease_sig == 0) { return() }
-        if(input$disease_sigs_choices == '') return()        
-        uid <- isolate(input$disease_sigs_choices)
-        signature_path <- paste0('data/dz_signatures/', uid, '.json')
-        values$chdir <- prepare_disease_signature(signature_path) # load disease signature
-        # TODO: add meta data to display
+        if(is.null(input$fetch_disease_sig) || input$fetch_disease_sig == values$fetch_disease_sig) { return() }
+        else{ # botton clicked
+            if (input$disease_sigs_choices != ''){
+                values$fetch_disease_sig <- isolate(input$fetch_disease_sig)
+                uid <- isolate(input$disease_sigs_choices)
+                signature_path <- paste0('data/dz_signatures/', uid, '.json')
+                values$chdir <- prepare_disease_signature(signature_path) # load disease signature
+                values$paea <- NULL # empty paea results for previously loaded chdir
+            }
+        }
     })
 
 
