@@ -265,16 +265,15 @@ shinyUI(
         analyze_panel,
         manual_panel,
         about_panel,
-
         tags$head(
+            tags$link(rel='icon', type="image/png", href="favicon.png"),
             includeCSS('www/css/tourist.css'),
-            tags$script(src='//code.jquery.com/jquery-1.11.2.min.js'),
+            tags$script(src='js/jquery-1.11.2.min.js'),
             tags$script(src='js/underscore-min.js'),
             tags$script(src='js/backbone-min.js'),
             tags$script(src='js/tourist.min.js'),
             includeScript('www/js/analyze-tour.js'),
             includeScript('www/js/ga.js'),
-            # includeScript('www/js/load_manual.js')
             tags$script(src='js/load_manual.js')
             ),
         collapsible=TRUE
