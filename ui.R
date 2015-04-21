@@ -213,7 +213,9 @@ analyze_panel <- tabPanel(
 #'
 manual_panel <- tabPanel(
     title = 'Manual',
-    fluidRow(column(10, offset=1))
+    fluidRow(column(10, 
+        div(id='manual', 'bla')
+        , offset=1))
     )
 
 #' About tab
@@ -266,11 +268,14 @@ shinyUI(
 
         tags$head(
             includeCSS('www/css/tourist.css'),
+            tags$script(src='//code.jquery.com/jquery-1.11.2.min.js'),
             tags$script(src='js/underscore-min.js'),
             tags$script(src='js/backbone-min.js'),
             tags$script(src='js/tourist.min.js'),
             includeScript('www/js/analyze-tour.js'),
-            includeScript('www/js/ga.js')
+            includeScript('www/js/ga.js'),
+            # includeScript('www/js/load_manual.js')
+            tags$script(src='js/load_manual.js')
             ),
         collapsible=TRUE
         )

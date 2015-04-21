@@ -1,0 +1,98 @@
+<html>
+<head>
+	<title>PAEA User Manual</title>
+</head>
+<body>
+	<div class="header">
+		<h1 align="center">PAEA: Principle Angle Enrichment Analysis</h1>
+		<h2 align="center">Web Application User Manual</h2>
+		<h4 align="center">Written by Zichen Wang and Avi Ma'ayan</h4>
+		<h4 align="center">Updated on 4/21/2015</h4>
+	</div>
+	<div class="content">
+		<h4>Table of Contents</h4>
+		<ol>
+			<li><a href="#abstract">Abstract</a></li>
+			<li><a href="#installation">Installation and Requirements</a></li>
+			<li><a href="#use_cases">PAEA Use Cases</a></li>
+			<ol>
+				<li><a href="#use_case_a">Analyze custom gene/protein expression data</a></li>
+				<li><a href="#use_case_b">Explore disease signatures extracted from GEO</a></li>
+			</ol>
+		</ol>
+	</div>
+
+	<div class="body">
+		<h4 id="abstract">Abstract</h4>
+		<p>Functional analysis of genome-wide differential expression is central to biological investigations. Here we present a new multivariate approach to gene-set enrichment called Principal Angle Enrichment Analysis (PAEA). PAEA uses the geometrical concept of the principal angle to quantify gene-set enrichment. We find that PAEA outperforms a selection of commonly used gene set enrichment methods including GSEA. To benchmark PAEA with other enrichment methods we use real data. We examined the ranking of transcription factors by performing enrichment analysis on gene expression signatures from many studies that knocked-down, knocked-out or over-expressed transcription factors, and performed the enrichment analysis with a library of gene sets created from ChIP-Seq data profiling the same transcription factors. We also found that PAEA was able to rank better aging-related phenotype-terms from a collection of gene expression profiling studies where tissue from young adults was compared to tissue of elderly subjects. PAEA is implemented as a user-friendly R Shiny gene-set enrichment web application with over 70 gene set libraries available for enrichment analysis. Canned enrichment analysis for over 700 disease signatures extracted from GEO is provided with the application which is freely available at: <a href="http://amp.pharm.mssm.edu/PAEA">http://amp.pharm.mssm.edu/PAEA</a>.</p>
+		<h4 id="installation">Installation and Requirements</h4>
+		<p>The PAEA web application requires Internet connection and a modern browser capable of supporting HTML5. Such browsers include Google Chrome 10, FireFox 3.6, Opera 11.01, Safari 5 and IE10 or higher versions. To test your browser compatibility you should be able to see the following screen view (Fig1) when pointing your browser to <a href="http://amp.pharm.mssm.edu/PAEA">http://amp.pharm.mssm.edu/PAEA</a>. </p>
+
+		<div id="fig1" class="center-block">
+			<img src="html/images/Fig1.png" class="img-responsive">
+			<div class="caption">
+				<span><strong>Figure 1</strong> The PAEA web application user interface. </span>
+			</div>
+		</div>
+
+		<h4 id="use_cases">PAEA Use Cases</h4>
+		<p>The PAEA web application can be used for analyzing custom gene/protein expression datasets as well as exploring the enriched biological terms for over 700 disease signatures extracted from the Gene Expression Omnibus (GEO). </p>
+		<h5 id="use_case_a"><i>Analyzing your own gene or protein expression data</i></h5>
+		<p>To analyze your own gene or protein expression dataset, the expression data should be uploaded to the PAEA web application through the "Upload dataset" tab. The dataset should be stored in a plain-text file. The data in the text file should be organized as a table where entries are tab, semi-colon or comma delimited. In this data file, the first column should be gene names, and the other columns should be expression values across samples. The first row should be a header specifying the names of samples. A valid example dataset file is shown in Fig2. Although opened in Excel, it is a text file.</p>
+
+		<div id="fig2" class="center-block">
+			<img src="html/images/Fig2.png" class="img-responsive">
+			<div class="caption">
+				<span><strong>Figure 2</strong> Snapshot of a properly formatted dataset file that can be used as input to PAEA. </span>
+			</div>
+		</div>
+
+		<p>Once the dataset file is successfully uploaded, the uploaded data is available for preview in a searchable table as well as through various plots (Fig. 3).</p>
+		<p>With these plots users can examine the distribution of the expression values of genes within each sample. It is highly recommended to perform log2 transformation at the "Preprocessing" step if the data is not normally distributed. Control samples should be chosen using the check boxes. Unselected samples are automatically considered experimentally perturbed samples. There should be at least two samples (replicates) in each condition. This is a requirement for all statistical tests that perform differential expression analysis including the Characteristic Direction method <a href="#ref1">[1]</a>.</p> 
+
+		<div id="fig3" class="center-block">
+			<img src="html/images/Fig3.png" class="img-responsive">
+			<div class="caption">
+				<span><strong>Figure 3</strong> Preview of a table that displays the uploaded dataset. </span>
+			</div>
+		</div>
+
+		<p>The Characteristic Direction (CHDIR) analysis can be performed in the second tab of the PAEA web-application to compute the differentially expressed genes (DEGs). Parameters for the CHDIR include: Gamma, which is the shrinkage parameter used for regularization. This should be a number between 0 and 1. Nnull is the number of random vectors used to estimate the significance observed CHDIR vector; and random seed, which is needed for the reproducibility of the results. Once the CHDIR computation is complete, the results are displayed in a bar graph showing the top DEGs (Fig. 4). A positive coefficient denotes up-regulated genes, and a negative coefficient denotes down-regulated genes. Prioritized DEGs can also be downloaded as text file for analysis with other tools. </p>
+
+		<div id="fig4" class="center-block">
+			<img src="html/images/Fig4.png" class="img-responsive">
+			<div class="caption">
+				<span><strong>Figure 4</strong> Visualization of the CHDIR results. </span>
+			</div>
+		</div>
+
+		<p>Once the CHDIR analysis is completed, users can switch to the Principle Angle Enrichment Analysis tab to perform enrichment analysis applied to the computed expression signature (Fig. 5). There are over 70 gene-set libraries supported by PAEA covering different the following categories: Transcription, Pathways, Ontologies, Drugs/Diseases, Cell Type and Miscellaneous. These libraries are borrowed from the tool Enrichr <a href="#ref2">[2]</a> and use the same underlying database. PAEA analysis will be automatically performed once a gene-set library is selected. Enrichment analysis for some gene-set libraries may take over >10 seconds to run, and thus a progress indicator is provided. Once the PAEA analysis is complete, enriched biological terms are sorted by their significance and displayed in a searchable table. A bar graph is provided as an alternative visualization of the results, showing the top enriched terms.</p>
+
+		<div id="fig5" class="center-block">
+			<img src="html/images/Fig5.png" class="img-responsive">
+			<div class="caption">
+				<span><strong>Figure 5</strong> Table displaying PAEA results using the ChEA gene set library <a href="#ref3">[3]</a>. </span>
+			</div>
+		</div>
+
+		<h5 id="use_case_b"><i>Exploring the mechanisms of disease with the canned disease expression signatures</i></h5>
+		<p>The PAEA web application comes with canned analysis for over 700 disease gene expression signatures extracted from GEO. These signatures were extracted manually by identifying genome-wide gene expression studies where normal healthy tissue was compared with disease tissue samples. To explore mechanisms of disease, and identify potential drugs that can reverse expression in disease, users can directly switch to the CHDIR tab (Fig. 6) and check the "Disease signature” option. Once this option is checked, users can search for diseases by name. Metadata about each signature includes the tissue/cell-line and the GEO accession numbers of the study that performed the expression experiments. Once the disease signature is loaded, users can switch to the PAEA tab to perform enrichment analyses. </p>
+
+		<div id="fig6" class="center-block">
+			<img src="html/images/Fig6.png" class="img-responsive">
+			<div class="caption">
+				<span><strong>Figure 6</strong> Loading of a disease signatures. </span>
+			</div>
+		</div>
+	</div>
+	<div class="refs">
+		<h4>References</h4>
+		<ol>
+			<li id="ref1">Clark NR, Hu KS, Feldmann AS, Kou Y, Chen EY, Duan Q, Ma'ayan A: <strong>The characteristic direction: a geometrical approach to identify differentially expressed genes.</strong> <i>BMC Bioinformatics</i> 2014, 15:79.</li>
+			<li id="ref2">Chen E, Tan C, Kou Y, Duan Q, Wang Z, Meirelles G, Clark N, Ma'ayan A: <strong>Enrichr: interactive and collaborative HTML5 gene list enrichment analysis tool.</strong> <i>BMC Bioinformatics</i> 2013, 14(1):128.</li>
+			<li id="ref3">Lachmann A, Xu H, Krishnan J, Berger SI, Mazloom AR, Ma'ayan A: <strong>ChEA: transcription factor regulation inferred from integrating genome-wide ChIP-X experiments.</strong> <i>Bioinformatics</i> 2010, 26(19):2438-2444.</li>
+		</ol>
+	</div>
+
+</body>
+</html>
