@@ -205,8 +205,8 @@ shinyServer(function(input, output, session) {
         if(datain_valid()) {
             nrow(datain())
         }
-        if(!is.null(values$chdir)){
-            length(values$chdir$results[[1]])
+        else{
+            if(!is.null(values$chdir)) { length(values$chdir$results[[1]]) }
         }
     })
     
@@ -217,8 +217,8 @@ shinyServer(function(input, output, session) {
         if(datain_valid()) {
             nlevels(datain()[[1]])
         }
-        if(!is.null(values$chdir)){
-            length(values$chdir$results[[1]])
+        else{
+            if(!is.null(values$chdir)) { length(values$chdir$results[[1]]) }
         }
     })
 

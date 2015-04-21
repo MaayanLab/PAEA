@@ -209,25 +209,50 @@ analyze_panel <- tabPanel(
         )
     )
 
+#' Manual panel
+#'
+manual_panel <- tabPanel(
+    title = 'Manual',
+    fluidRow(column(10, offset=1))
+    )
+
 #' About tab
 #'
 about_panel <- tabPanel(
     title = 'About',
-    fluidRow(column(12,
+    fluidRow(column(10,
+        h4('Abstract:'),
+        p('Functional analysis of genome-wide differential expression is central to biological investigations. Here we present a new multivariate approach to gene-set enrichment called Principal Angle Enrichment Analysis (PAEA). PAEA uses the geometrical concept of the principal angle to quantify gene-set enrichment. We find that PAEA outperforms a selection of commonly used gene set enrichment methods including GSEA. To benchmark PAEA with other enrichment methods we use real data. We examined the ranking of transcription factors by performing enrichment analysis on gene expression signatures from many studies that knocked-down, knocked-out or over-expressed transcription factors, and performed the enrichment analysis with a library of gene sets created from ChIP-Seq data profiling the same transcription factors. We also found that PAEA was able to rank better aging-related phenotype-terms from a collection of gene expression profiling studies where tissue from young adults was compared to tissue of elderly subjects. PAEA is implemented as a user-friendly R Shiny gene-set enrichment web application with over 70 gene set libraries available for enrichment analysis. Canned enrichment analysis for over 700 disease signatures extracted from GEO is provided with the application which is freely available at: ', a('http://amp.pharm.mssm.edu/PAEA', href='http://amp.pharm.mssm.edu/PAEA'), '.')
+        , offset=1)
+        ),
+    fluidRow(column(10,
         tags$dl(
             tags$dt('External links:'),
             tags$dd(a('NASB Crowdsourcing portal', href='http://maayanlab.net/crowdsourcing/')),
-            tags$dd(a('The development version of this app', href='https://zero323.shinyapps.io/nasb-microtask-viewer-dev/'))
+            tags$dd(a('The development version of this app', href='https://zero323.shinyapps.io/nasb-microtask-viewer-dev/')),
+            tags$dd(a('GeoDE R package', href='http://cran.r-project.org/web/packages/GeoDE/index.html')),
+            tags$dd(a('Enrichr', href='http://amp.pharm.mssm.edu/Enrichr/')),
+            tags$dd(a("Ma'ayan Lab", href='http://icahn.mssm.edu/research/labs/maayan-laboratory')),
+            tags$dd(a("BD2K-LINCS Data Coordination and Integration Center", href='http://lincs-dcic.org/#/'))
+            ) 
+        , offset=1)),
+    fluidRow(column(10,
+        tags$dl(
+            tags$dt('Contact:'),
+            span("This web application is created by Zichen Wang and Avi Ma'ayan, PhD from Icahn School of Medicine at Mount Sinai. Feel free to contact us for bug reports and suggestions."),
+            tags$dd("Avi Ma'ayan, PhD:", a('avi.maayan {at} mssm.edu', href='mailto:avi.maayan@mssm.edu', target="_top")),
+            tags$dd("Zichen Wang:", a('zichen.wang {at} mssm.edu', href='mailto:zichen.wang@mssm.edu', target="_top"))
             )
-        )),
-
-    fluidRow(column(12,
+        , offset=1)),    
+    fluidRow(column(10,
         tags$dl(
             tags$dt('Last update:'),
             tags$dd(textOutput('last_modified'))
             )
-        ))
+        , offset=1))
+
     )
+
 
 #' Complete UI
 #'
@@ -236,6 +261,7 @@ shinyUI(
         title='PAEA: Principle Angle Enrichment Analysis',
         footer=column(12),
         analyze_panel,
+        manual_panel,
         about_panel,
 
         tags$head(
