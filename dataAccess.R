@@ -58,3 +58,12 @@ getTerms <- function(libName){
                                   ret})
   raggedArray
 }
+
+getCounterValue <- function(){
+  countTable <- dplyr::tbl(src = databaseConn, "counters")
+  as.data.frame(countTable)$count[3]
+}
+
+updateCounterValue <- function(){
+  
+}

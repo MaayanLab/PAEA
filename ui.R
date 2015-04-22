@@ -263,6 +263,7 @@ shinyUI(
     navbarPage(
         title='PAEA: Principle Angle Enrichment Analysis',
         id='navbar',
+        header=div(textOutput('counter_value', inline=TRUE), "datasets analyzed!", id="counter_div"),
         footer=column(12),
         analyze_panel,
         manual_panel,
@@ -277,7 +278,8 @@ shinyUI(
             includeScript('www/js/analyze-tour.js'),
             includeScript('www/js/ga.js'),
             tags$script(src='js/load_manual.js'),
-            tags$script(src='//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52026ded4b51162b', async="async")
+            tags$script(src='//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52026ded4b51162b', async="async"),
+            includeCSS('www/css/main.css')
             ),
         collapsible=TRUE
         )

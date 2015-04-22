@@ -31,7 +31,8 @@ meta_gmts <- as.data.frame(meta_gmts)
 disease_sigs_choices <- read_disease_meta(config$dz_meta)
 
 shinyServer(function(input, output, session) {
-    
+    counter_value <- getCounterValue()
+    output$counter_value <- renderText({ counter_value })
     output$last_modified <- renderText({ last_modified })
     
     values <- reactiveValues()
