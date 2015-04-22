@@ -49,8 +49,6 @@ getTerms <- function(libName){
   terms <- dplyr::select(gsl, term.name, gene.name)
   terms <- dplyr::arrange(terms, term.name)
   terms <- as.data.frame(terms, n=-1)
-
-
   starts <- which(!duplicated(terms$term.name))
   start_ <<- 1
   raggedArray <- lapply(starts[-1], function(x) {ret <- c(terms$term.name[start_], terms$gene.name[start_:x])
@@ -65,5 +63,8 @@ getCounterValue <- function(){
 }
 
 updateCounterValue <- function(){
-  
+  # dplyr doesn't seem to be able to update MySQL table
+  conn <- RMySQL::dbConnect(RMySQL::MySQL(), dbname = 'enrichr', host = 'amp.pharm.mssm.edu', user = 'root', password = '4reYuXuhuz')
+  RMySQL::dbSendQuery(conn, "UPDATE counters SET count=count+1 WHERE name='paea'")
+  RMySQL::dbDisconnect(conn)
 }

@@ -93,3 +93,24 @@ chdir_analysis_wrapper <- function(datain, sampleclass, gammas, nnull) {
     chdir
 }
 
+#' send POST request to Enrichr API to save a gene list
+# @param chdir: the output from chdir_analysis_wrapper function
+post_chdir_to_enrichr <- function(chdir) {
+    res <- chdir$results[[1]]
+    genes <- names(res)
+    gene_list_string <- ''
+    lines <- c()
+    for (i in 1:length(res)) {
+        line <- paste(genes[i], res[[i]], sep=',')
+        lines <- c(lines, line)
+    }
+    gene_list_string <- paste(lines, sep='\n')
+    response <- httr::POST('http://amp.pharm.mssm.edu/Enrichr/enrich', body = list(
+        list = lines,
+        inputMethod = "PAEA",
+        description='testing paea'
+        ),
+    encode='multipart'
+    )
+    response
+}

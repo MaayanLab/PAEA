@@ -1,3 +1,7 @@
 #counter_div {
 	text-align:right;
 }
+#counter_value {
+	color: steelblue;
+	font-style: bold;
+}

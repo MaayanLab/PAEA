@@ -8,6 +8,8 @@ library(stringi)
 library(Matrix)
 library(MASS)
 library(rjson)
+library(RMySQL)
+library(httr)
 
 source('dataAccess.R')
 source('preprocess.R')
@@ -257,6 +259,10 @@ shinyServer(function(input, output, session) {
             }
         )
 
+        updateCounterValue()
+
+        chdir <- isolate(values$chdir)
+        res<-post_chdir_to_enrichr(chdir)
     })
     
 
