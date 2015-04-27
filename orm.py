@@ -20,7 +20,7 @@ class Association(Base):
     list_id = Column(Integer, ForeignKey('lists.id'), primary_key=True)
     gene_id = Column(Integer, ForeignKey('genes.id'), primary_key=True)
     coef = Column(Float)
-    gene = relationship("Gene", backref="list_assocs")
+    gene = relationship("Gene")
 
 
 class List(Base):
@@ -31,7 +31,7 @@ class List(Base):
 	desc = Column(Text)
 	time = Column(DATETIME)
 
-	genes = relationship('Association', backref='list')
+	genes = relationship('Association')
 
 	def __repr__(self):
 		return "<List(hash='%s', desc='%s')>" % (self.hash, self.desc)
@@ -50,10 +50,17 @@ class Gene(Base):
 Base.metadata.create_all(engine)
 
 ## functions to add and retrieve objects 
-def _init_gene(genename):
-	# init a Gene instance
-	gene = Gene(name=genename)
-	return gene
+def get_or_create(session, model, **kwargs):
+	# init a instance if not exists
+	# http://stackoverflow.com/questions/2546207/does-sqlalchemy-have-an-equivalent-of-djangos-get-or-create
+	instance = session.query(model).filter_by(**kwargs).first()
+	if instance:
+		return instance
+	else:
+		instance = model(**kwargs)
+		session.add(instance)
+		session.commit()
+		return instance	
 
 def _init_list(hash_str, desc=None):
 	# init a List instance
@@ -67,13 +74,14 @@ def add_associations(hash_str, genenames, coefs, session, desc=None):
 	l = _init_list(hash_str, desc=desc)
 	for coef, genename in zip(coefs, genenames):
 		a = Association(coef=coef)
-		a.gene = _init_gene(genename)
+		a.gene = get_or_create(session, Gene, name=genename)
 		l.genes.append(a)
 	try:
-		session.add(a)
+		session.add(l)
 		session.commit()
-	except:
+	except Exception as e:
 		session.rollback()
+		print e
 		pass
 	return
 
