@@ -3,13 +3,13 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import ForeignKey, Column, Integer, String, Table, Float, Text, DATETIME
 from sqlalchemy.orm import backref, relationship
-from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy.orm import sessionmaker
 
 from datetime import datetime
 
-engine = create_engine('mysql://root:@localhost/paea')
+db_config = open('db.conf').read()
+engine = create_engine(db_config)
 Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-# session = scoped_session(Session)
 session = Session()
 
 ## ORMs of the database

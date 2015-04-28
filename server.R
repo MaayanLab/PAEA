@@ -48,7 +48,7 @@ shinyServer(function(input, output, session) {
             if (session$clientData$url_search == "") {
                 values$chdir <- NULL
             } else {
-                values$chdir <- get_chdir_from_flask(session)
+                values$chdir <- get_chdir_from_flask(session, config$api_url)
                 if (!is.null(values$chdir)) {
                     updateTextInput(session, "desc", value = values$chdir$desc)
                 }
@@ -281,7 +281,7 @@ shinyServer(function(input, output, session) {
         # save the list to database `paea`
         chdir <- isolate(values$chdir)
         desc <-input$desc
-        response <- post_chdir_to_flask(chdir, desc)
+        response <- post_chdir_to_flask(chdir, desc, config$api_url)
     })
     
 

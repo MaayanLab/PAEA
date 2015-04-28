@@ -118,14 +118,14 @@ post_chdir_to_enrichr <- function(chdir) {
 #' send POST request to the flask server to save a gene list
 # @param chdir: the output from chdir_analysis_wrapper function
 # @param desc: description for the chdir signature
-post_chdir_to_flask <- function(chdir, desc) {
+post_chdir_to_flask <- function(chdir, desc, api_url) {
     res <- chdir$results[[1]]
     genes <- names(res)
     coefs <- c()
     for (i in 1:length(res)) {
         coefs <- c(coefs, res[[i]])
     }
-    response <- httr::POST('http://127.0.0.1:5050/api', body = list(
+    response <- httr::POST(api_url, body = list(
         genes = genes,
         coefs = coefs,
         desc=desc
@@ -137,10 +137,10 @@ post_chdir_to_flask <- function(chdir, desc) {
 
 #' send GET request to the flask server to retrieve a gene list
 # @param session: session from shinyServer
-get_chdir_from_flask <- function(session) {
+get_chdir_from_flask <- function(session, api_url) {
     url_query <- shiny::parseQueryString(session$clientData$url_search)
     hash_str <- url_query$id
-    response <- httr::GET('http://127.0.0.1:5050/api', query=list(id=hash_str))
+    response <- httr::GET(api_url, query=list(id=hash_str))
     if (response$status_code == 200) {
         response_text <- httr::content(response, 'text')
         geneset <- rjson::fromJSON(response_text)

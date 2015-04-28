@@ -10,5 +10,7 @@ config <- list(
     # Path of the meta data file of disease signatures
     dz_meta = 'data/meta.txt',
     # Port for the flask server
-    port = 5050
+    port = 5050,
+    # URL for the `paea` API
+    api_url = 'http://127.0.0.1:5050/api'
 )
