@@ -201,7 +201,12 @@ paea_tab <- tabPanel(
 #'
 analyze_panel <- tabPanel(
     title='Analyze',
-    textInput('desc', 'Enter a brief description of the analysis (optional)'),
+    fluidRow(column(8, 
+        textInput('desc', 'Enter a brief description of the analysis (optional)')
+        ),
+    column(4, div(textOutput('counter_value', inline=TRUE), "datasets analyzed!", id="counter_div")
+        )
+    ),
     tabsetPanel(
         id='workflow_panel',
         upload_tab,
@@ -215,7 +220,7 @@ analyze_panel <- tabPanel(
 manual_panel <- tabPanel(
     title = 'Manual',
     fluidRow(column(10, 
-        div(id='manual', 'bla')
+        div(id='manual', '')
         , offset=1))
     )
 
@@ -264,7 +269,7 @@ shinyUI(
     navbarPage(
         title='PAEA: Principle Angle Enrichment Analysis',
         id='navbar',
-        header=div(textOutput('counter_value', inline=TRUE), "datasets analyzed!", id="counter_div"),
+        # header=div(textOutput('counter_value', inline=TRUE), "datasets analyzed!", id="counter_div"),
         footer=column(12),
         analyze_panel,
         manual_panel,

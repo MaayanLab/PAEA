@@ -21,8 +21,8 @@ def post_signature():
 	elif request.method == 'GET':
 		hash_str = request.args.get('id', '')
 		try:
-			genes, coefs = get_associations(hash_str, session)
-			data = {'genes':genes, 'coefs':coefs}
+			genes, coefs, desc = get_associations(hash_str, session)
+			data = {'genes':genes, 'coefs':coefs, 'desc':desc}
 			return json.dumps(data)
 		except:
 			return ('', 400, '')

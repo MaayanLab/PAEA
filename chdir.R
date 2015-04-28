@@ -147,7 +147,7 @@ get_chdir_from_flask <- function(session) {
         b <- matrix(geneset$coefs, dimnames=list(geneset$genes))
         b <- list(b)
         results <- lapply(b, function(x) {x[sort.list(x^2,decreasing=TRUE),]})
-        chdir_ouput <- list(results=results, chdirprops=list(chdir=b, pca2d=NULL, chdir_pca2d=NULL))
+        chdir_ouput <- list(results=results, chdirprops=list(chdir=b, pca2d=NULL, chdir_pca2d=NULL), desc=geneset$desc)
         chdir_ouput        
         } else {
             NULL

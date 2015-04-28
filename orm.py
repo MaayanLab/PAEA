@@ -94,5 +94,5 @@ def get_associations(hash_str, session):
 	for assoc in l.genes:
 		coefs.append(assoc.coef)
 		genenames.append(assoc.gene.name)
-	return genenames, coefs
+	return genenames, coefs, l.desc
 

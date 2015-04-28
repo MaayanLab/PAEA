@@ -44,13 +44,19 @@ shinyServer(function(input, output, session) {
     
     # retrieve chdir from database url_search is available
     observe({
-            if (is.null(session$clientData$url_search)) {
-                values$chdir <- NULL    
+        updateTextInput(session, "desc", value = input$desc)
+            if (session$clientData$url_search == "") {
+                values$chdir <- NULL
             } else {
                 values$chdir <- get_chdir_from_flask(session)
+                if (!is.null(values$chdir)) {
+                    updateTextInput(session, "desc", value = values$chdir$desc)
+                }
             }
         })
     
+
+
     values$control_samples <- NULL
     values$treatment_samples <- NULL
     values$last_error <- NULL
