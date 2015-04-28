@@ -20,9 +20,12 @@ def post_signature():
 
 	elif request.method == 'GET':
 		hash_str = request.args.get('id', '')
-		genes, coefs = get_associations(hash_str, session)
-		data = {'genes':genes, 'coefs':coefs}
-		return json.dumps(data)
+		try:
+			genes, coefs = get_associations(hash_str, session)
+			data = {'genes':genes, 'coefs':coefs}
+			return json.dumps(data)
+		except:
+			return ('', 400, '')
 
 if __name__ == '__main__':
 	if len(sys.argv) > 1:

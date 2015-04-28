@@ -41,8 +41,16 @@ shinyServer(function(input, output, session) {
     output$last_modified <- renderText({ last_modified })
     
     values <- reactiveValues()
-    # Not required. Just to remind myself what is stored inside
-    values$chdir <- NULL
+    
+    # retrieve chdir from database url_search is available
+    observe({
+            if (is.null(session$clientData$url_search)) {
+                values$chdir <- NULL    
+            } else {
+                values$chdir <- get_chdir_from_flask(session)
+            }
+        })
+    
     values$control_samples <- NULL
     values$treatment_samples <- NULL
     values$last_error <- NULL

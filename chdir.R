@@ -136,14 +136,20 @@ post_chdir_to_flask <- function(chdir, desc) {
 }
 
 #' send GET request to the flask server to retrieve a gene list
-# @param hash_str: the output from chdir_analysis_wrapper function
-get_chdir_from_flask <- function(hash_str) {
+# @param session: session from shinyServer
+get_chdir_from_flask <- function(session) {
+    url_query <- shiny::parseQueryString(session$clientData$url_search)
+    hash_str <- url_query$id
     response <- httr::GET('http://127.0.0.1:5050/api', query=list(id=hash_str))
-    response_text <- httr::content(response, 'text')
-    geneset <- rjson::fromJSON(response_text)
-    b <- matrix(geneset$coefs, dimnames=list(geneset$genes))
-    b <- list(b)
-    results <- lapply(b, function(x) {x[sort.list(x^2,decreasing=TRUE),]})
-    chdir_ouput <- list(results=results, chdirprops=list(chdir=b, pca2d=NULL, chdir_pca2d=NULL))
-    chdir_ouput
+    if (response$status_code == 200) {
+        response_text <- httr::content(response, 'text')
+        geneset <- rjson::fromJSON(response_text)
+        b <- matrix(geneset$coefs, dimnames=list(geneset$genes))
+        b <- list(b)
+        results <- lapply(b, function(x) {x[sort.list(x^2,decreasing=TRUE),]})
+        chdir_ouput <- list(results=results, chdirprops=list(chdir=b, pca2d=NULL, chdir_pca2d=NULL))
+        chdir_ouput        
+        } else {
+            NULL
+        }
 }
