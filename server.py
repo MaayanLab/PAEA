@@ -1,5 +1,5 @@
 # python server to handle POST request
-import os, sys, json
+import sys, json, hashlib
 from flask import Flask, request
 from orm import *
 
@@ -9,11 +9,11 @@ app.debug = True
 @app.route('/api', methods=['POST', 'GET'])
 def post_signature():
 	if request.method == 'POST':
-		hash_str = os.urandom(16).encode('hex')
 		data = json.loads(request.data)
 		genes = data['genes']
 		coefs = data['coefs']
 		desc = data['desc']
+		hash_str = hashlib.md5(str(data)).hexdigest()
 		## save into the db
 		add_associations(hash_str, genes, coefs, session, desc=desc)
 		return hash_str
