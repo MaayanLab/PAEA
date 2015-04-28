@@ -71,8 +71,10 @@ def _init_list(hash_str, desc=None):
 def add_associations(hash_str, genenames, coefs, session, desc=None):
 	# add associations (a gene list with all the genes and coefs from post request)
 	# into the database
-	# l = _init_list(hash_str, desc=desc)
 	l = get_or_create(session, List, hash=hash_str, desc=desc)
+	if l.time is None:
+		now = datetime.now()
+		l.time = now
 	for coef, genename in zip(coefs, genenames):
 		a = Association(coef=coef)
 		a.gene = get_or_create(session, Gene, name=genename)
