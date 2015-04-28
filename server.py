@@ -1,5 +1,5 @@
 # python server to handle POST request
-import os, json
+import os, sys, json
 from flask import Flask, request
 from orm import *
 
@@ -25,5 +25,12 @@ def post_signature():
 		return json.dumps(data)
 
 if __name__ == '__main__':
-	app.run(port=5050)
-	
+	if len(sys.argv) > 1:
+		port = int(sys.argv[1])
+	else:
+		port = 5050
+	if len(sys.argv) > 2:
+		host = sys.argv[2]
+	else:
+		host = '127.0.0.1'
+	app.run(host=host, port=port)

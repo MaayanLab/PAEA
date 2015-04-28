@@ -22,6 +22,9 @@ source('stats.R')
 source('downloads_handlers.R', local=TRUE)
 source('config.R', local=TRUE)
 
+# run the flask server
+system(paste('python server.py', config$port), wait=FALSE)
+
 last_modified <- sort(sapply(list.files(), function(x) strftime(file.info(x)$mtime)), decreasing=TRUE)[1]
 
 options(shiny.maxRequestSize=120*1024^2) 

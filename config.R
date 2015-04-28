@@ -8,5 +8,7 @@ config <- list(
     # Number of digits to keep for displaying the expression data
     digits = 3,
     # Path of the meta data file of disease signatures
-    dz_meta = 'data/meta.txt'
+    dz_meta = 'data/meta.txt',
+    # Port for the flask server
+    port = 5050
 )
