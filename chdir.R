@@ -114,3 +114,36 @@ post_chdir_to_enrichr <- function(chdir) {
     )
     response
 }
+
+#' send POST request to the flask server to save a gene list
+# @param chdir: the output from chdir_analysis_wrapper function
+# @param desc: description for the chdir signature
+post_chdir_to_flask <- function(chdir, desc) {
+    res <- chdir$results[[1]]
+    genes <- names(res)
+    coefs <- c()
+    for (i in 1:length(res)) {
+        coefs <- c(coefs, res[[i]])
+    }
+    response <- httr::POST('http://127.0.0.1:5050/api', body = list(
+        genes = genes,
+        coefs = coefs,
+        desc=desc
+        ),
+    encode='json'
+    )
+    response
+}
+
+#' send GET request to the flask server to retrieve a gene list
+# @param hash_str: the output from chdir_analysis_wrapper function
+get_chdir_from_flask <- function(hash_str) {
+    response <- httr::GET('http://127.0.0.1:5050/api', query=list(id=hash_str))
+    response_text <- httr::content(response, 'text')
+    geneset <- rjson::fromJSON(response_text)
+    b <- matrix(geneset$coefs, dimnames=list(geneset$genes))
+    b <- list(b)
+    results <- lapply(b, function(x) {x[sort.list(x^2,decreasing=TRUE),]})
+    chdir_ouput <- list(results=results, chdirprops=list(chdir=b, pca2d=NULL, chdir_pca2d=NULL))
+    chdir_ouput
+}

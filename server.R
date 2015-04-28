@@ -9,7 +9,7 @@ library(Matrix)
 library(MASS)
 library(rjson)
 library(RMySQL)
-# library(httr)
+library(httr)
 
 source('dataAccess.R')
 source('preprocess.R')
@@ -263,9 +263,11 @@ shinyServer(function(input, output, session) {
         )
 
         updateCounterValue()
-        # TOFIX
-        # chdir <- isolate(values$chdir)
-        # res<-post_chdir_to_enrichr(chdir)
+
+        # save the list to database `paea`
+        chdir <- isolate(values$chdir)
+        desc <-input$desc
+        response <- post_chdir_to_flask(chdir, desc)
     })
     
 

@@ -201,6 +201,7 @@ paea_tab <- tabPanel(
 #'
 analyze_panel <- tabPanel(
     title='Analyze',
+    textInput('desc', 'Enter a brief description of the analysis (optional)'),
     tabsetPanel(
         id='workflow_panel',
         upload_tab,
