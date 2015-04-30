@@ -10,6 +10,8 @@ library(MASS)
 library(rjson)
 library(RMySQL)
 library(httr)
+library(parallel)
+library(background)
 
 source('dataAccess.R')
 source('preprocess.R')
@@ -22,8 +24,6 @@ source('stats.R')
 source('downloads_handlers.R', local=TRUE)
 source('config.R', local=TRUE)
 
-# run the flask server
-system(paste('python server.py', config$port), wait=FALSE)
 
 last_modified <- sort(sapply(list.files(), function(x) strftime(file.info(x)$mtime)), decreasing=TRUE)[1]
 
@@ -48,7 +48,7 @@ shinyServer(function(input, output, session) {
             if (session$clientData$url_search == "") {
                 values$chdir <- NULL
             } else {
-                values$chdir <- get_chdir_from_flask(session, config$api_url)
+                values$chdir <- get_chdir_from_enrichr(session)
                 if (!is.null(values$chdir)) {
                     updateTextInput(session, "desc", value = values$chdir$desc)
                 }
@@ -278,10 +278,10 @@ shinyServer(function(input, output, session) {
 
         updateCounterValue()
 
-        # save the list to database `paea`
+        # save the list to database `enrichr`
         chdir <- isolate(values$chdir)
-        desc <-input$desc
-        response <- post_chdir_to_flask(chdir, desc, config$api_url)
+        desc <- isolate(input$desc)
+        future({ response <- post_chdir_to_enrichr(chdir, desc); print(content(response, 'text')) })
     })
     
 
@@ -440,7 +440,7 @@ shinyServer(function(input, output, session) {
             chdir_down_genes() %>% rename(Gene = g, 'Characteristic Direction Coefficient' = v)
         }
     })
-    
+
 
     #' paea panel - output a table of active gmt files
     #'
