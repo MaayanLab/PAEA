@@ -22,7 +22,6 @@ getActiveLibraries <- function(){
 
 getGroupedLibraries <- function(){
   meta_gmts <- getActiveLibraries()
-  meta_gmts <- dplyr::filter(meta_gmts, isFuzzy==0)
   cate <- getCategories()
   meta_gmts <- dplyr::inner_join(cate, meta_gmts, by="categoryId")
   meta_gmts %>% dplyr::arrange(categoryId) %>%
