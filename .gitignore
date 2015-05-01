@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 shinyapps
+db.conf
+*.pyc

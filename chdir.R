@@ -86,7 +86,7 @@ chdir_analysis_wrapper <- function(datain, sampleclass, gammas, nnull) {
         # Group by gene label and compute mean
         datain,
         sampleclass=sampleclass,
-        CalculateSig=TRUE,
+        CalculateSig=FALSE,
         gammas=gammas,
         nnull=nnull
     )
