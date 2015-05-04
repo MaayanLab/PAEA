@@ -23,6 +23,7 @@
 				<li><a href="#use_case_a">Analyze custom gene/protein expression data</a></li>
 				<li><a href="#use_case_b">Explore disease signatures extracted from GEO</a></li>
 			</ol>
+			<li><a href="#api">API</a></li>
 		</ol>
 	</div>
 
@@ -88,6 +89,94 @@
 				<span><strong>Figure 6</strong> Loading of a disease signatures. </span>
 			</div>
 		</div>
+
+		<h4 id="api">API</h4>
+		<p>The PAEA web application now provides API. Users can programmatically upload gene expression signatures calculated using the Characteristic Direction to our database and retrieve a dataset ID that can be used to view PAEA results with the specified dataset loaded.</p>
+		<h5>[POST] http://amp.pharm.mssm.edu/Enrichr/addList (encode: multipart)</h5>
+		<p>Returns a dataset id if successful</p>
+		<table class="table table-hover">
+			<tbody>
+				<tr>
+					<td>list</td><td>[String]</td><td>gene symbol followed by comma and CHDIR coefficient with each gene separated by a new line</td>
+				</tr>
+				<tr>
+					<td>inputMethod</td><td>[String]</td><td>PAEA</td>
+				</tr>
+				<tr>
+					<td>description</td><td>[String]</td><td>description of the signature</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h5>[GET] http://amp.pharm.mssm.edu/PAEA</h5>
+		<table class="table table-hover">
+			<tbody>
+				<tr>
+					<td>id</td><td>[String]</td><td>the dataset id returned from the POST request</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h5>Examples:</h5>
+		<ul class="nav nav-tabs">
+			<li role="presentation" class="active"><a href="#R" data-toggle="tab">R</a></li>
+			<li role="presentation"><a href="#python" data-toggle="tab">Python</a> </li>
+		</ul>
+		<div class="tab-content">
+			<div id="R" class="tab-pane fade in active">
+				<pre>
+<code class="r">
+require(httr)
+require(rjson)
+require(GeoDE)
+
+data(example_expression_data)
+data(example_sampleclass)
+data(example_gammas)
+chdir_analysis_example &lt;- chdirAnalysis(example_expression_data,example_sampleclass,example_gammas,CalculateSig=TRUE,nnull=10)
+
+results &lt;- chdir_analysis_example$results[[1]]
+genes &lt;- names(results)
+inputList &lt;- paste(genes, results, sep=',')
+response &lt;- POST("http://amp.pharm.mssm.edu/Enrichr/addList", encode="multipart", body = list(
+		list = paste(inputList, collapse='\n'),
+		inputMethod = "PAEA",
+		description="This is an example description"
+	))
+
+data &lt;- fromJSON(content(response, 'text'))
+paea_url &lt;- paste0('http://amp.pharm.mssm.edu/PAEA?id=', data$userListId)
+print(peae_url)
+</code>
+				</pre>
+			</div>
+
+			<div id="python" class="tab-pane fade">
+				<pre>
+<code class="python">
+import json
+import requests
+
+post_url = 'http://amp.pharm.mssm.edu/Enrichr/addList'
+base_url = 'http://amp.pharm.mssm.edu/PAEA?id='
+
+genes = ["MCL1", "LIMD2", "RPL27", "MRPS18A", "TBL1X", "SOD1", "DPP4", "NOX4"]
+coefs = [-0.607847190, 0.379125062, -0.347756748, 0.271886862, -0.208395793, 0.197962468, 0.178987554, 0.138640333]
+
+gene_list = ''
+for gene, coef in zip(genes, coefs):
+	gene_list += '%s,%s\n'% (gene, coef)
+
+data = {'list': gene_list, 'inputMethod': "PAEA", 'description':'descriptions ...'}
+r = requests.post(post_url, files=data)
+
+paea_url = base_url + str(json.loads(r.text)['userListId'])
+print(paea_url)
+</code>
+				</pre>
+			</div>
+		</div>
+
 	</div>
 	<div class="refs">
 		<h4>References</h4>

@@ -204,7 +204,8 @@ analyze_panel <- tabPanel(
     fluidRow(column(8, 
         textInput('desc', 'Enter a brief description of the analysis (optional)')
         ),
-    column(4, div(textOutput('counter_value', inline=TRUE), "datasets analyzed!", id="counter_div")
+    column(2, actionButton('remove_data', 'Remove current data', icon=icon('trash-o'))),
+    column(2, div(textOutput('counter_value', inline=TRUE), "datasets analyzed!", id="counter_div")
         )
     ),
     tabsetPanel(

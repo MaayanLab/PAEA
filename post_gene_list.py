@@ -4,7 +4,8 @@ import json
 import requests
 
 url = 'http://amp.pharm.mssm.edu/Enrichr/addList'
-base_url = 'http://127.0.0.1:3838?id='
+# base_url = 'http://127.0.0.1:3838?id='
+base_url = 'http://amp.pharm.mssm.edu/PAEA?id='
 
 genes = ['GENE%s' % i for i in range(20)]
 coefs = [i/10. for i in range(20)]
