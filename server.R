@@ -48,7 +48,13 @@ shinyServer(function(input, output, session) {
             if (session$clientData$url_search == "") {
                 values$chdir <- NULL
             } else {
-                values$chdir <- get_chdir_from_enrichr(session)
+                userListId <- parseQueryString(session$clientData$url_search)$id
+                withProgress(
+                    message = paste('Retrieving dataset', userListId), {
+                        values$chdir <- get_chdir_from_enrichr(session)
+                        incProgress(1)
+                    })
+                
                 if (!is.null(values$chdir)) {
                     updateTextInput(session, "desc", value = values$chdir$desc)
                 }
