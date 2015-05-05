@@ -29,6 +29,7 @@ plot_paea_bars <- function(paea_results, n) {
     paea_results %>%
         dplyr::mutate(logp=-log10(p_value)) %>%
         dplyr::top_n(n, logp) %>%
+        dplyr::top_n(n, Rank) %>%
         ggvis(y=~factor(Term, Term[order(logp, decreasing=TRUE)]),x=~logp,x2=0, height=ggvis::band()) %>%
         ggvis::layer_rects() %>%
         # ggvis::scale_numeric('y', domain = c(min(paea_results$logp), max(paea_results$logp))) %>%
