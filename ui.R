@@ -204,7 +204,7 @@ analyze_panel <- tabPanel(
     fluidRow(column(8, 
         textInput('desc', 'Enter a brief description of the analysis (optional)')
         ),
-    column(2, actionButton('remove_data', 'Remove current data', icon=icon('trash-o'))),
+    column(2, actionButton('remove_data', 'Remove current data', icon=icon('trash-o'), class='btn-danger')),
     column(2, div(textOutput('counter_value', inline=TRUE), "datasets analyzed!", id="counter_div")
         )
     ),
@@ -278,13 +278,13 @@ shinyUI(
         tags$head(
             tags$link(rel='icon', type="image/png", href="favicon.png"),
             includeCSS('www/css/tourist.css'),
-            tags$script(src='js/jquery-1.11.2.min.js'),
+            tags$script(src='js/jquery-2.1.3.min.js'),
             tags$script(src='js/underscore-min.js'),
             tags$script(src='js/backbone-min.js'),
             tags$script(src='js/tourist.min.js'),
             includeScript('www/js/analyze-tour.js'),
             includeScript('www/js/ga.js'),
-            tags$script(src='js/load_manual.js'),
+            tags$script(src='js/main.js'),
             tags$script(src='//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52026ded4b51162b', async="async"),
             includeCSS('www/css/main.css')
             ),
