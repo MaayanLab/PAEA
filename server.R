@@ -102,13 +102,23 @@ shinyServer(function(input, output, session) {
             ))
         }
     })
+
     
     
     #' Is input valid?
     #'
     datain_valid <- reactive({ datain_is_valid(datain())$valid })
     
+    #' send a message to main.js if data is loaded, or chdir is loaded, or there is search string in url
+    observe({
+        if(datain_valid() || !is.null(values$chdir) || session$clientData$url_search != ""){
+            session$sendCustomMessage(type='remove_data', message=TRUE)
+        } else {
+            session$sendCustomMessage(type='remove_data', message='FALSE')
+        }
+    })
     
+
     #' Apply preprocessing steps to datain
     #'
     #'
