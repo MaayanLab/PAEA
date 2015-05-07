@@ -1,5 +1,6 @@
-// to load manual html into the tab
-$(document).ready(function() { 
+$(document).ready(function() {
+	$("#desc").parent().removeClass("shiny-input-container")
+
 	$("#manual").load("html/manual.html")
 
 	$("#remove_data").click(function(){
