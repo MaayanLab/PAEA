@@ -47,14 +47,15 @@ shinyServer(function(input, output, session) {
         updateTextInput(session, "desc", value = input$desc)
             if (session$clientData$url_search == "") {
                 values$chdir <- NULL
-            } else {
+            } else { # GET API is called
                 userListId <- parseQueryString(session$clientData$url_search)$id
                 withProgress(
                     message = paste('Retrieving dataset', userListId), {
                         values$chdir <- get_chdir_from_enrichr(session)
                         incProgress(1)
                     })
-                
+                session$sendCustomMessage(type='switch_tab', message=TRUE)
+                updateCounterValue()
                 if (!is.null(values$chdir)) {
                     updateTextInput(session, "desc", value = values$chdir$desc)
                 }

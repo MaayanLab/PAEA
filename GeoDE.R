@@ -339,7 +339,7 @@ PAEAAnalysis <- function(chdirresults,gmtfile,gammas=c(1.0),casesensitive=FALSE,
   pvalues<-matrix(unlist(pvalues),ncol=length(gmtlines), dimnames=list(gammalabels,gmtlinenames))
   
   pavalues<-lapply(PAEAresults, function(x) x[[1]])
-  pavalues<-matrix(unlist(pvalues),ncol=length(gmtlines), dimnames=list(gammalabels,gmtlinenames))
+  pavalues<-matrix(unlist(pavalues),ncol=length(gmtlines), dimnames=list(gammalabels,gmtlinenames))
   
 
 #  print(class(pvalues))

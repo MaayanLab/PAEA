@@ -11,6 +11,12 @@ $(document).ready(function() {
 			$("#remove_data").prop("disabled", true)
 		};
 	})
+	// switch to paea tab if GET API is called
+	Shiny.addCustomMessageHandler('switch_tab', function(message){
+		if (message === true) {
+			swichTab('#workflow_panel', 2)
+		}
+	})
 	// refresh the page when button clicked
 	$("#remove_data").click(function(){
 		var currentUrl = window.location.href;
