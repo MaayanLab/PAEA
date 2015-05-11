@@ -355,7 +355,7 @@ PAEAAnalysis <- function(chdirresults,gmtfile,gammas=c(1.0),casesensitive=FALSE,
   
 #  print(pvalues[1,gmtp[1:nbars]])
  
-  pvalues <- pvalues+1e-200
+  pvalues <- pvalues+1e-300
 
 #  print(pvalues[1,gmtp[1:nbars]])
 

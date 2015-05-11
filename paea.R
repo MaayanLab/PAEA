@@ -9,7 +9,7 @@ paea_to_df <- function(paea_results) {
     dplyr::tbl_df(data.frame(
         Rank=c(1:length(paea_results$p_value)),
         Term=colnames(paea_results$p_value),
-        Principal_Angle=as.vector(paea_results$principal_angles),
+        Principal_Angle=sapply(paea_results$principal_angles, prettyNum, digits=3),
         p_value=as.vector(paea_results$p_value),
         FDR=p.adjust(paea_results$p_value, 'BH')
     ))
