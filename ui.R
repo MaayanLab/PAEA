@@ -284,6 +284,7 @@ shinyUI(
             tags$script(src='js/tourist.min.js'),
             includeScript('www/js/analyze-tour.js'),
             includeScript('www/js/ga.js'),
+            includeScript('www/js/ga2.js'),
             tags$script(src='js/main.js'),
             tags$script(src='//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52026ded4b51162b', async="async"),
             includeCSS('www/css/main.css')
