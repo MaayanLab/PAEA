@@ -1,7 +1,7 @@
 ## Script to connect to the database behind Enrichr
 ## Authors: Matthew Jones, Zichen Wang
 
-databaseConn <- dplyr::src_mysql(dbname = 'enrichr', host = 'amp.pharm.mssm.edu', user = 'root', password = '4reYuXuhuz')
+databaseConn <- dplyr::src_mysql(dbname = 'enrichr', host = 'amp.pharm.mssm.edu', user = 'paea', password = 'systemsbiology')
 
 subVars <- function(strexpr, vars){
   for(i in range(length(vars))){
@@ -63,7 +63,7 @@ getCounterValue <- function(){
 
 updateCounterValue <- function(){
   # dplyr doesn't seem to be able to update MySQL table
-  conn <- RMySQL::dbConnect(RMySQL::MySQL(), dbname = 'enrichr', host = 'amp.pharm.mssm.edu', user = 'root', password = '4reYuXuhuz')
+  conn <- RMySQL::dbConnect(RMySQL::MySQL(), dbname = 'enrichr', host = 'amp.pharm.mssm.edu', user = 'paea', password = 'systemsbiology')
   RMySQL::dbSendQuery(conn, "UPDATE counters SET count=count+1 WHERE name='paea'")
   RMySQL::dbDisconnect(conn)
 }
