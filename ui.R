@@ -158,10 +158,10 @@ column(12,
 )
 
 
-#' Principle Angle Enrichment Analysis ouput tab
+#' Principal Angle Enrichment Analysis ouput tab
 #'
 paea_tab <- tabPanel(
-    'Principle Angle Enrichment Analysis',
+    'Principal Angle Enrichment Analysis',
     fluidRow(
         column(12, p('')),
         column(3, 
@@ -268,7 +268,7 @@ about_panel <- tabPanel(
 #'
 shinyUI(
     navbarPage(
-        title='PAEA: Principle Angle Enrichment Analysis',
+        title='PAEA: Principal Angle Enrichment Analysis',
         id='navbar',
         # header=div(textOutput('counter_value', inline=TRUE), "datasets analyzed!", id="counter_div"),
         footer=column(12),
