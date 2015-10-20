@@ -1,0 +1,21 @@
+{
+ "id": "/paea",
+ "cpus": 3.0,
+ "mem": 8192.0,
+ "container": {
+   "type": "DOCKER",
+   "docker": {
+    "image": "maayanlab/paea",
+    "network": "BRIDGE",
+    "portMappings": [
+      {
+        "containerPort": 3838
+      }
+    ],
+    "forcePullImage": true
+   }
+  },
+  "labels": {
+    "public":"true"
+  }
+}
