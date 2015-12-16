@@ -12,7 +12,7 @@ api_paea = ro.globalenv['api_paea']
 app = Flask(__name__)
 app.debug = False
 
-@app.route('/PAEA/api', methods=['POST', 'GET'])
+@app.route('/PAEA-api', methods=['POST', 'GET'])
 @crossdomain(origin='*')
 def post_signature():
 	if request.method == 'POST':
