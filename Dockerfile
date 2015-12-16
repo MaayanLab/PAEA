@@ -20,3 +20,4 @@ RUN R -e "install.packages(c('dplyr', 'ggvis', 'data.table', 'tidyr','stringi','
 
 RUN R -e "source('http://bioconductor.org/biocLite.R');biocLite('preprocessCore')"
 
+EXPOSE 3838
