@@ -1,4 +1,4 @@
-source('GeoDE.R')
+source('api/GeoDE.R')
 #' Prepare chdir results for plotting
 #' @param results numeric vector extracted from pchdir results
 #' @param n numeric max number of genes to keep

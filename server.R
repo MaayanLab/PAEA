@@ -13,7 +13,7 @@ library(httr)
 library(parallel)
 library(background)
 
-source('dataAccess.R')
+source('api/dataAccess.R')
 source('preprocess.R')
 source('datain.R')
 source('chdir.R')

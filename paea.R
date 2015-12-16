@@ -1,4 +1,4 @@
-source('GeoDE.R')
+source('api/GeoDE.R')
 #' Take PAEA results and return data.frame with
 #' gene set information and pvalue
 #'
