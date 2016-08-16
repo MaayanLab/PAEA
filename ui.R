@@ -230,6 +230,13 @@ manual_panel <- tabPanel(
 about_panel <- tabPanel(
     title = 'About',
     fluidRow(column(10,
+        h4('Citation:'),
+        tags$span("NR Clark, M Szymkiewicz, Z Wang, CD Monteiro, MR Jones, A Ma'ayan. (2015) "),
+        tags$strong("Principle Angle Enrichment Analysis (PAEA): Dimensionally reduced multivariate gene set enrichment analysis tool."),
+        tags$span(" Bioinformatics and Biomedicine (BIBM), 2015 IEEE International Conference on doi: "),
+        a('10.1109/BIBM.2015.7359689', href='http://dx.doi.org/10.1109/BIBM.2015.7359689'),
+        )),
+    fluidRow(column(10,
         h4('Abstract:'),
         p('Functional analysis of genome-wide differential expression is central to biological investigations. Here we present a new multivariate approach to gene-set enrichment called Principal Angle Enrichment Analysis (PAEA). PAEA uses the geometrical concept of the principal angle to quantify gene-set enrichment. We find that PAEA outperforms a selection of commonly used gene set enrichment methods including GSEA. To benchmark PAEA with other enrichment methods we use real data. We examined the ranking of transcription factors by performing enrichment analysis on gene expression signatures from many studies that knocked-down, knocked-out or over-expressed transcription factors, and performed the enrichment analysis with a library of gene sets created from ChIP-Seq data profiling the same transcription factors. We also found that PAEA was able to rank better aging-related phenotype-terms from a collection of gene expression profiling studies where tissue from young adults was compared to tissue of elderly subjects. PAEA is implemented as a user-friendly R Shiny gene-set enrichment web application with over 70 gene set libraries available for enrichment analysis. Canned enrichment analysis for over 700 disease signatures extracted from GEO is provided with the application which is freely available at: ', a('http://amp.pharm.mssm.edu/PAEA', href='http://amp.pharm.mssm.edu/PAEA'), '.')
         , offset=1)
