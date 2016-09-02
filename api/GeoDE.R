@@ -14,8 +14,8 @@ chdirAnalysis <- function(datain, sampleclass, gammas=list(1.0), nnull=10,Calcul
   if(length(sampleclass)!=(length(datain)-1)) stop("number of elements in sampleclass is inconsistent with input data")
   if(!is.data.frame(datain)) stop("Input data is not in the form of a data frame")
   if(FALSE%in%(c("1","2")%in%levels(sampleclass))) stop ("sample class does not include \'1\' and \'2\'")
-  if(length(datain[sampleclass==1])<2) stop ("too few controll samples")
-  if(length(datain[sampleclass==2])<2) stop ("too few samples")
+  if(sum(sampleclass==1)<2) stop ("too few controll samples")
+  if(sum(sampleclass==2)<2) stop ("too few samples")
   
   # Calculate the characteristic direction
   chdirresults <- chdirSig(datain,sampleclass,gammas,nnull=nnull,CalculateSig=CalculateSig)

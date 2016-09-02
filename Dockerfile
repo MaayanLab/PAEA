@@ -14,9 +14,14 @@ RUN R -e "install.packages('devtools')"
 
 RUN R -e "devtools::install_github('s-u/background')"
 
-RUN R -e "install.packages('Rcpp')"
+# RUN R -e "install.packages('Rcpp')"
+RUN R -e "install.packages('https://cran.r-project.org/src/contrib/Archive/Rcpp/Rcpp_0.12.2.tar.gz', repos=NULL, type='source')"
 
-RUN R -e "install.packages(c('dplyr', 'ggvis', 'data.table', 'tidyr','stringi','rjson','RMySQL','httr'), repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('https://cran.r-project.org/src/contrib/Archive/dplyr/dplyr_0.4.3.tar.gz', repos=NULL, type='source')"
+
+RUN R -e "install.packages(c('ggvis', 'data.table', 'tidyr','stringi','rjson','RMySQL','httr'), repos='http://cran.rstudio.com/')"
+
+RUN R -e "install.packages('dtplyr')"
 
 RUN R -e "source('http://bioconductor.org/biocLite.R');biocLite('preprocessCore')"
 

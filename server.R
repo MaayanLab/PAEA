@@ -1,8 +1,9 @@
 library(shiny)
 library(ggvis)
+library(dtplyr)
 library(data.table)
 library(tidyr)
-library(dplyr)
+# library(dplyr)
 library(preprocessCore)
 library(stringi)
 library(Matrix)
@@ -136,7 +137,7 @@ shinyServer(function(input, output, session) {
     #' Input data preview
     #'
     output$contents <- renderDataTable({
-        prettyNum(datain_preprocessed(), digits=config$digits) # to keep digits to display in the dataTable
+        datain_preprocessed() # to keep digits to display in the dataTable
     })
     
     
@@ -291,6 +292,7 @@ shinyServer(function(input, output, session) {
             }
         )
 
+        # values$chdir <- chdir_analysis_wrapper(datain, sampleclass, gamma, nnull)
         updateCounterValue()
 
         # save the list to database `enrichr`
@@ -519,7 +521,7 @@ shinyServer(function(input, output, session) {
     #' table
     output$paea_table <- renderDataTable({
         if(!is.null(paea_results())){
-            prettyNum(paea_to_df(paea_results()), digits=config$digits)
+            paea_to_df(paea_results())
         }
     })
     #' bar graph

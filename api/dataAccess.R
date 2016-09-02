@@ -41,14 +41,14 @@ getGeneSetLibrary_ <- function(libName){
   b <- dplyr::inner_join(a, termGenesTable, by="termId")
   allTables <- dplyr::inner_join(b, genesTable, by="geneId")
   
-  subVars(strexpr = "filter(allTables, libraryName == x_)", vars = list(x_ = libName))
+  subVars(strexpr = "dplyr::filter(allTables, libraryName == x_)", vars = list(x_ = libName))
 }
 
 getTerms <- function(libName){
   gsl <- getGeneSetLibrary_(libName)
   terms <- dplyr::select(gsl, term.name, gene.name)
   terms <- dplyr::arrange(terms, term.name)
-  terms <- as.data.frame(terms, n=-1)
+  terms <- as.data.frame(terms)
   starts <- which(!duplicated(terms$term.name))
   start_ <<- 1
   raggedArray <- lapply(starts[-1], function(x) {ret <- c(terms$term.name[start_], terms$gene.name[start_:x])
