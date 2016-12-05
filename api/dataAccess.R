@@ -68,7 +68,7 @@ getTerms <- function(libName){
 
 getCounterValue <- function(){
   countTable <- dplyr::tbl(src = databaseConn, "counters")
-  as.data.frame(countTable$count[3])
+  as.data.frame(countTable)$count[3]
 }
 
 updateCounterValue <- function(){
