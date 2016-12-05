@@ -23,6 +23,8 @@ RUN R -e "install.packages(c('ggvis', 'data.table', 'tidyr','stringi','rjson','R
 
 RUN R -e "install.packages('dtplyr')"
 
+RUN R -e "devtools::install_github('rstudio/pool')"
+
 RUN R -e "source('http://bioconductor.org/biocLite.R');biocLite('preprocessCore')"
 
 EXPOSE 3838
