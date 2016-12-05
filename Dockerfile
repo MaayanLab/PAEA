@@ -2,7 +2,10 @@ FROM rocker/shiny
 
 COPY . /srv/shiny-server/
 
-RUN sed -i -- 's/location \//location \/PAEA/g' /etc/shiny-server/shiny-server.conf
+COPY shiny-server.conf /etc/shiny-server/shiny-server.conf
+# COPY shiny-server.conf /etc/init/shiny-server.conf
+
+# RUN sed -i -- 's/location \//location \/PAEA/g' /etc/shiny-server/shiny-server.conf
 
 RUN apt-get update
 
