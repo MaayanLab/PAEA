@@ -7,7 +7,8 @@ pool <- pool::dbPool(
   dbname = "enrichr",
   host = "amp.pharm.mssm.edu",
   username = "paea",
-  password = "systemsbiology"
+  password = "systemsbiology",
+  idleTimeout = Inf
   )
 databaseConn <- pool::src_pool(pool)
 # conn <- RMySQL::dbConnect(RMySQL::MySQL(), dbname = 'enrichr', host = 'amp.pharm.mssm.edu', user = 'paea', password = 'systemsbiology')

@@ -31,3 +31,5 @@ RUN R -e "devtools::install_github('rstudio/pool')"
 RUN R -e "source('http://bioconductor.org/biocLite.R');biocLite('preprocessCore')"
 
 EXPOSE 3838
+
+CMD /usr/bin/shiny-server.sh && /srv/shiny-server/restarter.sh
