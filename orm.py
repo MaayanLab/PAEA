@@ -1,4 +1,5 @@
 # ORMs for the database to store PAEA lists
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import ForeignKey, Column, Integer, String, Table, Float, Text, DATETIME
@@ -7,7 +8,7 @@ from sqlalchemy.orm import sessionmaker
 
 from datetime import datetime
 
-db_config = open('db.conf').read()
+db_config = os.environ.get('MYSQL_URI')
 engine = create_engine(db_config)
 Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 session = Session()
