@@ -445,7 +445,9 @@ shinyServer(function(input, output, session) {
     #'
     output$chdir_up_genes_table <- renderDataTable({
         if(!is.null(values$chdir)) {
-            chdir_up_genes() %>%  rename(Gene = g, 'Characteristic Direction Coefficient' = v)
+            df <- chdir_up_genes()
+            colnames(df) <- c('Gene', 'Characteristic Direction Coefficient')
+            df
         }
     })
     
@@ -454,7 +456,9 @@ shinyServer(function(input, output, session) {
     #'
     output$chdir_down_genes_table <- renderDataTable({
         if(!is.null(values$chdir)) {
-            chdir_down_genes() %>% rename(Gene = g, 'Characteristic Direction Coefficient' = v)
+            df <- chdir_down_genes() 
+            colnames(df) <- c('Gene', 'Characteristic Direction Coefficient')
+            df
         }
     })
 

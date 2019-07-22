@@ -1,9 +1,6 @@
-FROM rocker/shiny
-
-COPY . /srv/shiny-server/
+FROM rocker/shiny:3.3.2
 
 COPY shiny-server.conf /etc/shiny-server/shiny-server.conf
-# COPY shiny-server.conf /etc/init/shiny-server.conf
 
 # RUN sed -i -- 's/location \//location \/PAEA/g' /etc/shiny-server/shiny-server.conf
 
@@ -26,10 +23,16 @@ RUN R -e "install.packages(c('ggvis', 'data.table', 'tidyr','stringi','rjson','R
 
 RUN R -e "install.packages('dtplyr')"
 
-RUN R -e "devtools::install_github('rstudio/pool')"
+RUN R -e "devtools::install_github('rstudio/pool@dplyr-pre-0.7.0-compat')"
+
+RUN R -e "install.packages('ggvis')"
+
+RUN R -e "install.packages('tidyr')"
 
 RUN R -e "source('http://bioconductor.org/biocLite.R');biocLite('preprocessCore')"
 
 EXPOSE 3838
+
+COPY . /srv/shiny-server/
 
 CMD /usr/bin/shiny-server.sh && /srv/shiny-server/restarter.sh
