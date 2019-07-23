@@ -263,7 +263,6 @@ about_panel <- tabPanel(
             tags$dt('Contact:'),
             span("This web application is created by Zichen Wang, Maciej Szymkiewicz and Avi Ma'ayan, PhD from Icahn School of Medicine at Mount Sinai. Feel free to contact us for bug reports and suggestions."),
             tags$dd("Avi Ma'ayan, PhD:", a('avi.maayan {at} mssm.edu', href='mailto:avi.maayan@mssm.edu', target="_top")),
-            tags$dd("Zichen Wang:", a('zichen.wang {at} mssm.edu', href='mailto:zichen.wang@mssm.edu', target="_top")),
             tags$dd("Maciej Szymkiewicz:", a('matthew.szymkiewicz {at} gmail.com', href='mailto:matthew.szymkiewicz@gmail.com', target="_top"))
             )
         , offset=1)),    
